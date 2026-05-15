@@ -11,13 +11,13 @@ type JsRepo = {
 
 export let github_repo: GitHubRepo = {
   owner: "SikandarJODD",
-  url: "https://github.com/SikandarJODD/animations",
-  name: "animations",
-  fallback_stars: 100,
+  url: "https://github.com/SikandarJODD/sv-prompt-kit",
+  name: "sv-prompt-kit",
+  fallback_stars: 0,
 };
 
 export let jsrepo: JsRepo = {
-  name: "@sv/project",
-  url: "https://www.jsrepo.com/@sv/loaders",
+  name: "@sv/prompt-kit",
+  url: "https://www.jsrepo.com/@sv/prompt-kit",
 };
 

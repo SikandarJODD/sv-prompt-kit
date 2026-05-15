@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Card from "$lib/components/ui/card/index.js";
-	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import { github_repo } from "$lib/config/repo";
+	import { mode } from "mode-watcher";
 </script>
 
-<Card.Root class="gap-2 py-4 ring-0">
+<Card.Root
+	class={[
+		"gap-2 py-4 ring-0 dark:bg-card",
+		mode.current === "light" ? "border" : ""
+	]}
+>
 	<Card.Header class="px-4">
 		<Card.Title class="text-sm">Support My Work</Card.Title>
 		<Card.Description class="text-xs">
@@ -17,7 +22,7 @@
 		<Button
 			class="w-full"
 			size="sm"
-			variant="secondary"
+			variant={mode.current === "dark" ? "secondary" : "outline"}
 			href="https://github.com/sponsors/{github_repo.owner}"
 		>
 			GitHub Sponsors

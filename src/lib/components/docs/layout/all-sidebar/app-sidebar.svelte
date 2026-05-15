@@ -39,7 +39,6 @@
 
 <script lang="ts">
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import { Button } from "$lib/components/ui/button";
 	import {
 		ScrollArea,
 		ScrollFadeEffect
@@ -48,7 +47,7 @@
 	import { page } from "$app/state";
 	import type { ComponentProps } from "svelte";
 	import { watch } from "runed";
-	import SupportWork from "../../base/main/support-work.svelte";
+	import { SupportWork } from "$lib/components/docs/base/main";
 
 	let {
 		ref = $bindable(null),
@@ -75,7 +74,7 @@
 
 <Sidebar.Root class="bg-background pt-14" {...restProps} bind:ref>
 	<Sidebar.Content bind:ref={contentRef}>
-		<ScrollFadeEffect class="max-h-[calc(100vh-6rem)] py-4 pr-1">
+		<ScrollArea class="max-h-[calc(100vh-6rem)] py-4 pr-1">
 			<!-- We create a Sidebar.Group for each parent. -->
 			{#each data.navMain as group}
 				<Sidebar.Group>
@@ -115,7 +114,7 @@
 					</Sidebar.GroupContent>
 				</Sidebar.Group>
 			{/each}
-		</ScrollFadeEffect>
+		</ScrollArea>
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<SupportWork />

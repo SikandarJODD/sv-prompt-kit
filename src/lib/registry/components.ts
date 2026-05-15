@@ -17,24 +17,10 @@ export interface DocPage {
 
 let components: Component[] = [
   {
-    id: "badge",
-    name: "Badge",
-    href: "/components/badge",
-    badge: "Updated",
-    desc: "TODO: Add a concise description for Badge.",
-  },
-  {
-    id: "backlight",
-    name: "Backlight",
-    href: "/components/backlight",
-    badge: "New",
-    desc: "An SVG filter wrapper that adds a soft, saturated backlight glow around the content it wraps.",
-  },
-  {
-    id: "input",
-    name: "Input",
-    href: "/components/input",
-    desc: "TODO: Add a concise description for Input.",
+    id: "chain-of-thought",
+    name: "Chain Of Thought",
+    href: "/components/chain-of-thought",
+    desc: "TODO: Add a concise description for Chain Of Thought.",
   },
 ];
 

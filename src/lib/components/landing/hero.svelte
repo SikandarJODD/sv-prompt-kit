@@ -32,7 +32,7 @@
 		<h1
 			class="animate-in text-4xl leading-tight font-medium text-balance text-foreground delay-100 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in md:text-5xl"
 		>
-			Svelte Project Setup
+			Svelte Prompt Kit
 		</h1>
 
 		<p
@@ -48,7 +48,9 @@
 				Get Started
 				<ArrowRight class="size-4" />
 			</Button>
-			<Button href="/components/buttons" variant="outline">View Components</Button>
+			<Button href="/components/buttons" variant="outline"
+				>View Components</Button
+			>
 		</div>
 	</div>
 
@@ -57,7 +59,7 @@
 			class="absolute -inset-x-20 inset-y-0 -translate-y-1/3 scale-120 rounded-full bg-[radial-gradient(ellipse_at_center,color-mix(in_oklab,var(--foreground)_10%,transparent),transparent,transparent)] blur-[50px]"
 		></div>
 		<div
-			class="relative mt-8 -mr-56 animate-in overflow-hidden [mask-image:linear-gradient(to_bottom,black_0%,black_60%,transparent_100%)] px-2 delay-100 duration-1000 ease-out fill-mode-backwards slide-in-from-bottom-5 fade-in sm:mt-12 sm:mr-0 md:mt-20"
+			class="relative mt-8 -mr-56 animate-in overflow-hidden mask-[linear-gradient(to_bottom,black_0%,black_60%,transparent_100%)] px-2 delay-100 duration-1000 ease-out fill-mode-backwards slide-in-from-bottom-5 fade-in sm:mt-12 sm:mr-0 md:mt-20"
 		>
 			<div
 				class="relative mx-auto max-w-6xl overflow-hidden rounded-lg border bg-background p-2 shadow-xl ring-1 inset-shadow-2xs ring-card inset-shadow-foreground/10 dark:inset-shadow-xs dark:inset-shadow-foreground/20"

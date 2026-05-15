@@ -39,3 +39,10 @@ Recreates the route files if that route already exists.
 - Use `--dry-run` first if you want to confirm the output.
 - Use `--force` only when you want to replace an existing generated route.
 - If a component name is ambiguous, pass `--source` explicitly.
+
+---
+
+Example: pnpm create:route chain-of-thought --source ai/chain-of-thought
+
+If you want to be fully explicit, this is also valid:
+pnpm create:route chain-of-thought --source ai/chain-of-thought --export Root
