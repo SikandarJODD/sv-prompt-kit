@@ -14,8 +14,6 @@
     "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
     "lint": "prettier --check .",
     "format": "prettier --write .",
-    "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check",
     "build:blocks": "pnpm shadcn-svelte registry build",
     "build:example": "pnpm shadcn-svelte registry build ./example.json -o ./registry.json"
   },
@@ -40,7 +38,6 @@
     "@tailwindcss/vite": "^4.2.2",
     "bits-ui": "^2.18.1",
     "clsx": "^2.1.1",
-    "oxfmt": "^0.48.0",
     "package-manager-detector": "^1.6.0",
     "prettier": "^3.8.1",
     "prettier-plugin-svelte": "^3.5.1",
