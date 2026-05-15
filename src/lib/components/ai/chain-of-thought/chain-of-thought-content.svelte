@@ -20,8 +20,14 @@
 	{...restProps}
 >
 	<div class="grid grid-cols-[min-content_minmax(0,1fr)] gap-x-4">
-		<div class="bg-primary/20 ml-1.75 h-full w-px group-data-[last=true]:hidden" />
-		<div class="ml-1.75 h-full w-px bg-transparent group-data-[last=false]:hidden" />
+		<div
+			class="bg-primary/20 ml-1.75 h-full w-px"
+			data-slot="chain-of-thought-step-content-rail"
+		></div>
+		<div
+			class="ml-1.75 hidden h-full w-px bg-transparent"
+			data-slot="chain-of-thought-step-content-spacer"
+		></div>
 		<div class="mt-2 space-y-2">{@render children?.()}</div>
 	</div>
 </CollapsibleContent>
