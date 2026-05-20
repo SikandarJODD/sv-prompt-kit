@@ -28,6 +28,72 @@ let components: Component[] = [
     href: "/components/feedback-bar",
     desc: "TODO: Add a concise description for Feedback Bar.",
   },
+  {
+    id: "file-upload",
+    name: "File Upload",
+    href: "/components/file-upload",
+    desc: "TODO: Add a concise description for File Upload.",
+  },
+  {
+    id: "image",
+    name: "Image",
+    href: "/components/image",
+    desc: "TODO: Add a concise description for Image.",
+  },
+  {
+    id: "loader",
+    name: "Loader",
+    href: "/components/loader",
+    desc: "TODO: Add a concise description for Loader.",
+  },
+  {
+    id: "message",
+    name: "Message",
+    href: "/components/message",
+    desc: "TODO: Add a concise description for Message.",
+  },
+  {
+    id: "markdown",
+    name: "Markdown",
+    href: "/components/markdown",
+    desc: "TODO: Add a concise description for Markdown.",
+  },
+  {
+    id: "prompt-input",
+    name: "Prompt Input",
+    href: "/components/prompt-input",
+    desc: "TODO: Add a concise description for Prompt Input.",
+  },
+  {
+    id: "prompt-suggestion",
+    name: "Prompt Suggestion",
+    href: "/components/prompt-suggestion",
+    desc: "TODO: Add a concise description for Prompt Suggestion.",
+  },
+  {
+    id: "source",
+    name: "Source",
+    href: "/components/source",
+    desc: "TODO: Add a concise description for Source.",
+  },
+  {
+    id: "system-message",
+    name: "System Message",
+    href: "/components/system-message",
+    desc: "TODO: Add a concise description for System Message.",
+  },
+  {
+    id: "text-shimmer",
+    name: "Text Shimmer",
+    href: "/components/text-shimmer",
+    desc: "TODO: Add a concise description for Text Shimmer.",
+  },
+  {
+    id: "thinking-bar",
+    name: "Thinking Bar",
+    href: "/components/thinking-bar",
+    desc: "TODO: Add a concise description for Thinking Bar.",
+  },
 ];
 
 export { components };

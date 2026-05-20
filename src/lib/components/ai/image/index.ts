@@ -1,2 +1,6 @@
 import Image from "./image.svelte";
-export default { Image };
+export {
+    Image,
+    //
+    Image as Root,
+};

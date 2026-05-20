@@ -1,2 +1,6 @@
 import Markdown from "./markdown.svelte";
-export default Markdown;
+export {
+    Markdown,
+    //
+    Markdown as Root,
+};

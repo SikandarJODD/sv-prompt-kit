@@ -1,2 +1,6 @@
 import SystemMessage from './system-message.svelte';
-export default { SystemMessage };
+export {
+    SystemMessage,
+    //
+    SystemMessage as Root,
+};
