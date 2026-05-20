@@ -2,7 +2,7 @@
 	import { cn } from "$lib/utils";
 	import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
-	import Markdown from "$lib/components/ai/markdown";
+	import { Markdown } from "$lib/components/ai/markdown";
 
 	let {
 		markdown = false,
