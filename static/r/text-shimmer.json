@@ -1,0 +1,22 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "text-shimmer",
+	"title": "Text Shimmer",
+	"type": "registry:component",
+	"description": "Animated shimmer text treatment for AI loading states.",
+	"registryDependencies": [
+		"utils"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\texport type TextShimmerProps = HTMLAttributes<HTMLElement> & {\r\n\t\t/** The HTML element to render as */\r\n\t\tas?: keyof HTMLElementTagNameMap;\r\n\t\t/** Animation duration in seconds */\r\n\t\tduration?: number;\r\n\t\t/** Spread of the shimmer highlight (5-45) */\r\n\t\tspread?: number;\r\n\t\t/** Content to display */\r\n\t\tchildren?: Snippet;\r\n\t\t/** Additional CSS classes */\r\n\t\tclass?: string;\r\n\t};\r\n</script>\r\n\r\n<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\r\n\tlet {\r\n\t\tas = \"span\",\r\n\t\tduration = 4,\r\n\t\tspread = 20,\r\n\t\tchildren,\r\n\t\tclass: className,\r\n\t\t...restProps\r\n\t}: TextShimmerProps = $props();\r\n\r\n\t// Clamp spread between 5 and 45\r\n\tconst dynamicSpread = $derived(Math.min(Math.max(spread, 5), 45));\r\n\r\n\tconst shimmerStyle = $derived(\r\n\t\t`background-image: linear-gradient(to right, var(--muted-foreground) ${50 - dynamicSpread}%, var(--foreground) 50%, var(--muted-foreground) ${50 + dynamicSpread}%); animation-duration: ${duration}s;`\r\n\t);\r\n</script>\r\n\r\n<svelte:element\r\n\tthis={as}\r\n\tclass={cn(\r\n\t\t\"bg-size-[200%_auto] bg-clip-text font-medium text-transparent\",\r\n\t\t\"animate-[shimmer_4s_infinite_linear]\",\r\n\t\tclassName\r\n\t)}\r\n\tstyle={shimmerStyle}\r\n\t{...restProps}\r\n>\r\n\t{#if children}\r\n\t\t{@render children()}\r\n\t{/if}\r\n</svelte:element>\r\n",
+			"type": "registry:component",
+			"target": "ai/text-shimmer/text-shimmer.svelte"
+		},
+		{
+			"content": "import Root, { type TextShimmerProps } from \"./text-shimmer.svelte\";\r\n\r\nexport {\r\n    Root,\r\n    type TextShimmerProps as Props,\r\n    //\r\n    Root as TextShimmer,\r\n    type TextShimmerProps,\r\n};",
+			"type": "registry:file",
+			"target": "ai/text-shimmer/index.ts"
+		}
+	]
+}

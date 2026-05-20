@@ -7,20 +7,24 @@
 	interface ChainOfThoughtStepProps extends CollapsiblePrimitive.RootProps {
 		class?: string;
 		children?: Snippet;
-		isLast?: boolean;
 	}
 
 	let {
 		class: className,
 		children,
-		isLast = false,
 		...restProps
 	}: ChainOfThoughtStepProps = $props();
 </script>
 
-<Collapsible class={cn("group", className)} data-last={isLast} {...restProps}>
+<Collapsible
+	class={cn(
+		"group [&:last-child_[data-slot=chain-of-thought-step-content-rail]]:hidden [&:last-child_[data-slot=chain-of-thought-step-content-spacer]]:block [&:last-child_[data-slot=chain-of-thought-step-tail]]:hidden",
+		className
+	)}
+	{...restProps}
+>
 	{@render children?.()}
-	<div class="flex justify-start group-data-[last=true]:hidden">
-		<div class="bg-primary/20 ml-1.75 h-4 w-px" />
+	<div class="flex justify-start" data-slot="chain-of-thought-step-tail">
+		<div class="bg-primary/20 ml-1.75 h-4 w-px"></div>
 	</div>
 </Collapsible>

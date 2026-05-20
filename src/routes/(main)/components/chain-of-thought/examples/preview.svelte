@@ -36,7 +36,7 @@
 				</ChainOfThought.Item>
 			</ChainOfThought.Content>
 		</ChainOfThought.Step>
-		<ChainOfThought.Step isLast>
+		<ChainOfThought.Step>
 			<ChainOfThought.Trigger>
 				Selecting the best approach
 			</ChainOfThought.Trigger>

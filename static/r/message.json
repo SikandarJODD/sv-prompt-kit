@@ -1,0 +1,43 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "message",
+	"title": "Message",
+	"type": "registry:block",
+	"description": "Composable AI message layout, content, and actions.",
+	"devDependencies": [
+		"bits-ui@^2.18.1",
+		"@internationalized/date@^3.12.1"
+	],
+	"registryDependencies": [
+		"utils",
+		"tooltip",
+		"./markdown.json"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\tchildren,\r\n\t\t...restProps\r\n\t}: {\r\n\t\tclass?: string;\r\n\t\tchildren: Snippet;\r\n\t} & HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n<div class={cn(\"flex gap-3\", className)} {...restProps}>\r\n\t{@render children()}\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/message/message.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\timport Markdown from \"$COMPONENTS$/ai/markdown\";\r\n\r\n\tlet {\r\n\t\tmarkdown = false,\r\n\t\tclass: className,\r\n\t\tcontent,\r\n\t\tchildren,\r\n\t\t...restProps\r\n\t}: {\r\n\t\tcontent?: string;\r\n\t\tmarkdown?: boolean;\r\n\t\tclass?: string;\r\n\t\tchildren?: Snippet;\r\n\t} & HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n{#if markdown && content}\r\n\t<Markdown\r\n\t\tclass={cn(\r\n\t\t\t\"prose rounded-lg bg-secondary p-2 wrap-break-word whitespace-normal text-foreground\",\r\n\t\t\tclassName\r\n\t\t)}\r\n\t\t{content}\r\n\t></Markdown>\r\n{:else}\r\n\t<div\r\n\t\tclass={cn(\r\n\t\t\t\"prose rounded-lg bg-secondary p-2 wrap-break-word whitespace-normal text-foreground\",\r\n\t\t\tclassName\r\n\t\t)}\r\n\t\t{...restProps}\r\n\t>\r\n\t\t{@render children?.()}\r\n\t</div>\r\n{/if}\r\n",
+			"type": "registry:component",
+			"target": "ai/message/message-content.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\tchildren,\r\n\t\t...restProps\r\n\t}: {\r\n\t\tclass?: string;\r\n\t\tchildren: Snippet;\r\n\t} & HTMLAttributes<HTMLDivElement> = $props();\r\n</script>\r\n\r\n<div\r\n\tclass={cn(\"flex items-center gap-2 text-muted-foreground\", className)}\r\n\t{...restProps}\r\n>\r\n\t{@render children()}\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/message/message-actions.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport {\r\n\t\tTooltip,\r\n\t\tTooltipContent,\r\n\t\tTooltipProvider,\r\n\t\tTooltipTrigger\r\n\t} from \"$COMPONENTS$/ui/tooltip/index.js\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { Tooltip as TooltipPrimitive } from \"bits-ui\";\r\n\r\n\tlet {\r\n\t\ttooltip,\r\n\t\tside = \"top\",\r\n\t\tclass: className,\r\n\t\tchildren,\r\n\t\t...restProps\r\n\t}: {\r\n\t\ttooltip: Snippet;\r\n\t\tside?: \"top\" | \"bottom\" | \"left\" | \"right\";\r\n\t\tclass?: string;\r\n\t\tchildren: Snippet;\r\n\t} & TooltipPrimitive.RootProps = $props();\r\n</script>\r\n\r\n<TooltipProvider>\r\n\t<Tooltip delayDuration={60} {...restProps}>\r\n\t\t<TooltipTrigger>\r\n\t\t\t{@render children()}\r\n\t\t</TooltipTrigger>\r\n\t\t<TooltipContent {side} class={className}>\r\n\t\t\t{@render tooltip()}\r\n\t\t</TooltipContent>\r\n\t</Tooltip>\r\n</TooltipProvider>\r\n",
+			"type": "registry:component",
+			"target": "ai/message/message-action.svelte"
+		},
+		{
+			"content": "import Message from \"./message.svelte\";\r\nimport MessageContent from \"./message-content.svelte\";\r\nimport MessageActions from \"./message-actions.svelte\";\r\nimport MessageAction from \"./message-action.svelte\";\r\n\r\nexport {\r\n    Message,\r\n    MessageContent,\r\n    MessageActions,\r\n    MessageAction,\r\n    //\r\n    Message as Root,\r\n    MessageAction as Action,\r\n    MessageActions as Actions,\r\n    MessageContent as Content,\r\n};",
+			"type": "registry:file",
+			"target": "ai/message/index.ts"
+		}
+	]
+}

@@ -1,0 +1,38 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "source",
+	"title": "Source",
+	"type": "registry:block",
+	"description": "Composable source link preview for AI citations.",
+	"registryDependencies": [
+		"utils",
+		"hover-card"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { HoverCard } from \"$COMPONENTS$/ui/hover-card/index.js\";\r\n\timport { SourceClass, setSourceContext } from \"./context.svelte.js\";\r\n\timport type { Snippet } from \"svelte\";\r\n\r\n\tlet {\r\n\t\thref,\r\n\t\tchildren\r\n\t}: {\r\n\t\thref: string;\r\n\t\tchildren: Snippet;\r\n\t} = $props();\r\n\r\n\tconst contextInstance = new SourceClass({ href });\r\n\tsetSourceContext(contextInstance);\r\n</script>\r\n\r\n<HoverCard openDelay={150} closeDelay={0}>\r\n\t{@render children()}\r\n</HoverCard>\r\n",
+			"type": "registry:component",
+			"target": "ai/source/source.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport HoverCardTrigger from \"$COMPONENTS$/ui/hover-card/hover-card-trigger.svelte\";\r\n\timport { getSourceContext } from \"./context.svelte.js\";\r\n\r\n\tinterface Props {\r\n\t\tlabel?: string | number;\r\n\t\tshowFavicon?: boolean;\r\n\t\tclass?: string;\r\n\t\t[key: string]: any;\r\n\t}\r\n\r\n\tlet {\r\n\t\tlabel,\r\n\t\tshowFavicon = false,\r\n\t\tclass: className,\r\n\t\t...restProps\r\n\t}: Props = $props();\r\n\r\n\tconst { href, domain } = getSourceContext();\r\n\r\n\tlet labelToShow = $derived(label ?? domain.replace(\"www.\", \"\"));\r\n\tlet faviconUrl = $derived(\r\n\t\t`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(href)}`\r\n\t);\r\n</script>\r\n\r\n<HoverCardTrigger>\r\n\t<a\r\n\t\t{...restProps}\r\n\t\t{href}\r\n\t\ttarget=\"_blank\"\r\n\t\trel=\"noopener noreferrer\"\r\n\t\tclass={cn(\r\n\t\t\t\"inline-flex h-5 max-w-32 items-center gap-1 overflow-hidden rounded-full bg-muted py-0 text-xs leading-none text-muted-foreground no-underline transition-colors duration-150 hover:bg-muted-foreground/30 hover:text-primary\",\r\n\t\t\tshowFavicon ? \"pr-2 pl-1\" : \"px-1\",\r\n\t\t\tclassName\r\n\t\t)}\r\n\t>\r\n\t\t{#if showFavicon}\r\n\t\t\t<img\r\n\t\t\t\tsrc={faviconUrl}\r\n\t\t\t\talt=\"favicon\"\r\n\t\t\t\twidth=\"14\"\r\n\t\t\t\theight=\"14\"\r\n\t\t\t\tclass=\"size-3.5 rounded-full\"\r\n\t\t\t/>\r\n\t\t{/if}\r\n\t\t<span class=\"truncate text-center font-normal\">{labelToShow}</span>\r\n\t</a>\r\n</HoverCardTrigger>\r\n",
+			"type": "registry:component",
+			"target": "ai/source/source-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport HoverCardContent from \"$COMPONENTS$/ui/hover-card/hover-card-content.svelte\";\r\n\timport { getSourceContext } from \"./context.svelte.js\";\r\n\r\n\tinterface Props {\r\n\t\ttitle: string;\r\n\t\tdescription: string;\r\n\t\tclass?: string;\r\n\t\t[key: string]: any;\r\n\t}\r\n\r\n\tlet {\r\n\t\ttitle,\r\n\t\tdescription,\r\n\t\tclass: className,\r\n\t\t...restProps\r\n\t}: Props = $props();\r\n\r\n\tconst { href, domain } = getSourceContext();\r\n\r\n\tlet displayDomain = $derived(domain.replace(\"www.\", \"\"));\r\n\tlet faviconUrl = $derived(\r\n\t\t`https://www.google.com/s2/favicons?sz=64&domain_url=${encodeURIComponent(href)}`\r\n\t);\r\n</script>\r\n\r\n<HoverCardContent class={cn(\"w-80 p-0 shadow-xs\", className)} {...restProps}>\r\n\t<a\r\n\t\t{href}\r\n\t\ttarget=\"_blank\"\r\n\t\trel=\"noopener noreferrer\"\r\n\t\tclass=\"flex flex-col gap-2 p-3\"\r\n\t>\r\n\t\t<div class=\"flex items-center gap-1.5\">\r\n\t\t\t<img\r\n\t\t\t\tsrc={faviconUrl}\r\n\t\t\t\talt=\"favicon\"\r\n\t\t\t\tclass=\"size-4 rounded-full\"\r\n\t\t\t\twidth=\"16\"\r\n\t\t\t\theight=\"16\"\r\n\t\t\t/>\r\n\t\t\t<div class=\"truncate text-sm text-primary\">\r\n\t\t\t\t{displayDomain}\r\n\t\t\t</div>\r\n\t\t</div>\r\n\t\t<div class=\"line-clamp-2 text-sm font-medium\">{title}</div>\r\n\t\t<div class=\"line-clamp-2 text-sm text-muted-foreground\">\r\n\t\t\t{description}\r\n\t\t</div>\r\n\t</a>\r\n</HoverCardContent>\r\n",
+			"type": "registry:component",
+			"target": "ai/source/source-content.svelte"
+		},
+		{
+			"content": "import { getContext, setContext } from \"svelte\";\r\n\r\nexport type SourceSchema = {\r\n    href: string;\r\n    domain: string;\r\n};\r\n\r\nexport class SourceClass {\r\n    href = $state<string>(\"\");\r\n    domain = $state<string>(\"\");\r\n\r\n    constructor(props: { href: string }) {\r\n        this.href = props.href;\r\n\r\n        // Extract domain from href\r\n        try {\r\n            this.domain = new URL(props.href).hostname;\r\n        } catch {\r\n            this.domain = props.href.split(\"/\").pop() || props.href;\r\n        }\r\n    }\r\n}\r\n\r\nconst SOURCE_KEY = Symbol(\"source\");\r\n\r\nexport function setSourceContext(contextInstance: SourceClass) {\r\n    setContext(SOURCE_KEY, contextInstance);\r\n}\r\n\r\nexport function getSourceContext(): SourceClass {\r\n    const context = getContext<SourceClass>(SOURCE_KEY);\r\n\r\n    if (!context) {\r\n        throw new Error(\"Source.* must be used inside <Source>\");\r\n    }\r\n\r\n    return context;\r\n}",
+			"type": "registry:file",
+			"target": "ai/source/context.svelte.ts"
+		},
+		{
+			"content": "import Root from './source.svelte';\r\nimport Trigger from './source-trigger.svelte';\r\nimport Content from './source-content.svelte';\r\n\r\nexport {\r\n    Root,\r\n    Trigger,\r\n    Content,\r\n    //\r\n    Root as Source,\r\n    Trigger as SourceTrigger,\r\n    Content as SourceContent,\r\n}\r\n",
+			"type": "registry:file",
+			"target": "ai/source/index.ts"
+		}
+	]
+}

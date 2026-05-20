@@ -2,17 +2,418 @@
   "$schema": "https://shadcn-svelte.com/schema/registry.json",
   "name": "sv-project",
   "homepage": "https://sv-project.vercel.app",
+  "aliases": {
+    "lib": "$lib",
+    "components": "$lib/components",
+    "ui": "$lib/components/ui",
+    "utils": "$lib/utils"
+  },
   "items": [
     {
-      "name": "hello-world",
+      "name": "chain-of-thought",
       "type": "registry:block",
-      "title": "Hello World",
-      "description": "A simple hello world component.",
+      "title": "Chain Of Thought",
+      "description": "Composable AI reasoning disclosure components.",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/chain-of-thought/chain-of-thought.svelte",
+          "type": "registry:component",
+          "target": "ai/chain-of-thought/chain-of-thought.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chain-of-thought/chain-of-thought-item.svelte",
+          "type": "registry:component",
+          "target": "ai/chain-of-thought/chain-of-thought-item.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chain-of-thought/chain-of-thought-trigger.svelte",
+          "type": "registry:component",
+          "target": "ai/chain-of-thought/chain-of-thought-trigger.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chain-of-thought/chain-of-thought-content.svelte",
+          "type": "registry:component",
+          "target": "ai/chain-of-thought/chain-of-thought-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chain-of-thought/chain-of-thought-step.svelte",
+          "type": "registry:component",
+          "target": "ai/chain-of-thought/chain-of-thought-step.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chain-of-thought/index.ts",
+          "type": "registry:file",
+          "target": "ai/chain-of-thought/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "feedback-bar",
+      "type": "registry:component",
+      "title": "Feedback Bar",
+      "description": "Compact thumbs-up or thumbs-down feedback actions.",
       "registryDependencies": [],
       "files": [
         {
-          "path": "src/lib/registry/blocks/hello-world/hello-world.svelte",
-          "type": "registry:component"
+          "path": "src/lib/components/ai/feedback-bar/feedback-bar.svelte",
+          "type": "registry:component",
+          "target": "ai/feedback-bar/feedback-bar.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/feedback-bar/index.ts",
+          "type": "registry:file",
+          "target": "ai/feedback-bar/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "file-upload",
+      "type": "registry:block",
+      "title": "File Upload",
+      "description": "Composable AI file upload container and triggers.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/components/ai/file-upload/file-upload.svelte",
+          "type": "registry:component",
+          "target": "ai/file-upload/file-upload.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/file-upload/file-upload-content.svelte",
+          "type": "registry:component",
+          "target": "ai/file-upload/file-upload-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/file-upload/file-upload-trigger.svelte",
+          "type": "registry:component",
+          "target": "ai/file-upload/file-upload-trigger.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/file-upload/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/file-upload/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/file-upload/index.ts",
+          "type": "registry:file",
+          "target": "ai/file-upload/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "image",
+      "type": "registry:component",
+      "title": "Image",
+      "description": "Image renderer for AI message content.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/components/ai/image/image.svelte",
+          "type": "registry:component",
+          "target": "ai/image/image.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/image/index.ts",
+          "type": "registry:file",
+          "target": "ai/image/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "loader",
+      "type": "registry:block",
+      "title": "Loader",
+      "description": "Loader variants for AI streaming and response states.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/components/ai/loader/loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/circular-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/circular-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/classic-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/classic-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/pulse-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/pulse-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/pulse-dot-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/pulse-dot-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/dots-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/dots-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/typing-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/typing-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/wave-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/wave-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/bars-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/bars-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/terminal-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/terminal-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/text-blink-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/text-blink-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/text-dots-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/text-dots-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/text-shimmer-loader.svelte",
+          "type": "registry:component",
+          "target": "ai/loader/text-shimmer-loader.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/loader/index.ts",
+          "type": "registry:file",
+          "target": "ai/loader/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "markdown",
+      "type": "registry:component",
+      "title": "Markdown",
+      "description": "Streaming markdown renderer for AI message content.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/components/ai/markdown/markdown.svelte",
+          "type": "registry:component",
+          "target": "ai/markdown/markdown.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/markdown/index.ts",
+          "type": "registry:file",
+          "target": "ai/markdown/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:block",
+      "title": "Message",
+      "description": "Composable AI message layout, content, and actions.",
+      "registryDependencies": [
+        "tooltip",
+        "local:markdown"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/message/message.svelte",
+          "type": "registry:component",
+          "target": "ai/message/message.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/message/message-content.svelte",
+          "type": "registry:component",
+          "target": "ai/message/message-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/message/message-actions.svelte",
+          "type": "registry:component",
+          "target": "ai/message/message-actions.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/message/message-action.svelte",
+          "type": "registry:component",
+          "target": "ai/message/message-action.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/message/index.ts",
+          "type": "registry:file",
+          "target": "ai/message/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "prompt-input",
+      "type": "registry:block",
+      "title": "Prompt Input",
+      "description": "Composable AI prompt input with actions and textarea.",
+      "registryDependencies": [
+        "textarea",
+        "tooltip"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/prompt-input/prompt-input.svelte",
+          "type": "registry:component",
+          "target": "ai/prompt-input/prompt-input.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-input/prompt-input-actions.svelte",
+          "type": "registry:component",
+          "target": "ai/prompt-input/prompt-input-actions.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-input/prompt-input-action.svelte",
+          "type": "registry:component",
+          "target": "ai/prompt-input/prompt-input-action.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-input/prompt-input-textarea.svelte",
+          "type": "registry:component",
+          "target": "ai/prompt-input/prompt-input-textarea.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-input/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/prompt-input/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-input/index.ts",
+          "type": "registry:file",
+          "target": "ai/prompt-input/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "prompt-suggestion",
+      "type": "registry:component",
+      "title": "Prompt Suggestion",
+      "description": "Button-like prompt suggestion chip for AI starters.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/prompt-suggestion/prompt-suggestion.svelte",
+          "type": "registry:component",
+          "target": "ai/prompt-suggestion/prompt-suggestion.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/prompt-suggestion/index.ts",
+          "type": "registry:file",
+          "target": "ai/prompt-suggestion/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "source",
+      "type": "registry:block",
+      "title": "Source",
+      "description": "Composable source link preview for AI citations.",
+      "registryDependencies": [
+        "hover-card"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/source/source.svelte",
+          "type": "registry:component",
+          "target": "ai/source/source.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/source/source-trigger.svelte",
+          "type": "registry:component",
+          "target": "ai/source/source-trigger.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/source/source-content.svelte",
+          "type": "registry:component",
+          "target": "ai/source/source-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/source/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/source/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/source/index.ts",
+          "type": "registry:file",
+          "target": "ai/source/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "system-message",
+      "type": "registry:component",
+      "title": "System Message",
+      "description": "Styled system or status message for AI interfaces.",
+      "registryDependencies": [
+        "button"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/system-message/system-message.svelte",
+          "type": "registry:component",
+          "target": "ai/system-message/system-message.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/system-message/index.ts",
+          "type": "registry:file",
+          "target": "ai/system-message/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "text-shimmer",
+      "type": "registry:component",
+      "title": "Text Shimmer",
+      "description": "Animated shimmer text treatment for AI loading states.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "src/lib/components/ai/text-shimmer/text-shimmer.svelte",
+          "type": "registry:component",
+          "target": "ai/text-shimmer/text-shimmer.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/text-shimmer/index.ts",
+          "type": "registry:file",
+          "target": "ai/text-shimmer/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "thinking-bar",
+      "type": "registry:component",
+      "title": "Thinking Bar",
+      "description": "Thinking status indicator for AI responses.",
+      "registryDependencies": [
+        "local:text-shimmer"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/thinking-bar/thinking-bar.svelte",
+          "type": "registry:component",
+          "target": "ai/thinking-bar/thinking-bar.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/thinking-bar/index.ts",
+          "type": "registry:file",
+          "target": "ai/thinking-bar/index.ts"
         }
       ]
     }

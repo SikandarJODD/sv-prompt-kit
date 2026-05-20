@@ -1,0 +1,26 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "thinking-bar",
+	"title": "Thinking Bar",
+	"type": "registry:component",
+	"description": "Thinking status indicator for AI responses.",
+	"devDependencies": [
+		"@lucide/svelte@^1.14.0"
+	],
+	"registryDependencies": [
+		"utils",
+		"./text-shimmer.json"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\" module>\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\texport type ThinkingBarProps = HTMLAttributes<HTMLDivElement> & {\r\n\t\t/** Additional CSS classes */\r\n\t\tclass?: string;\r\n\t\t/** Text to display with shimmer effect */\r\n\t\ttext?: string;\r\n\t\t/** Callback when stop button is clicked */\r\n\t\tonStop?: () => void;\r\n\t\t/** Label for the stop button */\r\n\t\tstopLabel?: string;\r\n\t\t/** Callback when thinking text is clicked */\r\n\t\tonclick?: () => void;\r\n\t};\r\n</script>\r\n\r\n<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport { TextShimmer } from \"$COMPONENTS$/ai/text-shimmer\";\r\n\timport ChevronRight from \"@lucide/svelte/icons/chevron-right\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\ttext = \"Thinking\",\r\n\t\tonStop,\r\n\t\tstopLabel = \"Answer now\",\r\n\t\tonclick,\r\n\t\t...restProps\r\n\t}: ThinkingBarProps = $props();\r\n</script>\r\n\r\n<div\r\n\tclass={cn(\"flex w-full items-center justify-between\", className)}\r\n\t{...restProps}\r\n>\r\n\t{#if onclick}\r\n\t\t<button\r\n\t\t\ttype=\"button\"\r\n\t\t\t{onclick}\r\n\t\t\tclass=\"flex items-center gap-1 text-sm transition-opacity hover:opacity-80\"\r\n\t\t>\r\n\t\t\t<TextShimmer class=\"font-medium\">{text}</TextShimmer>\r\n\t\t\t<ChevronRight class=\"size-4 text-muted-foreground\" />\r\n\t\t</button>\r\n\t{:else}\r\n\t\t<TextShimmer class=\"cursor-default font-medium\">{text}</TextShimmer>\r\n\t{/if}\r\n\t{#if onStop}\r\n\t\t<button\r\n\t\t\tonclick={onStop}\r\n\t\t\ttype=\"button\"\r\n\t\t\tclass=\"border-b border-dotted border-muted-foreground/50 text-sm text-muted-foreground transition-colors hover:border-foreground hover:text-foreground\"\r\n\t\t>\r\n\t\t\t{stopLabel}\r\n\t\t</button>\r\n\t{/if}\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/thinking-bar/thinking-bar.svelte"
+		},
+		{
+			"content": "import Root, { type ThinkingBarProps } from \"./thinking-bar.svelte\";\r\n\r\nexport {\r\n    Root,\r\n    type ThinkingBarProps as Props,\r\n    //\r\n    Root as ThinkingBar,\r\n    type ThinkingBarProps,\r\n};",
+			"type": "registry:file",
+			"target": "ai/thinking-bar/index.ts"
+		}
+	]
+}
