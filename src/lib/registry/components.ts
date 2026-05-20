@@ -22,6 +22,12 @@ let components: Component[] = [
     href: "/components/chain-of-thought",
     desc: "TODO: Add a concise description for Chain Of Thought.",
   },
+  {
+    id: "feedback-bar",
+    name: "Feedback Bar",
+    href: "/components/feedback-bar",
+    desc: "TODO: Add a concise description for Feedback Bar.",
+  },
 ];
 
 export { components };

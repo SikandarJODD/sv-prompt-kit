@@ -1,0 +1,51 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "prompt-input",
+	"title": "Prompt Input",
+	"type": "registry:block",
+	"description": "Composable AI prompt input with actions and textarea.",
+	"dependencies": [
+		"runed@^0.37.1"
+	],
+	"devDependencies": [
+		"bits-ui@^2.18.1",
+		"@internationalized/date@^3.12.1"
+	],
+	"registryDependencies": [
+		"utils",
+		"textarea",
+		"tooltip"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\r\n\timport {\r\n\t\tPromptInputClass,\r\n\t\tsetPromptInputContext,\r\n\t\ttype PromptInputSchema\r\n\t} from \"./context.svelte.js\";\r\n\timport { untrack } from \"svelte\";\r\n\timport { watch } from \"runed\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\tisLoading = false,\r\n\t\tvalue,\r\n\t\tonValueChange,\r\n\t\tmaxHeight = 240,\r\n\t\tonSubmit,\r\n\t\tchildren\r\n\t}: PromptInputSchema & {\r\n\t\tclass?: string;\r\n\t\tchildren: import(\"svelte\").Snippet;\r\n\t} = $props();\r\n\r\n\tconst contextInstance = new PromptInputClass({\r\n\t\tisLoading: untrack(() => isLoading),\r\n\t\tvalue: untrack(() => value),\r\n\t\tonValueChange: untrack(() => onValueChange),\r\n\t\tmaxHeight: untrack(() => maxHeight),\r\n\t\tonSubmit: untrack(() => onSubmit),\r\n\t\tdisabled: untrack(() => isLoading)\r\n\t});\r\n\r\n\tsetPromptInputContext(contextInstance);\r\n\r\n\t// Sync props with context\r\n\t// $effect(() => {\r\n\t// \tcontextInstance.isLoading = isLoading;\r\n\t// \tcontextInstance.disabled = isLoading;\r\n\t// });\r\n\twatch(\r\n\t\t() => isLoading,\r\n\t\t() => {\r\n\t\t\tcontextInstance.isLoading = isLoading;\r\n\t\t\tcontextInstance.disabled = isLoading;\r\n\t\t}\r\n\t);\r\n\r\n\twatch(\r\n\t\t() => value,\r\n\t\t(newValue) => {\r\n\t\t\tif (newValue !== undefined) {\r\n\t\t\t\tcontextInstance.value = newValue;\r\n\t\t\t}\r\n\t\t}\r\n\t);\r\n\r\n\twatch(\r\n\t\t() => onValueChange,\r\n\t\t(newValue) => {\r\n\t\t\tcontextInstance.onValueChange = newValue;\r\n\t\t}\r\n\t);\r\n\r\n\twatch(\r\n\t\t() => maxHeight,\r\n\t\t() => {\r\n\t\t\tcontextInstance.maxHeight = maxHeight;\r\n\t\t}\r\n\t);\r\n\r\n\twatch(\r\n\t\t() => onSubmit,\r\n\t\t() => {\r\n\t\t\tcontextInstance.onSubmit = onSubmit;\r\n\t\t}\r\n\t);\r\n\r\n\tfunction handleClick() {\r\n\t\tcontextInstance.textareaRef?.focus();\r\n\t}\r\n\r\n\tfunction handleKeyDown(e: KeyboardEvent) {\r\n\t\t// Only handle Enter key to focus textarea from wrapper\r\n\t\t// Don't intercept Space key as it prevents typing spaces in the textarea\r\n\t\tif (e.key === \"Enter\") {\r\n\t\t\te.preventDefault();\r\n\t\t\thandleClick();\r\n\t\t}\r\n\t}\r\n</script>\r\n\r\n<TooltipPrimitive.Provider>\r\n\t<!-- svelte-ignore a11y_click_events_have_key_events -->\r\n\t<div\r\n\t\tclass={cn(\r\n\t\t\t\"cursor-text rounded-3xl border border-input bg-background p-2 shadow-xs\",\r\n\t\t\tclassName\r\n\t\t)}\r\n\t\tonclick={handleClick}\r\n\t\trole=\"button\"\r\n\t\ttabindex=\"-1\"\r\n\t>\r\n\t\t<!-- onkeydown={handleKeyDown} -->\r\n\t\t{@render children()}\r\n\t</div>\r\n</TooltipPrimitive.Provider>\r\n",
+			"type": "registry:component",
+			"target": "ai/prompt-input/prompt-input.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\tchildren,\r\n\t\t...restProps\r\n\t}: HTMLAttributes<HTMLDivElement> & {\r\n\t\tchildren: import(\"svelte\").Snippet;\r\n\t} = $props();\r\n</script>\r\n\r\n<div class={cn(\"flex items-center gap-2\", className)} {...restProps}>\r\n\t{@render children()}\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/prompt-input/prompt-input-actions.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { Tooltip as TooltipPrimitive } from \"bits-ui\";\r\n\timport TooltipContent from \"$COMPONENTS$/ui/tooltip/tooltip-content.svelte\";\r\n\timport TooltipTrigger from \"$COMPONENTS$/ui/tooltip/tooltip-trigger.svelte\";\r\n\timport { getPromptInputContext } from \"./context.svelte.js\";\r\n\r\n\tlet {\r\n\t\ttooltip,\r\n\t\tchildren,\r\n\t\tclass: className,\r\n\t\tside = \"top\",\r\n\t\t...restProps\r\n\t}: {\r\n\t\ttooltip: import(\"svelte\").Snippet;\r\n\t\tchildren: import(\"svelte\").Snippet;\r\n\t\tclass?: string;\r\n\t\tside?: \"top\" | \"bottom\" | \"left\" | \"right\";\r\n\t} & Partial<TooltipPrimitive.RootProps> = $props();\r\n\r\n\tconst context = getPromptInputContext();\r\n\r\n\tfunction handleClick(event: MouseEvent) {\r\n\t\tevent.stopPropagation();\r\n\t}\r\n</script>\r\n\r\n<TooltipPrimitive.Root {...restProps} delayDuration={0}>\r\n\t<TooltipTrigger disabled={context.disabled} onclick={handleClick}>\r\n\t\t{@render children()}\r\n\t</TooltipTrigger>\r\n\t<TooltipContent {side} class={className}>\r\n\t\t{@render tooltip()}\r\n\t</TooltipContent>\r\n</TooltipPrimitive.Root>\r\n",
+			"type": "registry:component",
+			"target": "ai/prompt-input/prompt-input-action.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport Textarea from \"$COMPONENTS$/ui/textarea/textarea.svelte\";\r\n\timport { getPromptInputContext } from \"./context.svelte.js\";\r\n\timport type { HTMLTextareaAttributes } from \"svelte/elements\";\r\n\timport { watch } from \"runed\";\r\n\r\n\tlet {\r\n\t\tclass: className,\r\n\t\tonkeydown,\r\n\t\tdisableAutosize = false,\r\n\t\t...restProps\r\n\t}: HTMLTextareaAttributes & {\r\n\t\tdisableAutosize?: boolean;\r\n\t} = $props();\r\n\r\n\tconst context = getPromptInputContext();\r\n\r\n\t// Auto-resize functionality using watch from runed\r\n\twatch(\r\n\t\t[() => context.value, () => context.maxHeight, () => disableAutosize],\r\n\t\t() => {\r\n\t\t\tif (disableAutosize) return;\r\n\t\t\tif (!context.textareaRef) return;\r\n\r\n\t\t\tif (context.textareaRef.scrollTop === 0) {\r\n\t\t\t\tcontext.textareaRef.style.height = \"auto\";\r\n\t\t\t}\r\n\r\n\t\t\tcontext.textareaRef.style.height =\r\n\t\t\t\ttypeof context.maxHeight === \"number\"\r\n\t\t\t\t\t? `${Math.min(context.textareaRef.scrollHeight, context.maxHeight)}px`\r\n\t\t\t\t\t: `min(${context.textareaRef.scrollHeight}px, ${context.maxHeight})`;\r\n\t\t}\r\n\t);\r\n\r\n\tfunction handleKeyDown(\r\n\t\te: KeyboardEvent & { currentTarget: HTMLTextAreaElement }\r\n\t) {\r\n\t\tif (e.key === \"Enter\" && !e.shiftKey) {\r\n\t\t\te.preventDefault();\r\n\t\t\tcontext.onSubmit?.();\r\n\t\t}\r\n\t\tonkeydown?.(e);\r\n\t}\r\n\r\n\tfunction handleInput(e: Event & { currentTarget: HTMLTextAreaElement }) {\r\n\t\tcontext.setValue(e.currentTarget.value);\r\n\t}\r\n</script>\r\n\r\n<Textarea\r\n\tbind:ref={context.textareaRef}\r\n\tvalue={context.value}\r\n\toninput={handleInput}\r\n\tonkeydown={handleKeyDown}\r\n\tclass={cn(\r\n\t\t\"min-h-[44px] w-full resize-none border-none !bg-transparent text-primary shadow-none outline-none focus-visible:ring-0 focus-visible:ring-offset-0\",\r\n\t\tclassName\r\n\t)}\r\n\trows={1}\r\n\tdisabled={context.disabled}\r\n\t{...restProps}\r\n></Textarea>\r\n",
+			"type": "registry:component",
+			"target": "ai/prompt-input/prompt-input-textarea.svelte"
+		},
+		{
+			"content": "import { getContext, setContext } from \"svelte\";\r\n\r\nexport type PromptInputSchema = {\r\n    isLoading?: boolean;\r\n    value?: string;\r\n    onValueChange?: (value: string) => void;\r\n    maxHeight?: number | string;\r\n    onSubmit?: () => void;\r\n    disabled?: boolean;\r\n};\r\n\r\nexport class PromptInputClass {\r\n    isLoading = $state(false);\r\n    value = $state(\"\");\r\n    maxHeight = $state<number | string>(240);\r\n    onSubmit = $state<(() => void) | undefined>(undefined);\r\n    disabled = $state(false);\r\n    textareaRef = $state<HTMLTextAreaElement | null>(null);\r\n    onValueChange = $state<((value: string) => void) | undefined>(undefined);\r\n\r\n    constructor(props: PromptInputSchema) {\r\n        this.isLoading = props.isLoading ?? false;\r\n        this.value = props.value ?? \"\";\r\n        this.maxHeight = props.maxHeight ?? 240;\r\n        this.onSubmit = props.onSubmit;\r\n        this.disabled = props.disabled ?? false;\r\n        this.onValueChange = props.onValueChange;\r\n    }\r\n\r\n    setValue(newValue: string) {\r\n        this.value = newValue;\r\n        this.onValueChange?.(newValue);\r\n    }\r\n}\r\n\r\nconst PROMPT_INPUT_KEY = Symbol(\"prompt-input\");\r\n\r\nexport function setPromptInputContext(contextInstance: PromptInputClass) {\r\n    setContext(PROMPT_INPUT_KEY, contextInstance);\r\n}\r\n\r\nexport function getPromptInputContext(): PromptInputClass {\r\n    const context = getContext<PromptInputClass>(PROMPT_INPUT_KEY);\r\n\r\n    if (!context) {\r\n        throw new Error(\"PromptInput components must be used within PromptInput\");\r\n    }\r\n\r\n    return context;\r\n}",
+			"type": "registry:file",
+			"target": "ai/prompt-input/context.svelte.ts"
+		},
+		{
+			"content": "import PromptInput from \"./prompt-input.svelte\";\r\nimport PromptInputActions from \"./prompt-input-actions.svelte\";\r\nimport PromptInputAction from \"./prompt-input-action.svelte\";\r\nimport PromptInputTextarea from \"./prompt-input-textarea.svelte\";\r\nimport { getPromptInputContext, setPromptInputContext } from \"./context.svelte\";\r\nimport { type PromptInputSchema } from \"./context.svelte\";\r\n\r\nexport {\r\n    PromptInput,\r\n    PromptInputActions,\r\n    PromptInputAction,\r\n    PromptInputTextarea,\r\n    type PromptInputSchema,\r\n    getPromptInputContext,\r\n    setPromptInputContext,\r\n    //\r\n    PromptInput as Root,\r\n    PromptInputActions as Actions,\r\n    PromptInputAction as Action,\r\n    PromptInputTextarea as Textarea\r\n}",
+			"type": "registry:file",
+			"target": "ai/prompt-input/index.ts"
+		}
+	]
+}
