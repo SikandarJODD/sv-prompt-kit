@@ -142,6 +142,13 @@
 	::-webkit-scrollbar-track {
 		background: transparent;
 	}
+	::-webkit-scrollbar-track-piece:vertical {
+		margin-block: 6px;
+	}
+	::-webkit-scrollbar-track-piece:horizontal {
+		margin-inline: 6px;
+		margin-block-end: 6px;
+	}
 
 	::-webkit-scrollbar-thumb {
 		@apply rounded-md bg-muted-foreground/40;

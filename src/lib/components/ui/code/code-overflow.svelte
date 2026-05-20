@@ -32,7 +32,7 @@
 	{@render children?.()}
 	{#if collapsed}
 		<div
-			class="absolute bottom-0 left-0 z-10 h-full w-full bg-linear-to-t from-card to-transparent"
+			class="absolute bottom-0 left-0 z-10 h-full w-full bg-linear-to-t from-card from-15% to-transparent"
 		></div>
 	{/if}
 	{#if collapsed}
