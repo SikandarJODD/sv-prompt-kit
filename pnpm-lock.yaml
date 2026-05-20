@@ -23,6 +23,9 @@ importers:
       runed:
         specifier: ^0.37.1
         version: 0.37.1(@sveltejs/kit@2.59.0(@opentelemetry/api@1.9.1)(@sveltejs/vite-plugin-svelte@7.0.0(svelte@5.55.5)(vite@8.0.10(jiti@2.6.1)))(svelte@5.55.5)(typescript@6.0.3)(vite@8.0.10(jiti@2.6.1)))(svelte@5.55.5)(zod@4.4.3)
+      stick-to-bottom-svelte:
+        specifier: ^1.0.3
+        version: 1.0.3(svelte@5.55.5)
       streamdown-svelte:
         specifier: ^3.0.6
         version: 3.0.6(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)(svelte@5.55.5)
@@ -1653,6 +1656,11 @@ packages:
 
   space-separated-tokens@2.0.2:
     resolution: {integrity: sha512-PEGlAwrG8yXGXRjW32fGbg66JAlOAwbObuqVoJpv/mRgoWDQfgH1wDPvtzWyUSNAXBGSk8h755YDbbcEy3SH2Q==}
+
+  stick-to-bottom-svelte@1.0.3:
+    resolution: {integrity: sha512-53gHJ73Tx0H/5MWZSfcBrihZwude/bHadi5XHVEFVpLEiSQnste8+Q/q1zQ3jK5zybfuvi0F+7bkZ0Li45QLPg==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   streamdown-svelte@3.0.6:
     resolution: {integrity: sha512-RL+tYt0N8OocUH9qJuiiJRe50q31ZM4MiaHQaC1I6wA+J4WpuJd0amNOqbjkjrVKeJlgIs4CX/ELMBqMjF46QQ==}
@@ -3635,6 +3643,10 @@ snapshots:
   source-map-js@1.2.1: {}
 
   space-separated-tokens@2.0.2: {}
+
+  stick-to-bottom-svelte@1.0.3(svelte@5.55.5):
+    dependencies:
+      svelte: 5.55.5
 
   streamdown-svelte@3.0.6(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)(svelte@5.55.5):
     dependencies:

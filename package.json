@@ -22,6 +22,7 @@
     "mode-watcher": "^1.1.0",
     "motion-sv": "^0.1.12",
     "runed": "^0.37.1",
+    "stick-to-bottom-svelte": "^1.0.3",
     "streamdown-svelte": "^3.0.6",
     "sv-agentation": "^0.2.6",
     "svelte-meta-tags": "^4.7.0"

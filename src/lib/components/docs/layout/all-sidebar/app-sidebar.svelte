@@ -74,7 +74,7 @@
 
 <Sidebar.Root class="bg-background pt-14" {...restProps} bind:ref>
 	<Sidebar.Content bind:ref={contentRef}>
-		<ScrollArea class="max-h-[calc(100vh-6rem)] py-4 pr-1">
+		<ScrollFadeEffect class="max-h-[calc(100vh-6rem)] py-4 pr-1">
 			<!-- We create a Sidebar.Group for each parent. -->
 			{#each data.navMain as group}
 				<Sidebar.Group>
@@ -114,7 +114,7 @@
 					</Sidebar.GroupContent>
 				</Sidebar.Group>
 			{/each}
-		</ScrollArea>
+		</ScrollFadeEffect>
 	</Sidebar.Content>
 	<Sidebar.Footer>
 		<SupportWork />
