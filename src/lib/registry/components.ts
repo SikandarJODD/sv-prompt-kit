@@ -94,6 +94,30 @@ let components: Component[] = [
     href: "/components/thinking-bar",
     desc: "TODO: Add a concise description for Thinking Bar.",
   },
+  {
+    id: "chat-container",
+    name: "Chat Container",
+    href: "/components/chat-container",
+    desc: "TODO: Add a concise description for Chat Container.",
+  },
+  {
+    id: "steps",
+    name: "Steps",
+    href: "/components/steps",
+    desc: "TODO: Add a concise description for Steps.",
+  },
+  {
+    id: "reasoning",
+    name: "Reasoning",
+    href: "/components/reasoning",
+    desc: "TODO: Add a concise description for Reasoning.",
+  },
+  {
+    id: "scroll-button",
+    name: "Scroll Button",
+    href: "/components/scroll-button",
+    desc: "TODO: Add a concise description for Scroll Button.",
+  },
 ];
 
 export { components };

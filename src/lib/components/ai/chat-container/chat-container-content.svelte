@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { cn } from "$lib/utils";
+	import { getChatContainerContext } from "./context.svelte.js";
 
 	let {
 		children,
@@ -10,8 +11,22 @@
 		class?: string;
 		[key: string]: any;
 	} = $props();
+
+	const context = getChatContainerContext();
+
+	function bindContentElement(node: HTMLDivElement) {
+		context.setContentElement(node);
+
+		return () => {
+			context.setContentElement(null);
+		};
+	}
 </script>
 
-<div class={cn("flex w-full flex-col", className)} {...restProps}>
+<div
+	{@attach bindContentElement}
+	class={cn("flex w-full flex-col", className)}
+	{...restProps}
+>
 	{@render children?.()}
 </div>

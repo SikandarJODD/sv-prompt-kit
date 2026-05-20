@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { Badge } from "$lib/components/ui/badge";
+	import { Reasoning } from "$lib/components/ai/reasoning";
 
-	const PreviewComponent: any = Badge;
+	const PreviewComponent: any = Reasoning;
 </script>
 
 <div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
 	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Badge example.
+		Replace this starter preview with a polished Reasoning example.
 	</p>
 	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
 		<PreviewComponent />

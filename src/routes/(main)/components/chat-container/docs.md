@@ -1,6 +1,6 @@
-# Input
+# Chat Container
 
-TODO: Add a concise description for Input.
+TODO: Add a concise description for Chat Container.
 
 ## Installation
 
@@ -10,7 +10,7 @@ TODO: Add a concise description for Input.
 ### Using CLI
 
 ```bash
-npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/input.json
+npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/chat-container.json
 ```
 
 </Tab>
@@ -27,18 +27,18 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { Input } from "$lib/components/ui/input";
+  import { ChatContainer } from "$lib/components/ai/chat-container";
 </script>
 
-<Input />
+<ChatContainer />
 ```
 
 ## Props
 
-Document the Input props here.
+Document the Chat Container props here.
 
 ## Features
 
-- Replace this placeholder bullet with a real Input feature.
+- Replace this placeholder bullet with a real Chat Container feature.
 - Add one or two implementation details that matter to consumers.
 - Include usage constraints or accessibility notes if they apply.

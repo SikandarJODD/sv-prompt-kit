@@ -1,11 +1,11 @@
 <script lang="ts">
+	import { watch } from "runed";
+	import { cn } from "$lib/utils";
 	import {
 		setChatContainerContext,
-		type ResizeMode,
-		type InitialMode
+		type ChatContainerAnimation,
+		type ChatContainerInitialAnimation
 	} from "./context.svelte.js";
-	import { cn } from "$lib/utils";
-	import { watch } from "runed";
 
 	let {
 		ref = $bindable<HTMLDivElement | null>(null),
@@ -18,37 +18,40 @@
 		ref?: HTMLDivElement | null;
 		children?: import("svelte").Snippet;
 		class?: string;
-		resize?: ResizeMode;
-		initial?: InitialMode;
+		resize?: ChatContainerAnimation;
+		initial?: ChatContainerInitialAnimation;
 		[key: string]: any;
 	} = $props();
 
-	let context = setChatContainerContext("smooth", "instant");
+	const context = setChatContainerContext();
 
-	watch(
-		() => ref,
-		() => {
-			if (ref) {
-				context.setElement(ref);
-			}
-		}
-	);
+	function bindScrollElement(node: HTMLDivElement) {
+		ref = node;
+		context.setScrollElement(node);
+
+		return () => {
+			ref = null;
+			context.setScrollElement(null);
+		};
+	}
+
 	watch(
 		() => resize,
 		() => {
-			context.updateResizeMode(resize);
+			context.updateResize(resize);
 		}
 	);
+
 	watch(
 		() => initial,
 		() => {
-			context.updateInitialMode(initial);
+			context.updateInitial(initial);
 		}
 	);
 </script>
 
 <div
-	bind:this={ref}
+	{@attach bindScrollElement}
 	class={cn("flex overflow-y-auto", className)}
 	role="log"
 	{...restProps}

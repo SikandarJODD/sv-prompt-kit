@@ -1,15 +1,29 @@
 import ChatContainer from "./chat-container.svelte";
 import ChatContainerContent from "./chat-container-content.svelte";
-import ChatContainerScrollAnchor from "./chat-container-scroll-anchor.svelte";
-import { getChatContainerContext, type ChatContainerContext } from "./context.svelte";
+import {
+	getChatContainerContext,
+	type ChatContainerAnimation,
+	type ChatContainerAnimationPreset,
+	type ChatContainerContext,
+	type ChatContainerInitialAnimation,
+	type ChatContainerScrollToBottomOptions,
+	type ChatContainerSpringAnimation
+} from "./context.svelte";
 
 export {
-    ChatContainer,
-    ChatContainerContent,
-    ChatContainerScrollAnchor,
-    getChatContainerContext,
-    //
-    ChatContainer as Root,
-    ChatContainerContent as Content,
-    ChatContainerScrollAnchor as ScrollAnchor,
-}
+	ChatContainer,
+	ChatContainerContent,
+	getChatContainerContext,
+	//
+	ChatContainer as Root,
+	ChatContainerContent as Content
+};
+
+export type {
+	ChatContainerAnimation,
+	ChatContainerAnimationPreset,
+	ChatContainerContext,
+	ChatContainerInitialAnimation,
+	ChatContainerScrollToBottomOptions,
+	ChatContainerSpringAnimation
+};

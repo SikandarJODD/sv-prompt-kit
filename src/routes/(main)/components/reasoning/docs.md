@@ -1,6 +1,6 @@
-# Badge
+# Reasoning
 
-TODO: Add a concise description for Badge.
+TODO: Add a concise description for Reasoning.
 
 ## Installation
 
@@ -10,7 +10,7 @@ TODO: Add a concise description for Badge.
 ### Using CLI
 
 ```bash
-npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/badge.json
+npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/reasoning.json
 ```
 
 </Tab>
@@ -27,18 +27,18 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { Badge } from "$lib/components/ui/badge";
+  import { Reasoning } from "$lib/components/ai/reasoning";
 </script>
 
-<Badge />
+<Reasoning />
 ```
 
 ## Props
 
-Document the Badge props here.
+Document the Reasoning props here.
 
 ## Features
 
-- Replace this placeholder bullet with a real Badge feature.
+- Replace this placeholder bullet with a real Reasoning feature.
 - Add one or two implementation details that matter to consumers.
 - Include usage constraints or accessibility notes if they apply.

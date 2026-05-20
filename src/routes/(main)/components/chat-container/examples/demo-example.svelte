@@ -1,14 +1,14 @@
 <script lang="ts">
-	import { Badge } from "$lib/components/ui/badge";
+	import { ChatContainer } from "$lib/components/ai/chat-container";
 
-	const DemoComponent: any = Badge;
+	const DemoComponent: any = ChatContainer;
 </script>
 
 <section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
 	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Badge demo</h2>
+		<h2 class="text-lg font-semibold">Chat Container demo</h2>
 		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Badge.
+			Swap this placeholder with a real usage example for Chat Container.
 		</p>
 	</div>
 	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">

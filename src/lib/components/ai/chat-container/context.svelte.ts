@@ -1,204 +1,173 @@
-import { watch } from "runed";
-import { setContext, getContext } from "svelte";
+import { createContext } from "svelte";
+import { StickToBottom } from "stick-to-bottom-svelte";
 
-const CHAT_CONTAINER_CONTEXT_KEY = Symbol("chat-container-context");
+const DEFAULT_SPRING = {
+	damping: 0.7,
+	stiffness: 0.05,
+	mass: 1.25
+} as const;
 
-type ResizeMode = "smooth" | "instant";
-type InitialMode = "smooth" | "instant";
+const SPRING_PRESETS = {
+	smooth: DEFAULT_SPRING,
+	"ease-out": {
+		damping: 0.82,
+		stiffness: 0.045,
+		mass: 1.2
+	}
+} as const;
+
+type ChatContainerAnimationPreset = "instant" | keyof typeof SPRING_PRESETS;
+type ChatContainerSpringAnimation = {
+	damping?: number;
+	stiffness?: number;
+	mass?: number;
+};
+type ChatContainerAnimation =
+	| ChatContainerAnimationPreset
+	| ChatContainerSpringAnimation;
+type ChatContainerInitialAnimation = ChatContainerAnimation | false;
+type ResolvedAnimation = "instant" | Required<ChatContainerSpringAnimation>;
+type ChatContainerScrollToBottomOptions =
+	| "instant"
+	| {
+			animation?: ChatContainerAnimation;
+			wait?: boolean | number;
+			ignoreEscapes?: boolean;
+			preserveScrollPosition?: boolean;
+			duration?: number | Promise<void>;
+	  };
+
+type MutableStickToBottomOptions = {
+	scrollElement: () => HTMLElement | null;
+	contentElement: () => HTMLElement | null;
+	resize: ResolvedAnimation;
+	initial: ResolvedAnimation | false;
+};
+
+function normalizeAnimation(
+	animation: ChatContainerAnimation
+): ResolvedAnimation {
+	if (animation === "instant") {
+		return "instant";
+	}
+
+	if (typeof animation === "string") {
+		return { ...SPRING_PRESETS[animation] };
+	}
+
+	return {
+		...DEFAULT_SPRING,
+		...animation
+	};
+}
+
+function normalizeInitialAnimation(
+	animation: ChatContainerInitialAnimation
+): ResolvedAnimation | false {
+	if (animation === false) {
+		return false;
+	}
+
+	return normalizeAnimation(animation);
+}
 
 class ChatContainerContext {
-    #element: HTMLElement | null = $state(null);
-    #isAtBottom = $state(true);
-    #resizeObserver: ResizeObserver | null = null;
-    #mutationObserver: MutationObserver | null = null;
-    #intersectionObserver: IntersectionObserver | null = null;
-    #sentinel: HTMLElement | null = null;
-    #userHasScrolled = $state(false);
-    #resizeMode: ResizeMode = "smooth";
-    #initialMode: InitialMode = "instant";
-    #isInitialized = false;
+	#scrollElement: HTMLElement | null = $state(null);
+	#contentElement: HTMLElement | null = $state(null);
+	#options: MutableStickToBottomOptions;
+	#stickToBottom: StickToBottom;
 
-    isAtBottom = $derived(this.#isAtBottom);
+	constructor(
+		resize: ChatContainerAnimation = "smooth",
+		initial: ChatContainerInitialAnimation = "instant"
+	) {
+		this.#options = {
+			scrollElement: () => this.#scrollElement,
+			contentElement: () => this.#contentElement,
+			resize: normalizeAnimation(resize),
+			initial: normalizeInitialAnimation(initial)
+		};
 
-    constructor(resizeMode: ResizeMode = "smooth", initialMode: InitialMode = "instant") {
-        this.#resizeMode = resizeMode;
-        this.#initialMode = initialMode;
+		this.#stickToBottom = new StickToBottom(this.#options);
+	}
 
-        watch(
-            () => this.#element,
-            () => {
-                if (this.#element) {
-                    this.#setupObservers();
-                    return () => this.#cleanup();
-                }
-            }
-        );
-    }
+	get isAtBottom() {
+		return this.#stickToBottom.isAtBottom;
+	}
 
-    setElement(element: HTMLElement) {
-        this.#element = element;
-    }
-    updateResizeMode(mode: ResizeMode) {
-        this.#resizeMode = mode;
-    }
-    updateInitialMode(mode: InitialMode) {
-        this.#initialMode = mode;
-    }
+	get isNearBottom() {
+		return this.#stickToBottom.isNearBottom;
+	}
 
-    scrollToBottom = (behavior?: ScrollBehavior) => {
-        if (!this.#element) return;
+	get scrollTop() {
+		return this.#stickToBottom.scrollTop;
+	}
 
-        // Use initial mode for first scroll, then use provided behavior or resize mode
-        let scrollBehavior: ScrollBehavior;
-        if (!this.#isInitialized) {
-            scrollBehavior = this.#initialMode === "instant" ? "instant" : "smooth";
-            this.#isInitialized = true;
-        } else {
-            scrollBehavior = behavior || (this.#resizeMode === "smooth" ? "smooth" : "instant");
-        }
+	get targetScrollTop() {
+		return this.#stickToBottom.targetScrollTop;
+	}
 
-        this.#userHasScrolled = false;
-        this.#element.scrollTo({
-            top: this.#element.scrollHeight,
-            behavior: scrollBehavior,
-        });
-    };
+	setScrollElement(element: HTMLElement | null) {
+		this.#scrollElement = element;
+	}
 
-    #handleScroll = () => {
-        if (!this.#element) return;
+	setContentElement(element: HTMLElement | null) {
+		this.#contentElement = element;
+	}
 
-        const { scrollTop, scrollHeight, clientHeight } = this.#element;
-        const threshold = 50;
-        const isAtBottom = scrollTop + clientHeight >= scrollHeight - threshold;
+	updateResize(animation: ChatContainerAnimation) {
+		this.#options.resize = normalizeAnimation(animation);
+	}
 
-        this.#isAtBottom = isAtBottom;
+	updateInitial(animation: ChatContainerInitialAnimation) {
+		this.#options.initial = normalizeInitialAnimation(animation);
+	}
 
-        if (!isAtBottom) {
-            this.#userHasScrolled = true;
-        } else if (isAtBottom && this.#userHasScrolled) {
-            this.#userHasScrolled = false;
-        }
-    };
+	scrollToBottom = (options?: ChatContainerScrollToBottomOptions) => {
+		if (options === undefined) {
+			return this.#stickToBottom.scrollToBottom({
+				animation: this.#options.resize
+			});
+		}
 
-    #setupObservers() {
-        if (!this.#element) return;
+		if (options === "instant") {
+			return this.#stickToBottom.scrollToBottom("instant");
+		}
 
-        this.#createSentinel();
+		return this.#stickToBottom.scrollToBottom({
+			...options,
+			animation: options.animation
+				? normalizeAnimation(options.animation)
+				: undefined
+		});
+	};
 
-        this.#intersectionObserver = new IntersectionObserver(
-            (entries) => {
-                const entry = entries[0];
-                if (entry.isIntersecting && !this.#userHasScrolled) {
-                    this.#isAtBottom = true;
-                }
-            },
-            {
-                threshold: 0,
-                root: this.#element,
-            }
-        );
-
-        if (this.#sentinel) {
-            this.#intersectionObserver.observe(this.#sentinel);
-        }
-
-        this.#element.addEventListener("scroll", this.#handleScroll, {
-            passive: true,
-        });
-
-        this.#resizeObserver = new ResizeObserver(() => {
-            this.#checkScrollPosition();
-            if (this.#isAtBottom && !this.#userHasScrolled) {
-                const behavior = this.#resizeMode === "smooth" ? "smooth" : "instant";
-                this.scrollToBottom(behavior);
-            }
-        });
-
-        this.#resizeObserver.observe(this.#element);
-
-        this.#mutationObserver = new MutationObserver(() => {
-            requestAnimationFrame(() => {
-                const shouldAutoScroll = this.#isAtBottom && !this.#userHasScrolled;
-                this.#checkScrollPosition();
-
-                if (shouldAutoScroll) {
-                    this.scrollToBottom("smooth");
-                }
-            });
-        });
-
-        this.#mutationObserver.observe(this.#element, {
-            childList: true,
-            subtree: true,
-            characterData: true,
-        });
-
-        // Initial scroll to bottom
-        requestAnimationFrame(() => {
-            this.#checkScrollPosition();
-            this.scrollToBottom();
-        });
-    }
-
-    #createSentinel() {
-        if (!this.#element) return;
-
-        this.#sentinel = document.createElement("div");
-        this.#sentinel.style.height = "1px";
-        this.#sentinel.style.width = "100%";
-        this.#sentinel.style.pointerEvents = "none";
-        this.#sentinel.style.opacity = "0";
-        this.#sentinel.setAttribute("data-chat-container-sentinel", "");
-
-        this.#element.appendChild(this.#sentinel);
-    }
-
-    #checkScrollPosition() {
-        if (!this.#element) return;
-
-        const { scrollTop, scrollHeight, clientHeight } = this.#element;
-        const threshold = 50;
-        const isAtBottom = scrollTop + clientHeight >= scrollHeight - threshold;
-
-        this.#isAtBottom = isAtBottom;
-    }
-
-    #cleanup() {
-        this.#resizeObserver?.disconnect();
-        this.#mutationObserver?.disconnect();
-        this.#intersectionObserver?.disconnect();
-
-        if (this.#element) {
-            this.#element.removeEventListener("scroll", this.#handleScroll);
-        }
-
-        if (this.#sentinel && this.#element?.contains(this.#sentinel)) {
-            this.#element.removeChild(this.#sentinel);
-        }
-
-        this.#resizeObserver = null;
-        this.#mutationObserver = null;
-        this.#intersectionObserver = null;
-        this.#sentinel = null;
-    }
+	stopScroll = () => {
+		this.#stickToBottom.stopScroll();
+	};
 }
 
-export function setChatContainerContext(
-    resizeMode: ResizeMode = "smooth",
-    initialMode: InitialMode = "instant"
+const [getChatContainerContext, setInternalChatContainerContext] =
+	createContext<ChatContainerContext>();
+
+function setChatContainerContext(
+	resize: ChatContainerAnimation = "smooth",
+	initial: ChatContainerInitialAnimation = "instant"
 ): ChatContainerContext {
-    const context = new ChatContainerContext(resizeMode, initialMode);
-    setContext(CHAT_CONTAINER_CONTEXT_KEY, context);
-    return context;
+	const context = new ChatContainerContext(resize, initial);
+	setInternalChatContainerContext(context);
+	return context;
 }
 
-export function getChatContainerContext(): ChatContainerContext {
-    const context = getContext<ChatContainerContext>(CHAT_CONTAINER_CONTEXT_KEY);
-    if (!context) {
-        throw new Error("ChatContainerContext must be used within a ChatContainerRoot component");
-    }
-    return context;
-}
-
-export { ChatContainerContext };
-export type { ResizeMode, InitialMode };
+export {
+	ChatContainerContext,
+	getChatContainerContext,
+	setChatContainerContext
+};
+export type {
+	ChatContainerAnimation,
+	ChatContainerAnimationPreset,
+	ChatContainerInitialAnimation,
+	ChatContainerScrollToBottomOptions,
+	ChatContainerSpringAnimation
+};
