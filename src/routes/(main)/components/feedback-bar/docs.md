@@ -1,6 +1,6 @@
 # Feedback Bar
 
-TODO: Add a concise description for Feedback Bar.
+A compact feedback control for AI responses. It provides helpful and not-helpful actions plus an optional close affordance, making it a good fit for chat transcripts, answer cards, and response review flows.
 
 ## Installation
 
@@ -18,7 +18,7 @@ npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/feedback-bar.jso
 
 ### Manual Installation
 
-Copy the component source files into your project and update the example files with real usage.
+Copy the files from `src/lib/components/ai/feedback-bar` into your project.
 
 </Tab>
 </Tabs>
@@ -27,18 +27,53 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { FeedbackBar } from "$lib/components/ai/feedback-bar";
+	import { FeedbackBar } from "$lib/components/ai/feedback-bar";
+
+	function handleHelpful() {
+		console.log("Marked helpful");
+	}
 </script>
 
-<FeedbackBar />
+<FeedbackBar
+	title="Was this response helpful?"
+	onHelpful={handleHelpful}
+	onNotHelpful={() => console.log("Marked not helpful")}
+	onClose={() => console.log("Dismissed")}
+/>
 ```
 
 ## Props
 
-Document the Feedback Bar props here.
+### `FeedbackBar`
+
+- `title`: Label shown next to the action buttons.
+- `icon`: Optional leading icon snippet rendered before the title.
+- `onHelpful`: Called when the thumbs-up button is clicked.
+- `onNotHelpful`: Called when the thumbs-down button is clicked.
+- `onClose`: Called when the close button is clicked.
+- `class`: Additional CSS classes for the outer wrapper.
+- `...props`: Additional native `div` attributes forwarded to the root element.
 
 ## Features
 
-- Replace this placeholder bullet with a real Feedback Bar feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.
+- Gives you a ready-made like, dislike, and dismiss pattern for response evaluation.
+- Accepts a custom icon so the bar can match the surrounding context or model state.
+- Uses simple callbacks instead of internal state, so analytics and mutations stay in your app logic.
+
+## Examples
+
+### Basic response rating
+
+```svelte
+<script lang="ts">
+	import { FeedbackBar } from "$lib/components/ai/feedback-bar";
+</script>
+
+<FeedbackBar
+	class="min-w-sm"
+	title="Was this answer useful?"
+	onHelpful={() => console.log("helpful")}
+	onNotHelpful={() => console.log("not helpful")}
+	onClose={() => console.log("closed")}
+/>
+```

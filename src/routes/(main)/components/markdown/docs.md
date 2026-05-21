@@ -1,6 +1,6 @@
 # Markdown
 
-TODO: Add a concise description for Markdown.
+A markdown renderer for AI responses and rich chat content. It accepts a markdown string, renders GitHub Flavored Markdown, and leaves wrapper styling under your control.
 
 ## Installation
 
@@ -18,7 +18,7 @@ npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/markdown.json
 
 ### Manual Installation
 
-Copy the component source files into your project and update the example files with real usage.
+Copy the files from `src/lib/components/ai/markdown` into your project.
 
 </Tab>
 </Tabs>
@@ -27,18 +27,54 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { Markdown } from "$lib/components/ai/markdown";
+	import { Markdown } from "$lib/components/ai/markdown";
+
+	const content = `## Summary
+
+- Supports **bold** text
+- Supports lists
+- Supports code fences`;
 </script>
 
-<Markdown />
+<Markdown {content} class="max-w-3xl" />
 ```
 
 ## Props
 
-Document the Markdown props here.
+### `Markdown`
+
+- `content`: Markdown source string rendered with Streamdown.
+- `id`: Optional id applied to the outer wrapper.
+- `class`: Additional CSS classes for the outer markdown container.
+- `...props`: Additional Streamdown and native `div` props forwarded to the wrapper or renderer.
 
 ## Features
 
-- Replace this placeholder bullet with a real Markdown feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.
+- Renders markdown content through a dedicated component instead of mixing parser logic into every message bubble.
+- Supports GitHub Flavored Markdown content such as headings, lists, emphasis, links, and fenced code blocks.
+- Lets you style the wrapper with your own width, spacing, and prose classes.
+
+## Examples
+
+### Render a formatted answer
+
+```svelte
+<script lang="ts">
+	import { Markdown } from "$lib/components/ai/markdown";
+
+	const content = `# Markdown Example
+
+This is **bold** and this is *italic*.
+
+1. First item
+2. Second item
+
+\`\`\`ts
+function greet(name: string) {
+	return \`Hello, \${name}!\`;
+}
+\`\`\``;
+</script>
+
+<Markdown {content} />
+```

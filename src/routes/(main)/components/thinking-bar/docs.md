@@ -1,6 +1,6 @@
 # Thinking Bar
 
-TODO: Add a concise description for Thinking Bar.
+A compact status bar for AI thinking states. It combines shimmering text with an optional stop action and an optional click target, which makes it useful for expandable reasoning panels or “answer now” controls during long-running generations.
 
 ## Installation
 
@@ -18,7 +18,7 @@ npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/thinking-bar.jso
 
 ### Manual Installation
 
-Copy the component source files into your project and update the example files with real usage.
+Copy the files from `src/lib/components/ai/thinking-bar` into your project.
 
 </Tab>
 </Tabs>
@@ -27,18 +27,49 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { ThinkingBar } from "$lib/components/ai/thinking-bar";
+	import { ThinkingBar } from "$lib/components/ai/thinking-bar";
+
+	function handleStop() {
+		console.log("Stop thinking");
+	}
 </script>
 
-<ThinkingBar />
+<ThinkingBar
+	text="Analyzing your question"
+	onStop={handleStop}
+/>
 ```
 
 ## Props
 
-Document the Thinking Bar props here.
+### `ThinkingBar`
+
+- `text`: Label shown with the shimmer effect. Defaults to `"Thinking"`.
+- `onStop`: Optional callback for the stop action.
+- `stopLabel`: Label for the stop action. Defaults to `"Answer now"`.
+- `onclick`: Optional callback for the thinking text. When provided, the label becomes an interactive button.
+- `class`: Additional CSS classes for the root container.
+- `...props`: Additional native `div` attributes.
 
 ## Features
 
-- Replace this placeholder bullet with a real Thinking Bar feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.
+- Builds on `TextShimmer` so the status text feels active without using a heavy loader.
+- Can expose a secondary “stop” action for long-running responses.
+- Becomes clickable when `onclick` is provided, which works well for opening a reasoning panel or details drawer.
+
+## Examples
+
+### Interactive thinking state
+
+```svelte
+<script lang="ts">
+	import { ThinkingBar } from "$lib/components/ai/thinking-bar";
+</script>
+
+<ThinkingBar
+	text="Deep thinking in progress"
+	stopLabel="Skip to answer"
+	onStop={() => console.log("Stop generation")}
+	onclick={() => console.log("Open reasoning panel")}
+/>
+```

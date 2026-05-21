@@ -16,13 +16,14 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "thinking-bar",
 	title: "Thinking Bar",
-	description: "TODO: Add a concise description for Thinking Bar.",
-	category: "ai",
+	description:
+		"A component to display the thinking state of an AI model with optional actions.",
+	category: "ai"
 };
 
 const seo: SEO = {
 	title: "Thinking Bar",
-	description: "TODO: Add an SEO description for Thinking Bar.",
+	description: "A component to display the thinking state of an AI model with optional actions.",
 	keywords: ["Svelte", "Thinking Bar", "Component"],
 };
 

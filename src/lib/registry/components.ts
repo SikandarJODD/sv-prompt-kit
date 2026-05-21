@@ -20,103 +20,103 @@ let components: Component[] = [
 		id: "chain-of-thought",
 		name: "Chain Of Thought",
 		href: "/components/chain-of-thought",
-		desc: "TODO: Add a concise description for Chain Of Thought."
+		desc: "Display step-by-step reasoning and collapsible thought processes in AI interfaces"
 	},
 	{
 		id: "chat-container",
 		name: "Chat Container",
 		href: "/components/chat-container",
-		desc: "TODO: Add a concise description for Chat Container."
+		desc: "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces."
 	},
 	{
 		id: "feedback-bar",
 		name: "Feedback Bar",
 		href: "/components/feedback-bar",
-		desc: "TODO: Add a concise description for Feedback Bar."
+		desc: "A component to collect user feedback on AI responses."
 	},
 	{
 		id: "file-upload",
 		name: "File Upload",
 		href: "/components/file-upload",
-		desc: "TODO: Add a concise description for File Upload."
+		desc: "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations."
 	},
 	{
 		id: "image",
 		name: "Image",
 		href: "/components/image",
-		desc: "TODO: Add a concise description for Image."
+		desc: "The Image component displays images from base64 or Uint8Array data, supporting all standard HTML image attributes. "
 	},
 	{
 		id: "loader",
 		name: "Loader",
 		href: "/components/loader",
-		desc: "TODO: Add a concise description for Loader."
+		desc: "A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times."
 	},
 	{
 		id: "markdown",
 		name: "Markdown",
 		href: "/components/markdown",
-		desc: "TODO: Add a concise description for Markdown."
+		desc: "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling."
 	},
 	{
 		id: "message",
 		name: "Message",
 		href: "/components/message",
-		desc: "TODO: Add a concise description for Message."
+		desc: "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions."
 	},
 	{
 		id: "prompt-input",
 		name: "Prompt Input",
 		href: "/components/prompt-input",
-		desc: "TODO: Add a concise description for Prompt Input."
+		desc: "An AI Input that allows users to enter and submit text to an AI model."
 	},
 	{
 		id: "prompt-suggestion",
 		name: "Prompt Suggestion",
 		href: "/components/prompt-suggestion",
-		desc: "TODO: Add a concise description for Prompt Suggestion."
+		desc: "A component for implementing interactive prompt suggestions in AI interfaces."
 	},
 	{
 		id: "reasoning",
 		name: "Reasoning",
 		href: "/components/reasoning",
-		desc: "TODO: Add a concise description for Reasoning."
+		desc: "A collapsible component for showing AI reasoning, explanations, or logic. "
 	},
 	{
 		id: "scroll-button",
 		name: "Scroll Button",
 		href: "/components/scroll-button",
-		desc: "A floating jump-to-bottom control for scrollable feeds and chat-style threads."
+		desc: "A minimal floating button that appears when the user scrolls up, allowing them to jump back to the bottom of the chat."
 	},
 	{
 		id: "source",
 		name: "Source",
 		href: "/components/source",
-		desc: "TODO: Add a concise description for Source."
+		desc: "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover."
 	},
 	{
 		id: "steps",
 		name: "Steps",
 		href: "/components/steps",
-		desc: "TODO: Add a concise description for Steps."
+		desc: "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. "
 	},
 	{
 		id: "system-message",
 		name: "System Message",
 		href: "/components/system-message",
-		desc: "TODO: Add a concise description for System Message."
+		desc: "Display contextual information, warnings, or instructions in AI interfaces."
 	},
 	{
 		id: "text-shimmer",
 		name: "Text Shimmer",
 		href: "/components/text-shimmer",
-		desc: "TODO: Add a concise description for Text Shimmer."
+		desc: "An animated text shimmer effect for loading states and AI responses."
 	},
 	{
 		id: "thinking-bar",
 		name: "Thinking Bar",
 		href: "/components/thinking-bar",
-		desc: "TODO: Add a concise description for Thinking Bar."
+		desc: "A component to display the thinking state of an AI model with optional actions."
 	}
 ];
 
@@ -127,13 +127,13 @@ let docsPages: DocPage[] = [
 		id: "docs",
 		name: "Introduction",
 		href: "/docs",
-		desc: "Getting started with the setup."
+		desc: "Overview of Svelte Prompt Kit and its AI-focused component philosophy."
 	},
 	{
 		id: "installation",
 		name: "Installation",
 		href: "/docs/installation",
-		desc: "Create the app and initialize shadcn-svelte."
+		desc: "Set up SvelteKit, initialize shadcn-svelte, and add your first Prompt Kit component."
 	}
 ];
 
