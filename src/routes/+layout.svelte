@@ -7,7 +7,6 @@
 
 	import { browser, dev } from "$app/environment";
 	import { Agentation } from "sv-agentation";
-	import Footer from "$lib/components/landing/footer.svelte";
 
 	let { children } = $props();
 	let keys = new PressedKeys();
@@ -19,11 +18,13 @@
 			return;
 		toggleMode();
 	});
-	let workSpaceRootPath = "S:\\sv\\comp-setup";
+	// let workSpaceRootPath = "S:\\sv\\comp-setup";
+	$inspect(dev, "Layout component rendered");
+	$inspect(browser, "Running in browser");
 </script>
 
 {#if browser && dev}
-	<Agentation workspaceRoot={workSpaceRootPath} />
+	<Agentation  />
 {/if}
 
 <ModeWatcher defaultMode="dark" />
