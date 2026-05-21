@@ -1,6 +1,6 @@
 # Text Shimmer
 
-TODO: Add a concise description for Text Shimmer.
+An animated shimmer effect for loading labels, status text, and AI thinking indicators. It works as a small typography primitive rather than a fixed loader so you can apply it to inline text, headings, or any other semantic element.
 
 ## Installation
 
@@ -18,7 +18,7 @@ npx shadcn-svelte@latest add https://sv-animations.vercel.app/r/text-shimmer.jso
 
 ### Manual Installation
 
-Copy the component source files into your project and update the example files with real usage.
+Copy the files from `src/lib/components/ai/text-shimmer` into your project.
 
 </Tab>
 </Tabs>
@@ -27,18 +27,45 @@ Copy the component source files into your project and update the example files w
 
 ```svelte
 <script lang="ts">
-  import { TextShimmer } from "$lib/components/ai/text-shimmer";
+	import { TextShimmer } from "$lib/components/ai/text-shimmer";
 </script>
 
-<TextShimmer />
+<TextShimmer duration={4} spread={20}>
+	Thinking through the request...
+</TextShimmer>
 ```
 
 ## Props
 
-Document the Text Shimmer props here.
+### `TextShimmer`
+
+- `as`: HTML element to render. Defaults to `"span"`.
+- `duration`: Animation duration in seconds. Defaults to `4`.
+- `spread`: Highlight spread. Clamped between `5` and `45`. Defaults to `20`.
+- `children`: Text or snippet content to display.
+- `class`: Additional CSS classes for the rendered element.
+- `...props`: Additional native attributes for the chosen HTML element.
 
 ## Features
 
-- Replace this placeholder bullet with a real Text Shimmer feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.
+- Works with semantic elements like `span`, `p`, and `h2` through the `as` prop.
+- Clamps the shimmer spread to a safe range so the effect stays readable.
+- Uses a lightweight text-only animation, which is a better fit for inline status labels than a full spinner.
+
+## Examples
+
+### Different shimmer speeds
+
+```svelte
+<script lang="ts">
+	import { TextShimmer } from "$lib/components/ai/text-shimmer";
+</script>
+
+<TextShimmer duration={2} spread={30}>
+	Fast shimmer with wide spread
+</TextShimmer>
+
+<TextShimmer as="h2" class="text-2xl font-bold" duration={6} spread={10}>
+	Heading with shimmer effect
+</TextShimmer>
+```
