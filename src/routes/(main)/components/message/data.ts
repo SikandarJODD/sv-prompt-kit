@@ -7,7 +7,7 @@ import MessageSvelteRaw from "$lib/components/ai/message/message.svelte?raw";
 import type {
 	ComponentDoc,
 	ComponentMeta,
-	InstallComponentDocs,
+	InstallComponentDocs
 } from "$lib/types/structure";
 import type { Example } from "$lib/types/example";
 import type { SEO } from "$lib/types/seo";
@@ -19,31 +19,35 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "message",
 	title: "Message",
-	description: "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
-	category: "ai",
+	description:
+		"A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
+	category: "ai"
 };
 
 const seo: SEO = {
 	title: "Message",
-	description: "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
-	keywords: ["Svelte", "Message", "Component"],
+	description:
+		"A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
+	keywords: ["Svelte", "Message", "Component"]
 };
 
 const examples: Example[] = [
 	{
 		name: "Demo",
+		description:
+			"Compose a chat bubble with markdown rendering and follow-up actions beneath the message.",
 		preview: DemoExample,
 		code: {
 			name: "demo-example.svelte",
 			code: DemoExampleRaw,
-			lang: "svelte",
-		},
-	},
+			lang: "svelte"
+		}
+	}
 ];
 
 const install_block: InstallComponentDocs = {
 	packages: [],
-	shadcn_components: ['tooltip'],
+	shadcn_components: ["tooltip"],
 	install_code: [
 		{
 			name: "index.ts",
@@ -69,15 +73,110 @@ const install_block: InstallComponentDocs = {
 		{ name: "message.svelte", code: MessageSvelteRaw, lang: "svelte" }
 	],
 	folder_structure: `src/
-└── lib/
-    └── components/
-        └── ai/
-            └── message/
-                ├── message-action.svelte
-                ├── message-actions.svelte
-                ├── message-content.svelte
-                └── message.svelte`
+\`-- lib/
+    \`-- components/
+        \`-- ai/
+            \`-- message/
+                |-- index.ts
+                |-- message-action.svelte
+                |-- message-actions.svelte
+                |-- message-content.svelte
+                \`-- message.svelte`
 };
+
+const messageProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Message body content such as text, actions, or other UI."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the message row."
+	},
+	{
+		name: "...props",
+		type: "HTMLAttributes<HTMLDivElement>",
+		description: "Additional native div attributes forwarded to the root."
+	}
+];
+
+const messageContentProps = [
+	{
+		name: "content",
+		type: "string",
+		description: "String content used when `markdown` mode is enabled."
+	},
+	{
+		name: "markdown",
+		type: "boolean",
+		default: "false",
+		description: "Render `content` through the `Markdown` component instead of rendering snippet children."
+	},
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Custom content rendered when `markdown` is false."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the message bubble."
+	},
+	{
+		name: "...props",
+		type: "HTMLAttributes<HTMLDivElement>",
+		description: "Additional native div attributes forwarded when using snippet children."
+	}
+];
+
+const messageActionsProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Action buttons or controls shown beneath a message."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the actions row."
+	},
+	{
+		name: "...props",
+		type: "HTMLAttributes<HTMLDivElement>",
+		description: "Additional native div attributes."
+	}
+];
+
+const messageActionProps = [
+	{
+		name: "tooltip",
+		type: "Snippet",
+		description: "Tooltip content rendered for the action trigger."
+	},
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Interactive element that opens the tooltip."
+	},
+	{
+		name: "side",
+		type: '"top" | "bottom" | "left" | "right"',
+		default: '"top"',
+		description: "Tooltip placement relative to the trigger."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the tooltip content."
+	},
+	{
+		name: "...props",
+		type: "TooltipPrimitive.RootProps",
+		description: "Additional Bits UI tooltip root props."
+	}
+];
 
 export const data: ComponentDoc = {
 	...meta,
@@ -86,10 +185,27 @@ export const data: ComponentDoc = {
 		name: "preview.svelte",
 		code: PreviewCode,
 		lang: "svelte",
-		hideLines: true,
+		hideLines: true
 	},
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "Message",
+			props: messageProps
+		},
+		{
+			name: "MessageContent",
+			props: messageContentProps
+		},
+		{
+			name: "MessageActions",
+			props: messageActionsProps
+		},
+		{
+			name: "MessageAction",
+			props: messageActionProps
+		}
+	]
 };

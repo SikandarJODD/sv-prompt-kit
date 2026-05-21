@@ -1,6 +1,6 @@
 # Feedback Bar
 
-TODO: Add a concise description for Feedback Bar.
+A component to collect user feedback on AI responses.
 
 ## Installation
 
@@ -33,12 +33,4 @@ Copy the component source files into your project and update the example files w
 <FeedbackBar />
 ```
 
-## Props
 
-Document the Feedback Bar props here.
-
-## Features
-
-- Replace this placeholder bullet with a real Feedback Bar feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.

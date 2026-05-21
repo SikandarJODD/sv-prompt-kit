@@ -1,6 +1,6 @@
 # Chat Container
 
-TODO: Add a concise description for Chat Container.
+A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.
 
 ## Installation
 
@@ -32,13 +32,3 @@ Copy the component source files into your project and update the example files w
 
 <ChatContainer />
 ```
-
-## Props
-
-Document the Chat Container props here.
-
-## Features
-
-- Replace this placeholder bullet with a real Chat Container feature.
-- Add one or two implementation details that matter to consumers.
-- Include usage constraints or accessibility notes if they apply.

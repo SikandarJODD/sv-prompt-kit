@@ -933,8 +933,8 @@ async function buildRoutePlan(spec, options, existingRegistryEntries) {
     sourceRelativePath: source.relativePath,
   });
 
-  const description = `TODO: Add a concise description for ${title}.`;
-  const seoDescription = `TODO: Add an SEO description for ${title}.`;
+  const description = `TODO: ${title}.`;
+  const seoDescription = `TODO: ${title}.`;
   const folderStructure = buildFolderStructure(
     source.relativePath,
     sourceFiles,

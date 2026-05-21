@@ -1,6 +1,6 @@
 # Chain Of Thought
 
-TODO: Add a concise description for Chain Of Thought.
+Display step-by-step reasoning and collapsible thought processes in AI interfaces.
 
 ## Installation
 

@@ -60,6 +60,7 @@ const examples: Example[] = [
 
 const install_block: InstallComponentDocs = {
 	packages: ["stick-to-bottom-svelte"],
+	shadcn_components: ["button"],
 	install_code: [
 		{
 			name: "scroll-button-content.svelte",

@@ -44,6 +44,7 @@ const examples: Example[] = [
 
 const install_block: InstallComponentDocs = {
 	packages: [],
+	shadcn_components: ['collapsible'],
 	install_code: [
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", isExpand: true, },
 		{ name: "steps-bar.svelte", code: StepsBarSvelteRaw, lang: "svelte", },

@@ -4,9 +4,8 @@ import MarkdownSvelteRaw from "$lib/components/ai/markdown/markdown.svelte?raw";
 import type {
 	ComponentDoc,
 	ComponentMeta,
-	InstallComponentDocs,
+	InstallComponentDocs
 } from "$lib/types/structure";
-import type { Example } from "$lib/types/example";
 import type { SEO } from "$lib/types/seo";
 import Preview from "./examples/preview.svelte";
 import PreviewCode from "./examples/preview.svelte?raw";
@@ -14,24 +13,55 @@ import PreviewCode from "./examples/preview.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "markdown",
 	title: "Markdown",
-	description: "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
-	category: "ai",
+	description:
+		"A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
+	category: "ai"
 };
 
 const seo: SEO = {
 	title: "Markdown",
-	description: "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
-	keywords: ["Svelte", "Markdown", "Component"],
+	description:
+		"A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
+	keywords: ["Svelte", "Markdown", "Component"]
 };
 
 const install_block: InstallComponentDocs = {
 	packages: [],
 	install_code: [
-		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", isExpand: true, },
-		{ name: "markdown.svelte", code: MarkdownSvelteRaw, lang: "svelte", }
+		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", isExpand: true },
+		{ name: "markdown.svelte", code: MarkdownSvelteRaw, lang: "svelte" }
 	],
-	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- markdown/\n                |-- index.ts\n                `-- markdown.svelte",
+	folder_structure: `src/
+\`-- lib/
+    \`-- components/
+        \`-- ai/
+            \`-- markdown/
+                |-- index.ts
+                \`-- markdown.svelte`
 };
+
+const markdownProps = [
+	{
+		name: "content",
+		type: "string",
+		description: "Markdown source string rendered with Streamdown."
+	},
+	{
+		name: "id",
+		type: "string",
+		description: "Optional id applied to the outer wrapper."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the outer markdown container."
+	},
+	{
+		name: "...props",
+		type: "Omit<StreamdownProps, 'content' | 'class'> & Omit<HTMLAttributes<HTMLDivElement>, 'content'>",
+		description: "Additional Streamdown and native div props forwarded to the wrapper or renderer."
+	}
+];
 
 export const data: ComponentDoc = {
 	...meta,
@@ -40,9 +70,14 @@ export const data: ComponentDoc = {
 		name: "preview.svelte",
 		code: PreviewCode,
 		lang: "svelte",
-		hideLines: true,
+		hideLines: true
 	},
 	install_block,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "Markdown",
+			props: markdownProps
+		}
+	]
 };
