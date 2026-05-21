@@ -43,14 +43,40 @@ const examples: Example[] = [
 
 const install_block: InstallComponentDocs = {
 	packages: [],
+	shadcn_components: ['tooltip'],
 	install_code: [
-		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", isExpand: true, },
-		{ name: "message-action.svelte", code: MessageActionSvelteRaw, lang: "svelte", },
-		{ name: "message-actions.svelte", code: MessageActionsSvelteRaw, lang: "svelte", },
-		{ name: "message-content.svelte", code: MessageContentSvelteRaw, lang: "svelte", },
-		{ name: "message.svelte", code: MessageSvelteRaw, lang: "svelte", }
+		{
+			name: "index.ts",
+			code: IndexTsRaw,
+			lang: "typescript",
+			isExpand: true
+		},
+		{
+			name: "message-action.svelte",
+			code: MessageActionSvelteRaw,
+			lang: "svelte"
+		},
+		{
+			name: "message-actions.svelte",
+			code: MessageActionsSvelteRaw,
+			lang: "svelte"
+		},
+		{
+			name: "message-content.svelte",
+			code: MessageContentSvelteRaw,
+			lang: "svelte"
+		},
+		{ name: "message.svelte", code: MessageSvelteRaw, lang: "svelte" }
 	],
-	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- message/\n                |-- index.ts\n                |-- message-action.svelte\n                |-- message-actions.svelte\n                |-- message-content.svelte\n                `-- message.svelte",
+	folder_structure: `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── message/
+                ├── message-action.svelte
+                ├── message-actions.svelte
+                ├── message-content.svelte
+                └── message.svelte`
 };
 
 export const data: ComponentDoc = {

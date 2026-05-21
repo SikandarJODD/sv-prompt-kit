@@ -32,6 +32,7 @@ export type InstallComponentDocs = {
   tailwind?: CodeBlock;
   folder_structure?: string;
   packages?: string[];
+  shadcn_components?: string[]; // button, card etc..
 };
 
 export type ComponentDoc = ComponentMeta & {

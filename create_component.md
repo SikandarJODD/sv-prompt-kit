@@ -66,3 +66,15 @@ pnpm create:route <slug> --source ui/<component>
 ```
 
 Use `magic/<component>` or another source path when needed.
+----
+
+mostly copied stuffff
+ `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── chat-container/
+                ├── chat-container-content.svelte
+                ├── chat-container.svelte
+                ├── context.svelte.ts
+                └── index.ts`

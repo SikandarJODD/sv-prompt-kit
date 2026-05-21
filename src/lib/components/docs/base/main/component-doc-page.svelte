@@ -2,7 +2,7 @@
 	import type { Component } from "svelte";
 	import type { SEO } from "$lib/types/seo";
 	import type { Example } from "$lib/types/example";
-	import type { PropsTable } from "$lib/types/structure";
+	import type { InstallComponentDocs, PropsTable } from "$lib/types/structure";
 
 	export type ComponentDocPageProps = {
 		id: string;
@@ -19,6 +19,7 @@
 		examples?: Example[];
 		propsTables?: PropsTable[];
 		descriptionClass?: string;
+		install?: InstallComponentDocs; // new prop which covers everything
 	};
 </script>
 
@@ -48,6 +49,7 @@
 		examples = [],
 		propsTables = [],
 		descriptionClass = "",
+		install
 	}: ComponentDocPageProps = $props();
 
 	let PreviewComp = $derived(preview);
@@ -97,6 +99,7 @@
 			packages={installPackages}
 			folderStructure={installFolderStructure}
 			class="mt-4"
+			install={install} 
 		/>
 	</section>
 

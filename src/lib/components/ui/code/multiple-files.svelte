@@ -14,11 +14,11 @@
 
 <div class="flex overflow-auto rounded-md border">
 	<div
-		class="hidden min-w-66 overflow-auto rounded-tl-md border-r bg-neutral-50 font-mono text-black [--color-background:var(--color-zinc-900)] [--color-foreground:white] [--color-muted:var(--color-zinc-800)] sm:block dark:bg-zinc-900/25 dark:text-white"
+		class="hidden min-w-60 overflow-auto rounded-tl-md border-r bg-neutral-50 font-mono text-black [--color-background:var(--color-zinc-900)] [--color-foreground:white] [--color-muted:var(--color-zinc-800)] sm:block dark:bg-zinc-900/25 dark:text-white"
 	>
 		<div>
 			<div
-				class="dark:hover:bg-muted/50 flex items-center gap-1.5 py-2 pr-5.5 pl-4 font-mono text-xs hover:bg-white/5"
+				class="dark:hover:bg-muted/50 flex items-center gap-1.5 py-2 pl-3 font-mono text-xs hover:bg-white/5"
 			>
 				<!-- <ChevronDown class="size-4 opacity-50" /> -->
 				<svg xmlns="http://www.w3.org/2000/svg" class="size-4" viewBox="0 0 16 16">
@@ -39,15 +39,15 @@
 						stroke-width={1}
 					></path>
 				</svg>
-				<span>components</span>
+				<span>ai</span>
 			</div>
 
 			{#each code as item, index}
 				<Button
 					class={cn(
-						`flex w-full items-center justify-start gap-1.5 rounded-none border-l-2 border-transparent pl-6! text-xs hover:bg-neutral-200/70 hover:dark:bg-zinc-900 [&_svg:not([class*='size-'])]:size-3`,
+						`flex w-full items-center justify-start gap-1.5 rounded-none border-l-2 border-transparent  text-xs hover:bg-neutral-200/70 hover:dark:bg-zinc-900 [&_svg:not([class*='size-'])]:size-3`,
 						selectedIndex === index &&
-							"border-muted-foreground border-l-2 bg-neutral-200/40 dark:bg-zinc-800/50"
+							" bg-neutral-200/40 dark:bg-zinc-800/50"
 					)}
 					variant="ghost"
 					onclick={() => (selectedIndex = index)}
@@ -61,7 +61,7 @@
 					{/if}
 					<span
 						class={[
-							"transition-all duration-200",
+							"transition-all font-mono tracking-tight duration-200",
 							selectedIndex === index
 								? "text-black! dark:text-white!"
 								: "text-muted-foreground",
@@ -71,11 +71,11 @@
 			{/each}
 		</div>
 	</div>
-	<div class="relative max-h-[550px] min-h-128 w-full overflow-auto border-none sm:w-full">
+	<div class="relative max-h-140 min-h-128 w-full overflow-auto border-none sm:w-full">
 		<!-- <Code.Overflow> -->
 		<Code.Root
 			lang={selectedCode.lang}
-			class="w-full rounded-none border-none "
+			class="w-full rounded-none border-none text-xs!"
 			code={selectedCode.code}
 			highlight={selectedCode.highlight}
 			hideLines={false}

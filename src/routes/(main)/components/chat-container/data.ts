@@ -69,7 +69,7 @@ const examples: Example[] = [
 ];
 
 const install_block: InstallComponentDocs = {
-	packages: [],
+	packages: ['stick-to-bottom-svelte'],
 	install_code: [
 		{
 			name: "chat-container-content.svelte",

@@ -44,6 +44,7 @@ const examples: Example[] = [
 
 const install_block: InstallComponentDocs = {
 	packages: [],
+	shadcn_components:['tooltip', 'textarea', 'button'],
 	install_code: [
 		{ name: "context.svelte.ts", code: ContextSvelteTsRaw, lang: "typescript", isExpand: true, },
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", },
