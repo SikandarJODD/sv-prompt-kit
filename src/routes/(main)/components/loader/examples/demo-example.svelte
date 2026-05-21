@@ -1,17 +1,56 @@
 <script lang="ts">
 	import { Loader } from "$lib/components/ai/loader";
+	import { Button } from "$lib/components/ui/button";
 
-	const DemoComponent: any = Loader;
+	let size = $state<"sm" | "md" | "lg">("md");
+
+	const variants = [
+		"circular",
+		"classic",
+		"pulse",
+		"pulse-dot",
+		"dots",
+		"typing",
+		"wave",
+		"bars",
+		"terminal",
+		"text-blink",
+		"text-shimmer",
+		"loading-dots"
+	] as const;
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Loader demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Loader.
-		</p>
+<div class="flex w-full flex-col">
+	<div class="flex items-center justify-center gap-2 border-b py-2">
+		<Button
+			size="sm"
+			variant={size === "sm" ? "default" : "outline"}
+			onclick={() => (size = "sm")}
+		>
+			Small
+		</Button>
+		<Button
+			size="sm"
+			variant={size === "md" ? "default" : "outline"}
+			onclick={() => (size = "md")}
+		>
+			Medium
+		</Button>
+		<Button
+			size="sm"
+			variant={size === "lg" ? "default" : "outline"}
+			onclick={() => (size = "lg")}
+		>
+			Large
+		</Button>
 	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
+
+	<div class="grid grid-cols-2 gap-8 p-4 sm:grid-cols-3 md:grid-cols-4">
+		{#each variants as variant}
+			<div class="flex flex-col items-center justify-center gap-2 p-4">
+				<Loader {variant} {size} />
+				<span class="text-sm text-muted-foreground">{variant}</span>
+			</div>
+		{/each}
 	</div>
-</section>
+</div>

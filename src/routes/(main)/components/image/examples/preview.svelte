@@ -1,14 +1,18 @@
 <script lang="ts">
 	import { Image } from "$lib/components/ai/image";
 
-	const PreviewComponent: any = Image;
+	// Example base64 (compact SVG chat typing icon)
+	const base64 =
+		"PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij48cmVjdCB3aWR0aD0iNDgiIGhlaWdodD0iNDgiIHJ4PSIxMCIgZmlsbD0iIzdjM2FlZCIvPjxjaXJjbGUgY3g9IjE2IiBjeT0iMjQiIHI9IjQiIGZpbGw9IiNmZmYiLz48Y2lyY2xlIGN4PSIyNCIgY3k9IjI0IiByPSI0IiBmaWxsPSIjZmZmIi8+PGNpcmNsZSBjeD0iMzIiIGN5PSIyNCIgcj0iNCIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==";
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Image example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
-	</div>
+<div class="flex flex-col items-center gap-4 p-4">
+	<Image
+		{base64}
+		uint8Array={new Uint8Array()}
+		mediaType="image/svg+xml"
+		alt="Compact gradient chat icon"
+		class="h-24 w-24 rounded-md"
+	/>
+	<span class="text-xs text-muted-foreground">Compact SVG chat icon</span>
 </div>

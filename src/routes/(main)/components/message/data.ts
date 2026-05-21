@@ -19,13 +19,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "message",
 	title: "Message",
-	description: "TODO: Add a concise description for Message.",
+	description: "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Message",
-	description: "TODO: Add an SEO description for Message.",
+	description: "A component for displaying messages in a conversation interface, with support for avatars, markdown content, and interactive actions.",
 	keywords: ["Svelte", "Message", "Component"],
 };
 

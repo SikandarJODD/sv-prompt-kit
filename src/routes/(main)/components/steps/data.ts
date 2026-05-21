@@ -20,13 +20,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "steps",
 	title: "Steps",
-	description: "TODO: Add a concise description for Steps.",
+	description: "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Steps",
-	description: "TODO: Add an SEO description for Steps.",
+	description: "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar. Useful for showing AI steps like reasoning traces, tool calls, or process logs.",
 	keywords: ["Svelte", "Steps", "Component"],
 };
 

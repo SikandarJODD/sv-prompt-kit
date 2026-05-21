@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setContext } from "svelte";
+	import { setContext, untrack } from "svelte";
 	import type { Snippet } from "svelte";
 	import { FileUploadContext } from "./context.svelte.js";
 
@@ -19,7 +19,10 @@
 		disabled = false
 	}: Props = $props();
 
-	const ctx = new FileUploadContext(multiple, disabled);
+	const ctx = new FileUploadContext(
+		untrack(() => multiple),
+		untrack(() => disabled)
+	);
 	setContext("file-upload", ctx);
 
 	let dragCounter = 0;

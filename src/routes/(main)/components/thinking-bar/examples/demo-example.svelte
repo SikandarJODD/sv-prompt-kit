@@ -1,17 +1,22 @@
 <script lang="ts">
-	import { ThinkingBar } from "$lib/components/ai/thinking-bar";
+	import { ThinkingBar } from "$lib/components/ai/thinking-bar/index.js";
 
-	const DemoComponent: any = ThinkingBar;
+	function handleStop() {
+		console.log("Stop thinking and answer now");
+	}
+
+	function handleClick() {
+		console.log("Thinking bar clicked");
+	}
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Thinking Bar demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Thinking Bar.
-		</p>
-	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+<div class="flex w-full max-w-md flex-col gap-4">
+	<ThinkingBar text="Analyzing your question" onStop={handleStop} />
+
+	<ThinkingBar
+		text="Deep thinking in progress"
+		stopLabel="Skip to answer"
+		onStop={handleStop}
+		onclick={handleClick}
+	/>
+</div>

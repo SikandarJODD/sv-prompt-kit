@@ -52,7 +52,7 @@
 		<div class="flex items-center justify-center gap-0.5 px-3 py-0">
 			<button
 				type="button"
-				class="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+				class="flex size-8 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
 				aria-label="Helpful"
 				onclick={onHelpful}
 			>
@@ -60,7 +60,7 @@
 			</button>
 			<button
 				type="button"
-				class="flex size-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
+				class="flex size-8 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:text-foreground"
 				aria-label="Not helpful"
 				onclick={onNotHelpful}
 			>
@@ -71,7 +71,7 @@
 			<button
 				type="button"
 				onclick={onClose}
-				class="flex items-center justify-center rounded-md p-3 text-muted-foreground hover:text-foreground"
+				class="flex cursor-pointer items-center justify-center rounded-md p-3 text-muted-foreground hover:text-foreground"
 				aria-label="Close"
 			>
 				<X class="size-5" />

@@ -16,13 +16,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "text-shimmer",
 	title: "Text Shimmer",
-	description: "TODO: Add a concise description for Text Shimmer.",
+	description: "An animated text shimmer effect for loading states and AI responses.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Text Shimmer",
-	description: "TODO: Add an SEO description for Text Shimmer.",
+	description: "An animated text shimmer effect for loading states and AI responses.",
 	keywords: ["Svelte", "Text Shimmer", "Component"],
 };
 

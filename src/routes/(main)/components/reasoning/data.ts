@@ -19,13 +19,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "reasoning",
 	title: "Reasoning",
-	description: "TODO: Add a concise description for Reasoning.",
+	description: "A collapsible component for showing AI reasoning, explanations, or logic. You can control it manually or let it auto-close when the stream ends. Markdown is supported.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Reasoning",
-	description: "TODO: Add an SEO description for Reasoning.",
+	description: "A collapsible component for showing AI reasoning, explanations, or logic. You can control it manually or let it auto-close when the stream ends. Markdown is supported.",
 	keywords: ["Svelte", "Reasoning", "Component"],
 };
 

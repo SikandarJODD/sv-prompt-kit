@@ -52,7 +52,17 @@ const install_block: InstallComponentDocs = {
 		{ name: "chain-of-thought.svelte", code: ChainOfThoughtSvelteRaw, lang: "svelte", },
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", }
 	],
-	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- chain-of-thought/\n                |-- chain-of-thought-content.svelte\n                |-- chain-of-thought-item.svelte\n                |-- chain-of-thought-step.svelte\n                |-- chain-of-thought-trigger.svelte\n                |-- chain-of-thought.svelte\n                `-- index.ts",
+	folder_structure: `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── chain-of-thought/
+                ├── chain-of-thought-content.svelte
+                ├── chain-of-thought-item.svelte
+                ├── chain-of-thought-step.svelte
+                ├── chain-of-thought-trigger.svelte
+                ├── chain-of-thought.svelte
+                └── index.ts`,
 };
 
 export const data: ComponentDoc = {

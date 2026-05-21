@@ -1,17 +1,123 @@
 <script lang="ts">
-	import { PromptInput } from "$lib/components/ai/prompt-input";
+	import {
+		PromptInput,
+		PromptInputAction,
+		PromptInputActions,
+		PromptInputTextarea
+	} from "$lib/components/ai/prompt-input";
+	import { Button } from "$lib/components/ui/button/index.js";
+	import ArrowUp from "@lucide/svelte/icons/arrow-up";
+	import Paperclip from "@lucide/svelte/icons/paperclip";
+	import Square from "@lucide/svelte/icons/square";
+	import X from "@lucide/svelte/icons/x";
 
-	const DemoComponent: any = PromptInput;
+	let input = $state("");
+	let isLoading = $state(false);
+	let files = $state<File[]>([]);
+	let uploadInputRef: HTMLInputElement | undefined = $state();
+
+	function handleSubmit() {
+		if (input.trim() || files.length > 0) {
+			isLoading = true;
+
+			setTimeout(() => {
+				isLoading = false;
+				input = "";
+				files = [];
+			}, 2000);
+		}
+	}
+
+	function handleValueChange(value: string) {
+		input = value;
+	}
+
+	function handleFileChange(event: Event) {
+		const target = event.target as HTMLInputElement;
+
+		if (target.files) {
+			const newFiles = Array.from(target.files);
+			files = [...files, ...newFiles];
+		}
+	}
+
+	function handleRemoveFile(index: number) {
+		files = files.filter((_, i) => i !== index);
+
+		if (uploadInputRef) {
+			uploadInputRef.value = "";
+		}
+	}
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Prompt Input demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Prompt Input.
-		</p>
-	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+<PromptInput
+	value={input}
+	onValueChange={handleValueChange}
+	{isLoading}
+	onSubmit={handleSubmit}
+	class="w-full max-w-(--breakpoint-md)"
+>
+	{#if files.length > 0}
+		<div class="flex flex-wrap gap-2 pb-2">
+			{#each files as file, index (`${file.name}-${file.lastModified}-${index}`)}
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div
+					class="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm"
+					onclick={(event) => event.stopPropagation()}
+				>
+					<Paperclip class="size-4" />
+					<span class="max-w-30 truncate">{file.name}</span>
+					<button
+						onclick={() => handleRemoveFile(index)}
+						class="rounded-full p-1 hover:bg-secondary/50"
+					>
+						<X class="size-4" />
+					</button>
+				</div>
+			{/each}
+		</div>
+	{/if}
+
+	<PromptInputTextarea placeholder="Ask me anything..." />
+
+	<PromptInputActions class="flex items-center justify-between gap-2 pt-2">
+		<PromptInputAction>
+			{#snippet tooltip()}
+				Attach files
+			{/snippet}
+			<label
+				for="file-upload"
+				class="flex h-8 w-8 cursor-pointer items-center justify-center rounded-2xl hover:bg-secondary-foreground/10"
+			>
+				<input
+					type="file"
+					multiple
+					onchange={handleFileChange}
+					class="hidden"
+					id="file-upload"
+					bind:this={uploadInputRef}
+				/>
+				<Paperclip class="size-5 text-primary" />
+			</label>
+		</PromptInputAction>
+
+		<PromptInputAction>
+			{#snippet tooltip()}
+				{isLoading ? "Stop generation" : "Send message"}
+			{/snippet}
+			<Button
+				variant="default"
+				size="icon"
+				class="h-8 w-8 rounded-full"
+				onclick={handleSubmit}
+			>
+				{#if isLoading}
+					<Square class="size-5 fill-current" />
+				{:else}
+					<ArrowUp class="size-5" />
+				{/if}
+			</Button>
+		</PromptInputAction>
+	</PromptInputActions>
+</PromptInput>

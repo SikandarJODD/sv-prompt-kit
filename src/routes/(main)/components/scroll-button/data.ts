@@ -22,7 +22,7 @@ export const meta: ComponentMeta = {
 	id: "scroll-button",
 	title: "Scroll Button",
 	description:
-		"A floating jump-to-bottom control for scrollable feeds and chat-style threads.",
+		"A minimal floating button that appears when the user scrolls up, allowing them to jump back to the bottom of the chat.",
 	category: "ai"
 };
 

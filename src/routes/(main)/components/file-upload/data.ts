@@ -19,27 +19,15 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "file-upload",
 	title: "File Upload",
-	description: "TODO: Add a concise description for File Upload.",
+	description: "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "File Upload",
-	description: "TODO: Add an SEO description for File Upload.",
+	description: "A component for creating drag-and-drop file upload interfaces with support for single or multiple files, custom triggers, and visual feedback during file dragging operations.",
 	keywords: ["Svelte", "File Upload", "Component"],
 };
-
-const examples: Example[] = [
-	{
-		name: "Demo",
-		preview: DemoExample,
-		code: {
-			name: "demo-example.svelte",
-			code: DemoExampleRaw,
-			lang: "svelte",
-		},
-	},
-];
 
 const install_block: InstallComponentDocs = {
 	packages: [],
@@ -50,7 +38,15 @@ const install_block: InstallComponentDocs = {
 		{ name: "file-upload.svelte", code: FileUploadSvelteRaw, lang: "svelte", },
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", }
 	],
-	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- file-upload/\n                |-- context.svelte.ts\n                |-- file-upload-content.svelte\n                |-- file-upload-trigger.svelte\n                |-- file-upload.svelte\n                `-- index.ts",
+	folder_structure: `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── file-upload/
+                ├── file-upload-content.svelte
+                ├── file-upload-trigger.svelte
+                ├── file-upload.svelte
+                └── index.ts`,
 };
 
 export const data: ComponentDoc = {
@@ -63,7 +59,6 @@ export const data: ComponentDoc = {
 		hideLines: true,
 	},
 	install_block,
-	examples,
 	seo,
 	props: [],
 };

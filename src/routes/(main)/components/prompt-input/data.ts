@@ -20,13 +20,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "prompt-input",
 	title: "Prompt Input",
-	description: "TODO: Add a concise description for Prompt Input.",
+	description: "An input field that allows users to enter and submit text to an AI model.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Prompt Input",
-	description: "TODO: Add an SEO description for Prompt Input.",
+	description: "An input field that allows users to enter and submit text to an AI model.",
 	keywords: ["Svelte", "Prompt Input", "Component"],
 };
 

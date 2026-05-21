@@ -16,13 +16,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "prompt-suggestion",
 	title: "Prompt Suggestion",
-	description: "TODO: Add a concise description for Prompt Suggestion.",
+	description: "A component for implementing interactive prompt suggestions in AI interfaces, with both clickable suggestion buttons and highlight mode for matched text.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Prompt Suggestion",
-	description: "TODO: Add an SEO description for Prompt Suggestion.",
+	description: "A component for implementing interactive prompt suggestions in AI interfaces, with both clickable suggestion buttons and highlight mode for matched text.",
 	keywords: ["Svelte", "Prompt Suggestion", "Component"],
 };
 

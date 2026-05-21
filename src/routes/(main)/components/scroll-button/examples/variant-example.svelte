@@ -14,7 +14,7 @@
 	}));
 </script>
 
-<div class="flex h-[500px] w-full flex-col overflow-hidden">
+<div class="flex h-125 w-full flex-col overflow-hidden">
 	<div
 		class="no-scrollbar! flex w-full items-center justify-end gap-2 overflow-x-scroll p-3"
 	>

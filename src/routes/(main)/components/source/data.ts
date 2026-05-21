@@ -19,13 +19,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "source",
 	title: "Source",
-	description: "TODO: Add a concise description for Source.",
+	description: "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Source",
-	description: "TODO: Add an SEO description for Source.",
+	description: "Displays website sources used by AI-generated content, showing URL details, titles, and descriptions on hover.",
 	keywords: ["Svelte", "Source", "Component"],
 };
 

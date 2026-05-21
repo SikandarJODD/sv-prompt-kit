@@ -1,17 +1,84 @@
 <script lang="ts">
-	import { Message } from "$lib/components/ai/message";
+	import {
+		Message,
+		MessageAction,
+		MessageActions,
+		MessageContent
+	} from "$lib/components/ai/message/index.js";
+	import { Button } from "$lib/components/ui/button";
+	import Copy from "@lucide/svelte/icons/copy";
+	import ThumbsDown from "@lucide/svelte/icons/thumbs-down";
+	import ThumbsUp from "@lucide/svelte/icons/thumbs-up";
 
-	const DemoComponent: any = Message;
+	function handleCopy() {
+		console.log("Copy clicked");
+	}
+
+	function handleLike() {
+		console.log("Like clicked");
+	}
+
+	function handleDislike() {
+		console.log("Dislike clicked");
+	}
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Message demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Message.
-		</p>
-	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+<div class="flex flex-col gap-8">
+	<Message class="justify-end">
+		<MessageContent>Hello! How can I help you today?</MessageContent>
+	</Message>
+
+	<Message class="justify-start">
+		<div class="flex flex-col gap-2">
+			<MessageContent class="bg-transparent p-0">
+				I can help with a variety of tasks: answering questions,
+				providing information, assisting with coding, generating
+				creative content. What would you like help with today?
+			</MessageContent>
+
+			<MessageActions>
+				<MessageAction>
+					{#snippet tooltip()}
+						Copy
+					{/snippet}
+					<Button
+						variant="ghost"
+						size="icon"
+						class="h-8 w-8"
+						onclick={handleCopy}
+					>
+						<Copy class="h-4 w-4" />
+					</Button>
+				</MessageAction>
+
+				<MessageAction>
+					{#snippet tooltip()}
+						Like
+					{/snippet}
+					<Button
+						variant="ghost"
+						size="icon"
+						class="h-8 w-8"
+						onclick={handleLike}
+					>
+						<ThumbsUp class="h-4 w-4" />
+					</Button>
+				</MessageAction>
+
+				<MessageAction>
+					{#snippet tooltip()}
+						Dislike
+					{/snippet}
+					<Button
+						variant="ghost"
+						size="icon"
+						class="h-8 w-8"
+						onclick={handleDislike}
+					>
+						<ThumbsDown class="h-4 w-4" />
+					</Button>
+				</MessageAction>
+			</MessageActions>
+		</div>
+	</Message>
+</div>

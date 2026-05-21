@@ -1,14 +1,29 @@
 <script lang="ts">
 	import { Loader } from "$lib/components/ai/loader";
 
-	const PreviewComponent: any = Loader;
+	const variants = [
+		"circular",
+		"classic",
+		"pulse",
+		"pulse-dot",
+		"dots",
+		"typing",
+		"wave",
+		"bars",
+		"terminal",
+		"text-blink",
+		"text-shimmer",
+		"loading-dots"
+	] as const;
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Loader example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
+<div class="flex w-full flex-col space-y-8 p-4">
+	<div class="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
+		{#each variants as variant}
+			<div class="flex flex-col items-center justify-center gap-2 p-4">
+				<Loader {variant} />
+				<span class="text-sm text-muted-foreground">{variant}</span>
+			</div>
+		{/each}
 	</div>
 </div>
