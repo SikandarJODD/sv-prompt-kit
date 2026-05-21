@@ -116,7 +116,7 @@
 			{/each}
 		</ScrollFadeEffect>
 	</Sidebar.Content>
-	<Sidebar.Footer>
+	<!-- <Sidebar.Footer>
 		<SupportWork />
-	</Sidebar.Footer>
+	</Sidebar.Footer> -->
 </Sidebar.Root>

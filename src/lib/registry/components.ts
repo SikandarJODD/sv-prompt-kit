@@ -127,13 +127,13 @@ let docsPages: DocPage[] = [
 		id: "docs",
 		name: "Introduction",
 		href: "/docs",
-		desc: "Getting started with the setup."
+		desc: "Overview of Svelte Prompt Kit and its AI-focused component philosophy."
 	},
 	{
 		id: "installation",
 		name: "Installation",
 		href: "/docs/installation",
-		desc: "Create the app and initialize shadcn-svelte."
+		desc: "Set up SvelteKit, initialize shadcn-svelte, and add your first Prompt Kit component."
 	}
 ];
 
