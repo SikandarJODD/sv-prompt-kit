@@ -3,7 +3,11 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 	import * as Command from "$lib/components/ui/command/index.js";
 	import * as Kbd from "$lib/components/ui/kbd/index.js";
-	import { components, docsPages } from "$lib/registry/components";
+	import {
+		components,
+		docsPages,
+		primitivePages
+	} from "$lib/registry/components";
 	import { type Component } from "$lib/registry/components";
 	let open = $state(false);
 
@@ -16,6 +20,7 @@
 
 	// For Now we would use Magic UI - Components, Later on we would update it
 	let docs: Component[] = docsPages;
+	let primitives: Component[] = primitivePages;
 </script>
 
 <svelte:document onkeydown={handleKeydown} />
@@ -104,6 +109,42 @@
 					</svg>
 					{doc.name}</Command.LinkItem
 				>
+			{/each}
+		</Command.Group>
+		<Command.Group heading="Primitives">
+			{#each primitives as primitive (primitive.id)}
+				<Command.LinkItem
+					value={primitive.id}
+					onclick={() => (open = false)}
+					href={primitive.href}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						role="img"
+						color="currentColor"
+					>
+						<rect
+							x="4"
+							y="4"
+							width="16"
+							height="16"
+							rx="3"
+							stroke="currentColor"
+							stroke-width="1.5"
+						></rect>
+						<path
+							d="M8 8H16M8 12H13M8 16H11"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+						></path>
+					</svg>
+					{primitive.name}
+				</Command.LinkItem>
 			{/each}
 		</Command.Group>
 		<Command.Group heading="Components">

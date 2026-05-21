@@ -139,10 +139,21 @@ let docsPages: DocPage[] = [
 
 export { docsPages };
 
+let primitivePages: DocPage[] = [
+	{
+		id: "full-chatbot",
+		name: "Full Chatbot",
+		href: "/primitives/full-chatbot",
+		desc: "A full AI chatbot setup with UI, model config, and API route wiring."
+	}
+];
+
+export { primitivePages };
+
 type NavigationItem = DocPage | Component;
 
 function getNavigationItems(): NavigationItem[] {
-	return [...docsPages, ...components];
+	return [...docsPages, ...primitivePages, ...components];
 }
 
 export function getPrevNext(id: string): {

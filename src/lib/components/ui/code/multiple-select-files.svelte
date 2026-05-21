@@ -415,7 +415,7 @@
 		</div>
 	</div>
 
-	<div class="relative max-h-140 min-h-128 w-full overflow-auto">
+	<div class="relative max-h-140 min-h-60 w-full overflow-auto">
 		<Root
 			lang={selectedCode?.lang ?? "typescript"}
 			class="w-full rounded-none border-none text-xs!"
