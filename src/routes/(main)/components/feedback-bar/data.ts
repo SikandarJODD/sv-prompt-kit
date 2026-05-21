@@ -10,33 +10,19 @@ import type { Example } from "$lib/types/example";
 import type { SEO } from "$lib/types/seo";
 import Preview from "./examples/preview.svelte";
 import PreviewCode from "./examples/preview.svelte?raw";
-import DemoExample from "./examples/demo-example.svelte";
-import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 
 export const meta: ComponentMeta = {
 	id: "feedback-bar",
 	title: "Feedback Bar",
-	description: "TODO: Add a concise description for Feedback Bar.",
+	description: "A component to collect user feedback on AI responses.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Feedback Bar",
-	description: "TODO: Add an SEO description for Feedback Bar.",
+	description: "A component to collect user feedback on AI responses.",
 	keywords: ["Svelte", "Feedback Bar", "Component"],
 };
-
-const examples: Example[] = [
-	{
-		name: "Demo",
-		preview: DemoExample,
-		code: {
-			name: "demo-example.svelte",
-			code: DemoExampleRaw,
-			lang: "svelte",
-		},
-	},
-];
 
 const install_block: InstallComponentDocs = {
 	packages: [],
@@ -44,7 +30,13 @@ const install_block: InstallComponentDocs = {
 		{ name: "feedback-bar.svelte", code: FeedbackBarSvelteRaw, lang: "svelte", isExpand: true, },
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript", }
 	],
-	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- feedback-bar/\n                |-- feedback-bar.svelte\n                `-- index.ts",
+	folder_structure: `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── feedback-bar/
+                ├── feedback-bar.svelte
+                └── index.ts`,
 };
 
 export const data: ComponentDoc = {
@@ -57,7 +49,6 @@ export const data: ComponentDoc = {
 		hideLines: true,
 	},
 	install_block,
-	examples,
 	seo,
 	props: [],
 };

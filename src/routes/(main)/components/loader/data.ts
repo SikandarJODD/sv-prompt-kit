@@ -28,13 +28,13 @@ import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "loader",
 	title: "Loader",
-	description: "TODO: Add a concise description for Loader.",
+	description: "A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Loader",
-	description: "TODO: Add an SEO description for Loader.",
+	description: "A loading component with multiple variants to indicate processing states and provide visual feedback to users during wait times.",
 	keywords: ["Svelte", "Loader", "Component"],
 };
 

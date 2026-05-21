@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { TextShimmer } from "$lib/components/ai/text-shimmer";
-
-	const DemoComponent: any = TextShimmer;
+	import { TextShimmer } from "$lib/components/ai/text-shimmer/index.js";
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Text Shimmer demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Text Shimmer.
-		</p>
-	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+<div class="flex flex-col gap-4">
+	<TextShimmer duration={2} spread={30}
+		>Fast shimmer with wide spread</TextShimmer
+	>
+
+	<TextShimmer duration={6} spread={10}
+		>Slow shimmer with narrow spread</TextShimmer
+	>
+
+	<TextShimmer as="h2" class="text-2xl font-bold"
+		>Heading with shimmer effect</TextShimmer
+	>
+</div>

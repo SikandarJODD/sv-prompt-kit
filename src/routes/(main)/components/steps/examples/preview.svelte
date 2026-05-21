@@ -1,14 +1,22 @@
 <script lang="ts">
-	import { Steps } from "$lib/components/ai/steps";
-
-	const PreviewComponent: any = Steps;
+	import * as Steps from "$lib/components/ai/steps";
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Steps example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
-	</div>
+<div class="min-w-sm space-y-4">
+	<Steps.Root defaultOpen>
+		<Steps.Trigger>Agent run: Summarize repository</Steps.Trigger>
+		<Steps.Content>
+			<div class="space-y-1">
+				<Steps.Item>Searching files in repo...</Steps.Item>
+				<Steps.Item>Found 12 files (src, docs)</Steps.Item>
+				<Steps.Item>Parsing markdown and code blocks</Steps.Item>
+				<Steps.Item>Selecting tool: summarize</Steps.Item>
+				<Steps.Item>Running summarize(tool) with top 5 files</Steps.Item
+				>
+				<Steps.Item class="text-foreground"
+					>Summary generated</Steps.Item
+				>
+			</div>
+		</Steps.Content>
+	</Steps.Root>
 </div>

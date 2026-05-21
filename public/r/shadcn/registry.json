@@ -1,0 +1,41 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry.json",
+    "name": "@ai/prompt-kit",
+    "homepage": "https://sv-prompt-kit.vercel.app",
+    "items": [
+        {
+            "name": "chain-of-thought",
+            "type": "registry:block",
+            "dependencies": [
+                "bits-ui"
+            ],
+            "registryDependencies": [],
+            "files": [
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/chain-of-thought-content.svelte"
+                },
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/chain-of-thought-item.svelte"
+                },
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/chain-of-thought-step.svelte"
+                },
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/chain-of-thought-trigger.svelte"
+                },
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/chain-of-thought.svelte"
+                },
+                {
+                    "type": "registry:component",
+                    "path": "chain-of-thought/index.ts"
+                }
+            ]
+        }
+    ]
+}

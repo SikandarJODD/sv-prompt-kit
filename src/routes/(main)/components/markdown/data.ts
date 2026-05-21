@@ -10,33 +10,19 @@ import type { Example } from "$lib/types/example";
 import type { SEO } from "$lib/types/seo";
 import Preview from "./examples/preview.svelte";
 import PreviewCode from "./examples/preview.svelte?raw";
-import DemoExample from "./examples/demo-example.svelte";
-import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 
 export const meta: ComponentMeta = {
 	id: "markdown",
 	title: "Markdown",
-	description: "TODO: Add a concise description for Markdown.",
+	description: "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Markdown",
-	description: "TODO: Add an SEO description for Markdown.",
+	description: "A component for rendering Markdown content with support for GitHub Flavored Markdown (GFM) and custom component styling.",
 	keywords: ["Svelte", "Markdown", "Component"],
 };
-
-const examples: Example[] = [
-	{
-		name: "Demo",
-		preview: DemoExample,
-		code: {
-			name: "demo-example.svelte",
-			code: DemoExampleRaw,
-			lang: "svelte",
-		},
-	},
-];
 
 const install_block: InstallComponentDocs = {
 	packages: [],
@@ -57,7 +43,6 @@ export const data: ComponentDoc = {
 		hideLines: true,
 	},
 	install_block,
-	examples,
 	seo,
 	props: [],
 };

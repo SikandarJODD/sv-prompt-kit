@@ -1,14 +1,19 @@
 <script lang="ts">
-	import { Message } from "$lib/components/ai/message";
-
-	const PreviewComponent: any = Message;
+	import * as Message from "$lib/components/ai/message";
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Message example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
-	</div>
+<div class="flex flex-col gap-8">
+	<Message.Root class="justify-end">
+		<Message.Content>Hello! How can I help you today?</Message.Content>
+	</Message.Root>
+
+	<Message.Root class="justify-start">
+		<Message.Content
+			markdown
+			class="bg-transparent p-0"
+			content="I can help with a variety of tasks: answering questions, providing
+			information, assisting with coding, generating creative content.
+			What would you like help with today?"
+		></Message.Content>
+	</Message.Root>
 </div>

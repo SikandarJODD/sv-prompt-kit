@@ -10,6 +10,7 @@
 		class?: string;
 		folderStructure?: string;
 		packages?: string[];
+		install?: InstallComponentDocs; // new props which covers everything like fodler structure, codeblock, tailwind stuff - will made it easy for future
 		jsrepoID?: string;
 	};
 </script>
@@ -19,18 +20,14 @@
 	import * as Tabs from "$lib/components/ui/tabs";
 	import type { CodeBlock } from "$lib/types/code";
 	import { Steps, Step } from "$markdown";
-	import { SingleFile } from "$lib/components/ui/code";
+	import { MultipleSelectFiles, SingleFile } from "$lib/components/ui/code";
 	import { PMCommand } from "$lib/components/ui/pm-command";
 	import { PersistedState } from "runed";
 	import type { Agent } from "package-manager-detector";
-	import {
-		createLayoutMotion,
-		motion,
-		STOP_UPDATE,
-		MotionConfig
-	} from "motion-sv";
+	import { createLayoutMotion, STOP_UPDATE, MotionConfig } from "motion-sv";
 	import { jsrepo } from "$lib/config/repo";
 	import { page } from "$app/state";
+	import type { InstallComponentDocs } from "$lib/types/structure";
 
 	let {
 		installUrl,
@@ -39,10 +36,11 @@
 		class: className,
 		folderStructure = "",
 		packages = [],
-		jsrepoID = ""
+		jsrepoID = "",
+		install
 	}: InstallComponentProps = $props();
 
-	let activeTab = $state("jsrepo");
+	let activeTab = $state("cli");
 	let agent = new PersistedState<Agent>("user-package-manager", "pnpm");
 
 	let layout = createLayoutMotion();
@@ -98,7 +96,7 @@
 						{/if}
 					</Tabs.Trigger>
 				</layout.div>
-				<layout.div>
+				<!-- <layout.div>
 					<Tabs.Trigger
 						value="jsrepo"
 						class="relative border-none bg-transparent! px-4 py-1.5 shadow-none! after:absolute after:inset-x-0 after:bottom-0 after:-mb-1 after:h-0.5 hover:text-amber-600 dark:hover:text-amber-300 data-active:text-amber-600 dark:data-active:text-amber-300"
@@ -112,7 +110,7 @@
 							></layout.span>
 						{/if}
 					</Tabs.Trigger>
-				</layout.div>
+				</layout.div> -->
 			</Tabs.List>
 		</MotionConfig>
 
@@ -146,6 +144,39 @@
 						/>
 					</Step>
 				{/if}
+				{#if install && install.shadcn_components && install.shadcn_components.length > 0}
+					<Step title="Install shadcn-svelte components">
+						<p class="mb-4">
+							Install the required shadcn-svelte components for this component:
+						</p>
+						<PMCommand
+							command="execute"
+							args={[
+								"shadcn-svelte@latest",
+								"add",
+								...install.shadcn_components
+							]}
+							bind:agent={agent.current}
+						/>
+					</Step>
+				{/if}
+
+				<!-- Folder Structure -->
+				<!-- 
+				{#if folderStructure}
+					<Step title="Folder Structure">
+						<div class="mt-2">
+							<SingleFile
+								code={{
+									name: "Folder Structure",
+									code: folderStructure,
+									lang: "bash",
+									hideLines: true
+								}}
+							/>
+						</div>
+					</Step>
+				{/if} -->
 
 				{#if codeBlocks}
 					<Step title="Copy the Source Code" titleBaseClass="mb-0">
@@ -154,9 +185,14 @@
 						</p>
 						<div class="space-y-4">
 							{#if Array.isArray(codeBlocks)}
-								{#each codeBlocks as codeBlock}
+								<!-- {#each codeBlocks as codeBlock}
 									<SingleFile code={codeBlock} />
-								{/each}
+								{/each} -->
+								<!-- <MultipleFiles code={codeBlocks} /> -->
+								<MultipleSelectFiles
+									code={codeBlocks}
+									{folderStructure}
+								/>
 							{:else}
 								<SingleFile code={codeBlocks} />
 							{/if}
@@ -174,24 +210,6 @@
 							> file:
 						</p>
 						<SingleFile code={tailwindConfig.code} />
-					</Step>
-				{/if}
-
-				<!-- Folder Structure -->
-
-				{#if folderStructure}
-					<!-- <H3 id="folder-structure">Folder Structure</H3> -->
-					<Step title="Folder Structure">
-						<div class="mt-2">
-							<SingleFile
-								code={{
-									name: "Folder Structure",
-									code: folderStructure,
-									lang: "bash",
-									hideLines: true
-								}}
-							/>
-						</div>
 					</Step>
 				{/if}
 			</Steps>

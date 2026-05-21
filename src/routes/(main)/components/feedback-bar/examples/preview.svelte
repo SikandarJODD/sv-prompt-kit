@@ -1,14 +1,23 @@
 <script lang="ts">
 	import { FeedbackBar } from "$lib/components/ai/feedback-bar";
 
-	const PreviewComponent: any = FeedbackBar;
+	function handleHelpful() {
+		console.log("Marked as helpful");
+	}
+
+	function handleNotHelpful() {
+		console.log("Marked as not helpful");
+	}
+
+	function handleClose() {
+		console.log("Feedback bar closed");
+	}
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Feedback Bar example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
-	</div>
-</div>
+<FeedbackBar
+	class="min-w-sm"
+	title="Was this response helpful?"
+	onHelpful={handleHelpful}
+	onNotHelpful={handleNotHelpful}
+	onClose={handleClose}
+/>

@@ -1,17 +1,26 @@
 <script lang="ts">
 	import { PromptSuggestion } from "$lib/components/ai/prompt-suggestion";
 
-	const DemoComponent: any = PromptSuggestion;
+	const searchTerm = "how to";
+
+	const howToPrompts = [
+		"How to create a Svelte component",
+		"How to optimize website performance",
+		"How to implement dark mode in a web app",
+		"How to use CSS Grid effectively",
+		"How to fetch data from an API in JavaScript",
+		"How to build a REST API with Node.js",
+		"How to deploy a SvelteKit application",
+		"How to implement authentication in a web app"
+	];
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Prompt Suggestion demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Prompt Suggestion.
-		</p>
+<div class="w-full space-y-2">
+	<div class="w-full space-y-1">
+		{#each howToPrompts as prompt (prompt)}
+			<PromptSuggestion highlight={searchTerm}>
+				{prompt}
+			</PromptSuggestion>
+		{/each}
 	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+</div>

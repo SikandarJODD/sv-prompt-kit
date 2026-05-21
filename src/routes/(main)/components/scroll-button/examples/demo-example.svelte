@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="relative h-[420px] w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-sm"
+	class="relative h-105 w-full overflow-hidden rounded-2xl border border-border/60 bg-background shadow-sm"
 >
 	<ScrollButton.Root class="h-full flex-col">
 		<ScrollButton.Content class="flex w-full flex-col p-4 pb-24">

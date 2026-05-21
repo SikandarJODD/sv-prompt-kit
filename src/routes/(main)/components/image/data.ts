@@ -10,33 +10,19 @@ import type { Example } from "$lib/types/example";
 import type { SEO } from "$lib/types/seo";
 import Preview from "./examples/preview.svelte";
 import PreviewCode from "./examples/preview.svelte?raw";
-import DemoExample from "./examples/demo-example.svelte";
-import DemoExampleRaw from "./examples/demo-example.svelte?raw";
 
 export const meta: ComponentMeta = {
 	id: "image",
 	title: "Image",
-	description: "TODO: Add a concise description for Image.",
+	description: "The Image component displays images from base64 or Uint8Array data, supporting all standard HTML image attributes. It is ideal for showing AI-generated images or user uploads in chat and AI apps. Compatible with AI SDK v5 architecture.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "Image",
-	description: "TODO: Add an SEO description for Image.",
+	description: "Learn about the Image component, which displays images from base64 or Uint8Array data. Perfect for AI-generated images or user uploads in chat and AI apps. Compatible with AI SDK v5 architecture.",
 	keywords: ["Svelte", "Image", "Component"],
 };
-
-const examples: Example[] = [
-	{
-		name: "Demo",
-		preview: DemoExample,
-		code: {
-			name: "demo-example.svelte",
-			code: DemoExampleRaw,
-			lang: "svelte",
-		},
-	},
-];
 
 const install_block: InstallComponentDocs = {
 	packages: [],
@@ -57,7 +43,6 @@ export const data: ComponentDoc = {
 		hideLines: true,
 	},
 	install_block,
-	examples,
 	seo,
 	props: [],
 };

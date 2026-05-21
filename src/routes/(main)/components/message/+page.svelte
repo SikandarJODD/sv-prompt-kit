@@ -16,4 +16,5 @@
 	installTailwindCode={data.install_block?.tailwind}
 	examples={data.examples}
 	propsTables={data.props}
+	install={data.install_block}
 />

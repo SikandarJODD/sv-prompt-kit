@@ -1,17 +1,41 @@
 <script lang="ts">
-	import { Steps } from "$lib/components/ai/steps";
-
-	const DemoComponent: any = Steps;
+	import * as Source from "$lib/components/ai/source";
+	import * as Steps from "$lib/components/ai/steps";
 </script>
 
-<section class="flex w-full flex-col gap-4 rounded-2xl border border-border/60 bg-background p-6 shadow-sm">
-	<div class="space-y-1">
-		<h2 class="text-lg font-semibold">Steps demo</h2>
-		<p class="text-sm text-muted-foreground">
-			Swap this placeholder with a real usage example for Steps.
-		</p>
-	</div>
-	<div class="flex min-h-48 items-center justify-center rounded-xl border border-dashed border-border/60 bg-muted/20 p-6">
-		<DemoComponent />
-	</div>
-</section>
+<div class="min-w-sm space-y-4">
+	<Steps.Root defaultOpen>
+		<Steps.Trigger>Web search: modern LLM UI patterns</Steps.Trigger>
+		<Steps.Content>
+			<div class="space-y-2">
+				<Steps.Item>Searching across curated sources...</Steps.Item>
+				<Steps.Item>Top matches</Steps.Item>
+				<div class="flex flex-wrap gap-1.5">
+					<Source.Root href="https://prompt-kit.com/docs">
+						<Source.Trigger
+							label="prompt-kit.com/docs"
+							showFavicon
+						/>
+						<Source.Content
+							title="Prompt Kit Docs"
+							description="High-quality, accessible, and customizable components for AI interfaces."
+						/>
+					</Source.Root>
+					<Source.Root href="https://github.com/ibelick/prompt-kit">
+						<Source.Trigger
+							label="github.com/ibelick/prompt-kit"
+							showFavicon
+						/>
+						<Source.Content
+							title="prompt-kit on GitHub"
+							description="Source code and issues for Prompt Kit."
+						/>
+					</Source.Root>
+				</div>
+				<Steps.Item
+					>Extracting key sections and summarizing...</Steps.Item
+				>
+			</div>
+		</Steps.Content>
+	</Steps.Root>
+</div>

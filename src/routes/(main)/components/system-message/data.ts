@@ -12,17 +12,19 @@ import Preview from "./examples/preview.svelte";
 import PreviewCode from "./examples/preview.svelte?raw";
 import DemoExample from "./examples/demo-example.svelte";
 import DemoExampleRaw from "./examples/demo-example.svelte?raw";
+import WithCta from "./examples/with-cta.svelte";
+import WithCtaRaw from "./examples/with-cta.svelte?raw";
 
 export const meta: ComponentMeta = {
 	id: "system-message",
 	title: "System Message",
-	description: "TODO: Add a concise description for System Message.",
+	description: "Display contextual information, warnings, or instructions in AI interfaces.",
 	category: "ai",
 };
 
 const seo: SEO = {
 	title: "System Message",
-	description: "TODO: Add an SEO description for System Message.",
+	description: "Display contextual information, warnings, or instructions in AI interfaces.",
 	keywords: ["Svelte", "System Message", "Component"],
 };
 
@@ -36,6 +38,15 @@ const examples: Example[] = [
 			lang: "svelte",
 		},
 	},
+	{
+		name: "With CTA Button",
+		preview: WithCta,
+		code: {
+			name: "with-cta.svelte",
+			code: WithCtaRaw,
+			lang: "svelte",
+		}
+	}
 ];
 
 const install_block: InstallComponentDocs = {

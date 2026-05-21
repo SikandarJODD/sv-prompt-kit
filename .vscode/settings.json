@@ -2,17 +2,22 @@
 	"files.associations": {
 		"*.css": "tailwindcss"
 	},
-	"recommendations": ["oxc.oxc-vscode"],
-	"oxc.fmt.configPath": ".oxfmtrc.json",
-	"editor.defaultFormatter": "oxc.oxc-vscode",
-	"editor.formatOnSave": true,
-	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
+	"files.exclude": {
+		"**/.svelte-kit": true,
+		"**/.vercel": true,
+		"**/node_modules": true,
+		"**/build": true
 	},
-	"[svelte]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"files.watcherExclude": {
+		"**/.svelte-kit/**": true,
+		"**/.vercel/**": true,
+		"**/node_modules/**": true,
+		"**/build/**": true
 	},
-	"[tailwindcss]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	"search.exclude": {
+		"**/.svelte-kit/**": true,
+		"**/.vercel/**": true,
+		"**/node_modules/**": true,
+		"**/build/**": true
 	}
 }

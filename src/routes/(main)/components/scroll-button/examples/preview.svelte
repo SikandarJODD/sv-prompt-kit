@@ -9,7 +9,7 @@
 </script>
 
 <div class="rounded-2xl border border-border/60 bg-background shadow-sm">
-	<ScrollButton.Root class="h-[300px] flex-col">
+	<ScrollButton.Root class="h-75 flex-col">
 		<ScrollButton.Content class="flex w-full flex-col p-4 pb-20">
 			{#each items as item (item.id)}
 				<div class="border-b border-border/60 p-3 last:border-b-0">

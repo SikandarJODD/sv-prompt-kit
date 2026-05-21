@@ -22,13 +22,13 @@ import StreamingExampleRaw from "./examples/streaming-example.svelte?raw";
 export const meta: ComponentMeta = {
 	id: "chat-container",
 	title: "Chat Container",
-	description: "TODO: Add a concise description for Chat Container.",
+	description: "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.",
 	category: "ai"
 };
 
 const seo: SEO = {
 	title: "Chat Container",
-	description: "TODO: Add an SEO description for Chat Container.",
+	description: "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.",
 	keywords: ["Svelte", "Chat Container", "Component"]
 };
 
@@ -69,7 +69,7 @@ const examples: Example[] = [
 ];
 
 const install_block: InstallComponentDocs = {
-	packages: [],
+	packages: ['stick-to-bottom-svelte'],
 	install_code: [
 		{
 			name: "chat-container-content.svelte",
@@ -89,8 +89,15 @@ const install_block: InstallComponentDocs = {
 		},
 		{ name: "index.ts", code: IndexTsRaw, lang: "typescript" }
 	],
-	folder_structure:
-		"src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- chat-container/\n                |-- chat-container-content.svelte\n                |-- chat-container.svelte\n                |-- context.svelte.ts\n                `-- index.ts"
+	folder_structure: `src/
+└── lib/
+    └── components/
+        └── ai/
+            └── chat-container/
+                ├── chat-container-content.svelte
+                ├── chat-container.svelte
+                ├── context.svelte.ts
+                └── index.ts`
 };
 
 export const data: ComponentDoc = {

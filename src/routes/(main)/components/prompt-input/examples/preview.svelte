@@ -1,14 +1,55 @@
 <script lang="ts">
-	import { PromptInput } from "$lib/components/ai/prompt-input";
+	import {
+		PromptInput,
+		PromptInputAction,
+		PromptInputActions,
+		PromptInputTextarea
+	} from "$lib/components/ai/prompt-input";
+	import { Button } from "$lib/components/ui/button/index.js";
+	import ArrowUp from "@lucide/svelte/icons/arrow-up";
+	import Square from "@lucide/svelte/icons/square";
 
-	const PreviewComponent: any = PromptInput;
+	let input = $state("");
+	let isLoading = $state(false);
+
+	function handleSubmit() {
+		isLoading = true;
+
+		setTimeout(() => {
+			isLoading = false;
+		}, 2000);
+	}
+
+	function handleValueChange(value: string) {
+		input = value;
+	}
 </script>
 
-<div class="flex w-full flex-col gap-4 rounded-2xl border border-dashed border-border/60 bg-muted/20 p-6">
-	<p class="text-sm text-muted-foreground">
-		Replace this starter preview with a polished Prompt Input example.
-	</p>
-	<div class="flex min-h-48 items-center justify-center rounded-xl bg-background/80 p-6">
-		<PreviewComponent />
-	</div>
-</div>
+<PromptInput
+	value={input}
+	onValueChange={handleValueChange}
+	{isLoading}
+	onSubmit={handleSubmit}
+	class="w-full max-w-(--breakpoint-md)"
+>
+	<PromptInputTextarea placeholder="Ask me anything..." />
+	<PromptInputActions class="justify-end pt-2">
+		<PromptInputAction>
+			{#snippet tooltip()}
+				{isLoading ? "Stop generation" : "Send message"}
+			{/snippet}
+			<Button
+				variant="default"
+				size="icon"
+				class="h-8 w-8 rounded-full"
+				onclick={handleSubmit}
+			>
+				{#if isLoading}
+					<Square class="size-5 fill-current" />
+				{:else}
+					<ArrowUp class="size-5" />
+				{/if}
+			</Button>
+		</PromptInputAction>
+	</PromptInputActions>
+</PromptInput>
