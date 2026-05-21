@@ -114,11 +114,6 @@ const chainOfThoughtStepProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the step wrapper."
-	},
-	{
-		name: "...props",
-		type: "CollapsiblePrimitive.RootProps",
-		description: "Additional Bits UI collapsible root props, including controlled `open` state."
 	}
 ];
 
@@ -143,11 +138,6 @@ const chainOfThoughtTriggerProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the trigger."
-	},
-	{
-		name: "...props",
-		type: "CollapsiblePrimitive.TriggerProps",
-		description: "Additional Bits UI collapsible trigger props."
 	}
 ];
 
@@ -161,11 +151,6 @@ const chainOfThoughtContentProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the collapsible content."
-	},
-	{
-		name: "...props",
-		type: "CollapsiblePrimitive.ContentProps",
-		description: "Additional Bits UI collapsible content props."
 	}
 ];
 
@@ -179,11 +164,6 @@ const chainOfThoughtItemProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the item."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes."
 	}
 ];
 

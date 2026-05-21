@@ -113,11 +113,6 @@ const fileUploadTriggerProps = [
 		name: "onclick",
 		type: "(event: MouseEvent) => void",
 		description: "Optional click handler called after the file input is opened."
-	},
-	{
-		name: "...props",
-		type: "HTMLButtonAttributes | HTMLAttributes<HTMLDivElement>",
-		description: "Additional native attributes forwarded to the rendered trigger element."
 	}
 ];
 
@@ -131,11 +126,6 @@ const fileUploadContentProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the drag overlay."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes."
 	}
 ];
 

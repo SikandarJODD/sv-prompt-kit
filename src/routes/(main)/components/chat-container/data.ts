@@ -129,11 +129,6 @@ const chatContainerRootProps = [
 		type: 'false | "instant" | "smooth" | "ease-out" | { damping?: number; stiffness?: number; mass?: number }',
 		default: '"instant"',
 		description: "Initial scroll behavior applied when the container first measures content."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes forwarded to the root."
 	}
 ];
 
@@ -147,11 +142,6 @@ const chatContainerContentProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the content wrapper."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes forwarded to the content wrapper."
 	}
 ];
 

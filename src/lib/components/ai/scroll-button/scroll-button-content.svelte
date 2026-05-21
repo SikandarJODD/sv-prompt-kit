@@ -5,7 +5,7 @@
 	let {
 		children,
 		class: className,
-		...restProps
+		...rest
 	}: {
 		children?: import("svelte").Snippet;
 		class?: string;
@@ -26,7 +26,7 @@
 <div
 	{@attach bindContentElement}
 	class={cn("flex w-full flex-col", className)}
-	{...restProps}
+	{...rest}
 >
 	{@render children?.()}
 </div>

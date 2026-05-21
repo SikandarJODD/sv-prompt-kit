@@ -89,6 +89,79 @@ const install_block: InstallComponentDocs = {
 		"src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- scroll-button/\n                |-- context.svelte.ts\n                |-- index.ts\n                |-- scroll-button-content.svelte\n                |-- scroll-button-root.svelte\n                `-- scroll-button.svelte"
 };
 
+const scrollButtonProps = [
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the button."
+	},
+	{
+		name: "variant",
+		type: "ButtonVariant",
+		default: '"outline"',
+		description: "Button variant used for the scroll control."
+	},
+	{
+		name: "size",
+		type: "ButtonSize",
+		default: '"sm"',
+		description: "Button size used for the scroll control."
+	},
+	{
+		name: "ref",
+		type: "HTMLElement | null",
+		description: "Bindable reference to the rendered button element."
+	},
+	{
+		name: "onclick",
+		type: "(event: MouseEvent) => void",
+		description: "Called after scrolling to the bottom."
+	}
+];
+
+const scrollButtonRootProps = [
+	{
+		name: "ref",
+		type: "HTMLDivElement | null",
+		description: "Bindable reference to the scroll container."
+	},
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Scrollable content rendered inside the root."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the scroll container."
+	},
+	{
+		name: "resize",
+		type: "ScrollButtonAnimation",
+		default: '"smooth"',
+		description: "Animation used when the scroll area resizes."
+	},
+	{
+		name: "initial",
+		type: "ScrollButtonInitialAnimation",
+		default: '"instant"',
+		description: "Initial animation used when mounting the scroll area."
+	}
+];
+
+const scrollButtonContentProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Scrollable content area rendered inside the wrapper."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the content wrapper."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -101,5 +174,18 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: []
+	props: [
+		{
+			name: "ScrollButton",
+			props: scrollButtonProps
+		},
+		{
+			name: "ScrollButtonRoot",
+			props: scrollButtonRootProps
+		},
+		{
+			name: "ScrollButtonContent",
+			props: scrollButtonContentProps
+		}
+	]
 };

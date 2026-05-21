@@ -71,11 +71,6 @@ const imageProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the image or fallback placeholder."
-	},
-	{
-		name: "...props",
-		type: "Omit<HTMLImgAttributes, 'src' | 'alt' | 'class'>",
-		description: "Additional native image attributes forwarded to the `<img>` element."
 	}
 ];
 

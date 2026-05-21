@@ -55,11 +55,6 @@ const markdownProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the outer markdown container."
-	},
-	{
-		name: "...props",
-		type: "Omit<StreamdownProps, 'content' | 'class'> & Omit<HTMLAttributes<HTMLDivElement>, 'content'>",
-		description: "Additional Streamdown and native div props forwarded to the wrapper or renderer."
 	}
 ];
 

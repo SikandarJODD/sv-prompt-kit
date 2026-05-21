@@ -14,22 +14,8 @@
 
 	const productLinks: FooterLink[] = [
 		{ label: "Home", href: "/" },
-		{ label: "Blocks", href: "/blocks" },
-		{ label: "Changelog", href: "/changelog" }
-	];
-
-	const resourceLinks: FooterLink[] = [
-		{ label: "Docs", href: "/docs" },
-		{
-			label: "GitHub",
-			href: "https://github.com/SikandarJODD/sv-efferd",
-			external: true
-		},
-		{
-			label: "X / Twitter",
-			href: "https://x.com/Sikandar_Bhide",
-			external: true
-		}
+		{ label: "Components", href: "/components/chain-of-thought" },
+		{ label: "Docs", href: "/docs" }
 	];
 
 	const socialLinks = [
@@ -62,7 +48,7 @@
 							{seo_config.title}
 						</a>
 						<p class="max-w-sm text-sm text-muted-foreground">
-							Less effort. More effect.
+							Hiqh quality, AI Components
 						</p>
 					</div>
 
@@ -102,7 +88,7 @@
 					<h2
 						class="text-[11px] font-semibold tracking-[0.18em] text-muted-foreground uppercase"
 					>
-						Product
+						Project
 					</h2>
 
 					<nav class="flex flex-col gap-3">

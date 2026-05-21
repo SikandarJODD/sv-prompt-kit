@@ -48,6 +48,55 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- prompt-suggestion/\n                |-- index.ts\n                `-- prompt-suggestion.svelte",
 };
 
+const promptSuggestionProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Button label or custom content rendered inside the suggestion."
+	},
+	{
+		name: "variant",
+		type: "ButtonVariant",
+		description: "Button style variant when rendered as a suggestion."
+	},
+	{
+		name: "size",
+		type: "ButtonSize",
+		description: "Button size used for the suggestion."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the button."
+	},
+	{
+		name: "highlight",
+		type: "string",
+		description: "When set, highlights the matching substring in the content."
+	},
+	{
+		name: "ref",
+		type: "HTMLElement | null",
+		description: "Bindable reference to the rendered button element."
+	},
+	{
+		name: "onclick",
+		type: "(event: MouseEvent) => void",
+		description: "Called when the suggestion is clicked."
+	},
+	{
+		name: "disabled",
+		type: "boolean",
+		description: "Disables the button."
+	},
+	{
+		name: "type",
+		type: '"button" | "submit" | "reset"',
+		default: '"button"',
+		description: "Native button type."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -60,5 +109,10 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "PromptSuggestion",
+			props: promptSuggestionProps
+		}
+	],
 };

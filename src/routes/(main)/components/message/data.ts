@@ -94,11 +94,6 @@ const messageProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the message row."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes forwarded to the root."
 	}
 ];
 
@@ -123,11 +118,6 @@ const messageContentProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the message bubble."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes forwarded when using snippet children."
 	}
 ];
 
@@ -141,11 +131,6 @@ const messageActionsProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the actions row."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes."
 	}
 ];
 
@@ -170,11 +155,6 @@ const messageActionProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the tooltip content."
-	},
-	{
-		name: "...props",
-		type: "TooltipPrimitive.RootProps",
-		description: "Additional Bits UI tooltip root props."
 	}
 ];
 

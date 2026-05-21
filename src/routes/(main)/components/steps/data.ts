@@ -56,6 +56,93 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- steps/\n                |-- index.ts\n                |-- steps-bar.svelte\n                |-- steps-content.svelte\n                |-- steps-item.svelte\n                |-- steps-trigger.svelte\n                `-- steps.svelte",
 };
 
+const stepsProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Nested steps content rendered inside the collapsible wrapper."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the wrapper."
+	},
+	{
+		name: "defaultOpen",
+		type: "boolean",
+		default: "true",
+		description: "Initial open state when the component is uncontrolled."
+	},
+	{
+		name: "open",
+		type: "boolean",
+		description: "Controlled open state for the collapsible steps list."
+	}
+];
+
+const stepsBarProps = [
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the vertical bar."
+	}
+];
+
+const stepsContentProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Expanded step details rendered beside the bar."
+	},
+	{
+		name: "bar",
+		type: "Snippet",
+		description: "Custom bar content rendered instead of the default `StepsBar`."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the collapsible content."
+	}
+];
+
+const stepsItemProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Step item content."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the step item."
+	}
+];
+
+const stepsTriggerProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Trigger label content."
+	},
+	{
+		name: "leftIcon",
+		type: "Snippet",
+		description: "Optional icon rendered before the label."
+	},
+	{
+		name: "swapIconOnHover",
+		type: "boolean",
+		default: "true",
+		description: "Swaps the left icon for the chevron on hover."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the trigger."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -68,5 +155,26 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "Steps",
+			props: stepsProps
+		},
+		{
+			name: "StepsBar",
+			props: stepsBarProps
+		},
+		{
+			name: "StepsContent",
+			props: stepsContentProps
+		},
+		{
+			name: "StepsItem",
+			props: stepsItemProps
+		},
+		{
+			name: "StepsTrigger",
+			props: stepsTriggerProps
+		}
+	],
 };

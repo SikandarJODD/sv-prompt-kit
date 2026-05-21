@@ -56,6 +56,97 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- prompt-input/\n                |-- context.svelte.ts\n                |-- index.ts\n                |-- prompt-input-action.svelte\n                |-- prompt-input-actions.svelte\n                |-- prompt-input-textarea.svelte\n                `-- prompt-input.svelte",
 };
 
+const promptInputProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Prompt input content, including the textarea and action row."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the wrapper."
+	},
+	{
+		name: "isLoading",
+		type: "boolean",
+		default: "false",
+		description: "Marks the prompt as loading and disables the input wrapper."
+	},
+	{
+		name: "value",
+		type: "string",
+		description: "Controlled textarea value."
+	},
+	{
+		name: "onValueChange",
+		type: "(value: string) => void",
+		description: "Called when the textarea value changes."
+	},
+	{
+		name: "maxHeight",
+		type: "number | string",
+		default: "240",
+		description: "Maximum auto-resize height for the textarea."
+	},
+	{
+		name: "onSubmit",
+		type: "() => void",
+		description: "Called when the textarea submits on Enter."
+	}
+];
+
+const promptInputActionsProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Action buttons or controls rendered in the prompt row."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the actions wrapper."
+	}
+];
+
+const promptInputActionProps = [
+	{
+		name: "tooltip",
+		type: "Snippet",
+		description: "Tooltip content shown for the action."
+	},
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Interactive trigger rendered inside the tooltip."
+	},
+	{
+		name: "side",
+		type: '"top" | "bottom" | "left" | "right"',
+		default: '"top"',
+		description: "Tooltip placement relative to the trigger."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the tooltip content."
+	}
+];
+
+const promptInputTextareaProps = [
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the textarea."
+	},
+	{
+		name: "disableAutosize",
+		type: "boolean",
+		default: "false",
+		description: "Disables the auto-resize behavior."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -68,5 +159,22 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "PromptInput",
+			props: promptInputProps
+		},
+		{
+			name: "PromptInputActions",
+			props: promptInputActionsProps
+		},
+		{
+			name: "PromptInputAction",
+			props: promptInputActionProps
+		},
+		{
+			name: "PromptInputTextarea",
+			props: promptInputTextareaProps
+		}
+	],
 };
