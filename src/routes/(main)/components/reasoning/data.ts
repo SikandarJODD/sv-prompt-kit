@@ -74,6 +74,77 @@ const install_block: InstallComponentDocs = {
 		"src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- reasoning/\n                |-- context.svelte.ts\n                |-- index.ts\n                |-- reasoning-content.svelte\n                |-- reasoning-trigger.svelte\n                `-- reasoning.svelte"
 };
 
+const reasoningProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Reasoning trigger and content blocks."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the wrapper."
+	},
+	{
+		name: "open",
+		type: "boolean",
+		description: "Controlled open state for the collapsible reasoning panel."
+	},
+	{
+		name: "onOpenChange",
+		type: "(open: boolean) => void",
+		description: "Called when the open state changes."
+	},
+	{
+		name: "isStreaming",
+		type: "boolean",
+		default: "false",
+		description: "Automatically opens while streaming and closes when streaming stops."
+	}
+];
+
+const reasoningTriggerProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Trigger label content."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the button."
+	},
+];
+
+const reasoningContentProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Fallback content rendered when no markdown string is provided."
+	},
+	{
+		name: "content",
+		type: "string",
+		description: "Markdown string rendered by Streamdown when present."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the outer content wrapper."
+	},
+	{
+		name: "contentClass",
+		type: "string",
+		description: "Additional CSS classes for the inner markdown container."
+	},
+	{
+		name: "markdown",
+		type: "boolean",
+		default: "false",
+		description: "Reserved for markdown-mode integrations."
+	},
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -86,5 +157,18 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: []
+	props: [
+		{
+			name: "Reasoning",
+			props: reasoningProps
+		},
+		{
+			name: "ReasoningTrigger",
+			props: reasoningTriggerProps
+		},
+		{
+			name: "ReasoningContent",
+			props: reasoningContentProps
+		},
+	]
 };

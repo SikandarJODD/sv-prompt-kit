@@ -47,6 +47,37 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- text-shimmer/\n                |-- index.ts\n                `-- text-shimmer.svelte",
 };
 
+const textShimmerProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "Shimmering text content."
+	},
+	{
+		name: "as",
+		type: "keyof HTMLElementTagNameMap",
+		default: '"span"',
+		description: "HTML element rendered by the component."
+	},
+	{
+		name: "duration",
+		type: "number",
+		default: "4",
+		description: "Animation duration in seconds."
+	},
+	{
+		name: "spread",
+		type: "number",
+		default: "20",
+		description: "Spread of the shimmer highlight."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the shimmer text."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -59,5 +90,10 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "TextShimmer",
+			props: textShimmerProps
+		}
+	],
 };

@@ -75,11 +75,6 @@ const feedbackBarProps = [
 		name: "class",
 		type: "string",
 		description: "Additional CSS classes for the outer wrapper."
-	},
-	{
-		name: "...props",
-		type: "HTMLAttributes<HTMLDivElement>",
-		description: "Additional native div attributes forwarded to the root element."
 	}
 ];
 

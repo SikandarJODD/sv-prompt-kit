@@ -64,7 +64,7 @@
 	</Button>
 </div>
 
-<Command.Dialog bind:open>
+<Command.Dialog bind:open class='top-36'>
 	<Command.Input placeholder="Search components, documentation..." />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
@@ -136,82 +136,5 @@
 				</Command.LinkItem>
 			{/each}
 		</Command.Group>
-		<!-- <Command.Group heading="Spell UI">
-			{#each spellComponents as component (component.id)}
-				<Command.LinkItem
-					value={component.id + "spell"}
-					onclick={() => (open = false)}
-					href={component.href}
-					class="justify-between gap-3"
-				>
-					<span class="flex items-center gap-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							role="img"
-							color="currentColor"
-						>
-							<circle opacity="0.2" cx="12" cy="12" r="10" fill="currentColor"
-							></circle>
-							<circle
-								cx="12"
-								cy="12"
-								r="10"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linejoin="round"
-							></circle>
-						</svg>
-						<span>{component.name}</span>
-					</span>
-					<Badge variant="secondary" class="rounded-full">Spell</Badge>
-				</Command.LinkItem>
-			{/each}
-		</Command.Group> -->
-		<!-- <Command.Group heading="Fancy Components">
-			{#each fancyComponents as component (component.id)}
-				<Command.LinkItem
-					value={component.id + "fancy"}
-					onclick={() => (open = false)}
-					href={component.href}
-					class="justify-between gap-3"
-				>
-					<span class="flex items-center gap-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							role="img"
-							color="currentColor"
-						>
-							<circle opacity="0.2" cx="12" cy="12" r="10" fill="currentColor"
-							></circle>
-							<path
-								d="M8.5 12.5L11 15L16 9"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linecap="round"
-								stroke-linejoin="round"
-							></path>
-							<circle
-								cx="12"
-								cy="12"
-								r="10"
-								stroke="currentColor"
-								stroke-width="1.5"
-								stroke-linejoin="round"
-							></circle>
-						</svg>
-						<span>{component.name}</span>
-					</span>
-					<Badge variant="fuchsia" class="rounded-full">Fancy</Badge>
-				</Command.LinkItem>
-			{/each}
-		</Command.Group> -->
 	</Command.List>
 </Command.Dialog>

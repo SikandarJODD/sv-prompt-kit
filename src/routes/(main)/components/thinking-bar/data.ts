@@ -48,6 +48,36 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- thinking-bar/\n                |-- index.ts\n                `-- thinking-bar.svelte",
 };
 
+const thinkingBarProps = [
+	{
+		name: "text",
+		type: "string",
+		default: '"Thinking"',
+		description: "Text shown in the shimmer label."
+	},
+	{
+		name: "stopLabel",
+		type: "string",
+		default: '"Answer now"',
+		description: "Label used for the stop button."
+	},
+	{
+		name: "onStop",
+		type: "() => void",
+		description: "Called when the stop button is clicked."
+	},
+	{
+		name: "onclick",
+		type: "() => void",
+		description: "Called when the thinking text itself is clicked."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the wrapper."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -60,5 +90,10 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "ThinkingBar",
+			props: thinkingBarProps
+		}
+	],
 };

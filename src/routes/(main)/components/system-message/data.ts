@@ -59,6 +59,47 @@ const install_block: InstallComponentDocs = {
 	folder_structure: "src/\n`-- lib/\n    `-- components/\n        `-- ai/\n            `-- system-message/\n                |-- index.ts\n                `-- system-message.svelte",
 };
 
+const systemMessageProps = [
+	{
+		name: "children",
+		type: "Snippet",
+		description: "System message body content."
+	},
+	{
+		name: "variant",
+		type: '"action" | "error" | "warning"',
+		default: '"action"',
+		description: "Visual tone used for the message."
+	},
+	{
+		name: "fill",
+		type: "boolean",
+		default: "false",
+		description: "Uses a filled background variant instead of an outline."
+	},
+	{
+		name: "icon",
+		type: "Snippet",
+		description: "Custom icon rendered before the message text."
+	},
+	{
+		name: "isIconHidden",
+		type: "boolean",
+		default: "false",
+		description: "Hides the default or custom icon."
+	},
+	{
+		name: "cta",
+		type: "{ label: string; onClick?: () => void; variant?: ButtonVariant }",
+		description: "Optional call to action rendered at the end of the message."
+	},
+	{
+		name: "class",
+		type: "string",
+		description: "Additional CSS classes for the container."
+	}
+];
+
 export const data: ComponentDoc = {
 	...meta,
 	preview: Preview,
@@ -71,5 +112,10 @@ export const data: ComponentDoc = {
 	install_block,
 	examples,
 	seo,
-	props: [],
+	props: [
+		{
+			name: "SystemMessage",
+			props: systemMessageProps
+		}
+	],
 };

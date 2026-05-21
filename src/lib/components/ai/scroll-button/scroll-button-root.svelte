@@ -13,7 +13,7 @@
 		class: className,
 		resize = "smooth",
 		initial = "instant",
-		...restProps
+		...rest
 	}: {
 		ref?: HTMLDivElement | null;
 		children?: import("svelte").Snippet;
@@ -53,7 +53,7 @@
 <div
 	{@attach bindScrollElement}
 	class={cn("relative flex overflow-y-auto", className)}
-	{...restProps}
+	{...rest}
 >
 	{@render children?.()}
 </div>
