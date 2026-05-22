@@ -144,7 +144,8 @@ let primitivePages: DocPage[] = [
 		id: "full-chatbot",
 		name: "Full Chatbot",
 		href: "/primitives/full-chatbot",
-		desc: "A full AI chatbot setup with UI, model config, and API route wiring."
+		desc: "A full AI chatbot setup with UI, model config, and API route wiring.",
+		badge: "New"
 	}
 ];
 

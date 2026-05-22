@@ -3,6 +3,7 @@
 	import FullChatbot from "$lib/components/primitives/full-chatbot/full-chatbot.svelte";
 	import CopyPageDropdown from "$lib/components/docs/base/main/copy-page-dropdown.svelte";
 	import Seo from "$lib/components/docs/base/main/seo.svelte";
+	import Badge from "$lib/components/ui/spell/badge/badge.svelte";
 	import { MultipleSelectFiles, SingleFile } from "$lib/components/ui/code";
 	import { PMCommand } from "$lib/components/ui/pm-command";
 	import { H1, H2, Paragraph, Step, Steps } from "$markdown";
@@ -33,7 +34,10 @@
 		<div
 			class="flex flex-col justify-between gap-3 md:flex-row md:items-center md:gap-4"
 		>
-			<H1 id="full-chatbot">{pageData.title}</H1>
+			<div class="flex items-center gap-3">
+				<H1 id="full-chatbot">{pageData.title}</H1>
+				<Badge variant="emerald" size="sm">New</Badge>
+			</div>
 			<CopyPageDropdown componentName={pageData.title} {llmsTxtUrl} />
 		</div>
 
