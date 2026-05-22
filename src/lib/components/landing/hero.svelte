@@ -40,8 +40,7 @@
 		<p
 			class="animate-in text-sm tracking-wider text-muted-foreground delay-200 duration-500 ease-out fill-mode-backwards slide-in-from-bottom-10 fade-in sm:text-lg md:text-xl"
 		>
-			A clean SvelteKit playground for building, documenting, and shipping
-			AI components with Tailwind CSS and shadcn-svelte.
+			Core building blocks for AI apps. High-quality, accessible, and customizable components for AI interfaces.
 		</p>
 
 		<div

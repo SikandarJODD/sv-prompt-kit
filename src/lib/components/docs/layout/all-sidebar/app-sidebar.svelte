@@ -1,5 +1,11 @@
 <script lang="ts" module>
-	import { components, type BadgeType } from "$lib/registry/components";
+	import {
+		blockPages,
+		components,
+		docsPages,
+		primitivePages,
+		type BadgeType
+	} from "$lib/registry/components";
 
 	type NavItem = {
 		title: string;
@@ -13,16 +19,26 @@
 			{
 				title: "Getting Started",
 				url: "#",
-				items: [
-					{
-						title: "Introduction",
-						url: "/docs"
-					},
-					{
-						title: "Installation",
-						url: "/docs/installation"
-					}
-				] as NavItem[]
+				items: docsPages.map((page) => ({
+					title: page.name,
+					url: page.href
+				})) as NavItem[]
+			},
+			{
+				title: "Primitives",
+				url: "#",
+				items: primitivePages.map((page) => ({
+					title: page.name,
+					url: page.href
+				})) as NavItem[]
+			},
+			{
+				title: "Blocks",
+				url: "#",
+				items: blockPages.map((page) => ({
+					title: page.name,
+					url: page.href
+				})) as NavItem[]
 			},
 			{
 				title: "Components",
@@ -39,15 +55,11 @@
 
 <script lang="ts">
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
-	import {
-		ScrollArea,
-		ScrollFadeEffect
-	} from "$lib/components/ui/scroll-area/index.js";
+	import { ScrollFadeEffect } from "$lib/components/ui/scroll-area/index.js";
 	import Badge from "$lib/components/ui/spell/badge/badge.svelte";
 	import { page } from "$app/state";
 	import type { ComponentProps } from "svelte";
 	import { watch } from "runed";
-	import { SupportWork } from "$lib/components/docs/base/main";
 
 	let {
 		ref = $bindable(null),
@@ -76,12 +88,12 @@
 	<Sidebar.Content bind:ref={contentRef}>
 		<ScrollFadeEffect class="max-h-[calc(100vh-6rem)] py-4 pr-1">
 			<!-- We create a Sidebar.Group for each parent. -->
-			{#each data.navMain as group}
+			{#each data.navMain as group (group.title)}
 				<Sidebar.Group>
 					<Sidebar.GroupLabel>{group.title}</Sidebar.GroupLabel>
 					<Sidebar.GroupContent>
 						<Sidebar.Menu>
-							{#each group.items as item}
+							{#each group.items as item (item.url)}
 								<Sidebar.MenuItem>
 									<Sidebar.MenuButton
 										isActive={page.url.pathname ===

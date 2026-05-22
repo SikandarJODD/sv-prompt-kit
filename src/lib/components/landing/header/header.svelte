@@ -16,12 +16,12 @@
 	let scroll = createScroll(50);
 	let isComponentorDocsPage = $derived.by(() => {
 		let path = page.url.pathname;
-		return path.startsWith("/components") || path.startsWith("/docs");
+		return path.startsWith("/components") || path.startsWith("/docs") || path.startsWith("/primitives");
 	});
 	let stars = $state(200);
 	const repo = { owner: github_repo.owner, repo: github_repo.name };
 	onMount(async () => {
-		stars = await getStars({ ...repo, fallback: 200 });
+		stars = await getStars({ ...repo, fallback: 0 });
 	});
 </script>
 

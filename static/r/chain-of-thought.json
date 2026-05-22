@@ -5,12 +5,11 @@
 	"type": "registry:block",
 	"description": "Composable AI reasoning disclosure components.",
 	"devDependencies": [
-		"@lucide/svelte@^1.14.0",
+		"@lucide/svelte@^1.16.0",
 		"bits-ui@^2.18.1",
 		"@internationalized/date@^3.12.1"
 	],
 	"registryDependencies": [
-		"utils",
 		"collapsible"
 	],
 	"files": [

@@ -6,10 +6,9 @@
 	"description": "Styled system or status message for AI interfaces.",
 	"devDependencies": [
 		"tailwind-variants@^3.2.2",
-		"@lucide/svelte@^1.14.0"
+		"@lucide/svelte@^1.16.0"
 	],
 	"registryDependencies": [
-		"utils",
 		"button"
 	],
 	"files": [
@@ -19,7 +18,7 @@
 			"target": "ai/system-message/system-message.svelte"
 		},
 		{
-			"content": "import SystemMessage from './system-message.svelte';\r\nexport default { SystemMessage };",
+			"content": "import SystemMessage from './system-message.svelte';\r\nexport {\r\n    SystemMessage,\r\n    //\r\n    SystemMessage as Root,\r\n};",
 			"type": "registry:file",
 			"target": "ai/system-message/index.ts"
 		}

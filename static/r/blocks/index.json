@@ -1,0 +1,84 @@
+[
+	{
+		"name": "prompt-input-with-actions",
+		"title": "Prompt Input With Actions",
+		"type": "registry:block",
+		"description": "Prompt input block with action buttons and submit control.",
+		"registryDependencies": [
+			"button",
+			"../prompt-input.json"
+		],
+		"relativeUrl": "prompt-input-with-actions.json"
+	},
+	{
+		"name": "prompt-input-with-autocomplete",
+		"title": "Prompt Input With Autocomplete",
+		"type": "registry:block",
+		"description": "Prompt input block with inline autocomplete suggestions.",
+		"registryDependencies": [
+			"button",
+			"../prompt-input.json",
+			"../prompt-suggestion.json"
+		],
+		"relativeUrl": "prompt-input-with-autocomplete.json"
+	},
+	{
+		"name": "prompt-input-with-suggestions",
+		"title": "Prompt Input With Suggestions",
+		"type": "registry:block",
+		"description": "Prompt input block with category-based suggestion chips.",
+		"registryDependencies": [
+			"button",
+			"../prompt-input.json",
+			"../prompt-suggestion.json"
+		],
+		"relativeUrl": "prompt-input-with-suggestions.json"
+	},
+	{
+		"name": "basic-full-conversation",
+		"title": "Basic Full Conversation",
+		"type": "registry:block",
+		"description": "Basic conversation block using chat container and message primitives.",
+		"registryDependencies": [
+			"../chat-container.json",
+			"../message.json"
+		],
+		"relativeUrl": "basic-full-conversation.json"
+	},
+	{
+		"name": "conversation-with-actions",
+		"title": "Conversation With Actions",
+		"type": "registry:block",
+		"description": "Conversation block with assistant and user message actions.",
+		"registryDependencies": [
+			"button",
+			"../chat-container.json",
+			"../message.json"
+		],
+		"relativeUrl": "conversation-with-actions.json"
+	},
+	{
+		"name": "conversation-with-scroll",
+		"title": "Conversation With Scroll",
+		"type": "registry:block",
+		"description": "Conversation block with a floating scroll-to-bottom control.",
+		"registryDependencies": [
+			"../message.json",
+			"../scroll-button.json"
+		],
+		"relativeUrl": "conversation-with-scroll.json"
+	},
+	{
+		"name": "conversation-with-prompt-input",
+		"title": "Conversation With Prompt Input",
+		"type": "registry:block",
+		"description": "Conversation block with message actions, prompt input, and scroll control.",
+		"registryDependencies": [
+			"button",
+			"../message.json",
+			"../prompt-input.json",
+			"../scroll-button.json"
+		],
+		"relativeUrl": "conversation-with-prompt-input.json"
+	}
+]

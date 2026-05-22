@@ -12,7 +12,6 @@
 		"@internationalized/date@^3.12.1"
 	],
 	"registryDependencies": [
-		"utils",
 		"textarea",
 		"tooltip"
 	],

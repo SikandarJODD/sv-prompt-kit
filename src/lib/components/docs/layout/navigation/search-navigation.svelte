@@ -3,7 +3,12 @@
 	import Button from "$lib/components/ui/button/button.svelte";
 	import * as Command from "$lib/components/ui/command/index.js";
 	import * as Kbd from "$lib/components/ui/kbd/index.js";
-	import { components, docsPages } from "$lib/registry/components";
+	import {
+		blockPages,
+		components,
+		docsPages,
+		primitivePages
+	} from "$lib/registry/components";
 	import { type Component } from "$lib/registry/components";
 	let open = $state(false);
 
@@ -16,15 +21,17 @@
 
 	// For Now we would use Magic UI - Components, Later on we would update it
 	let docs: Component[] = docsPages;
+	let primitives: Component[] = primitivePages;
+	let blocks: Component[] = blockPages;
 </script>
 
 <svelte:document onkeydown={handleKeydown} />
 
-<div class="text-muted-foreground text-sm mr-2">
+<div class="mr-2 text-sm text-muted-foreground">
 	<Button
 		variant="ghost"
 		size="sm"
-		class="bg-secondary dark:bg-muted/60 flex justify-between px-1.5 md:min-w-46  md:pr-1"
+		class="flex justify-between bg-secondary px-1.5 md:min-w-46 md:pr-1  dark:bg-muted/60"
 		onclick={() => (open = true)}
 	>
 		<span class="hidden pl-1 md:block"> Search... </span>
@@ -64,13 +71,17 @@
 	</Button>
 </div>
 
-<Command.Dialog bind:open class='top-36'>
+<Command.Dialog bind:open class="top-36">
 	<Command.Input placeholder="Search components, documentation..." />
 	<Command.List>
 		<Command.Empty>No results found.</Command.Empty>
 		<Command.Group heading="Documentation">
 			{#each docs as doc (doc.id)}
-				<Command.LinkItem value={doc.id} onclick={() => (open = false)} href={doc.href}>
+				<Command.LinkItem
+					value={doc.id}
+					onclick={() => (open = false)}
+					href={doc.href}
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="16"
@@ -106,6 +117,79 @@
 				>
 			{/each}
 		</Command.Group>
+		<Command.Group heading="Primitives">
+			{#each primitives as primitive (primitive.id)}
+				<Command.LinkItem
+					value={primitive.id}
+					onclick={() => (open = false)}
+					href={primitive.href}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						role="img"
+						color="currentColor"
+					>
+						<rect
+							x="4"
+							y="4"
+							width="16"
+							height="16"
+							rx="3"
+							stroke="currentColor"
+							stroke-width="1.5"
+						></rect>
+						<path
+							d="M8 8H16M8 12H13M8 16H11"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+						></path>
+					</svg>
+					{primitive.name}
+				</Command.LinkItem>
+			{/each}
+		</Command.Group>
+		<Command.Group heading="Blocks">
+			{#each blocks as block (block.id)}
+				<Command.LinkItem
+					value={block.id}
+					onclick={() => (open = false)}
+					href={block.href}
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						role="img"
+						color="currentColor"
+					>
+						<path
+							d="M4 7.5C4 6.11929 5.11929 5 6.5 5H10.5C11.8807 5 13 6.11929 13 7.5V10.5C13 11.8807 11.8807 13 10.5 13H6.5C5.11929 13 4 11.8807 4 10.5V7.5Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+						></path>
+						<path
+							d="M11 13.5C11 12.1193 12.1193 11 13.5 11H17.5C18.8807 11 20 12.1193 20 13.5V17.5C20 18.8807 18.8807 20 17.5 20H13.5C12.1193 20 11 18.8807 11 17.5V13.5Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+						></path>
+						<path
+							d="M14 6H18M16 4V8"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+						></path>
+					</svg>
+					{block.name}
+				</Command.LinkItem>
+			{/each}
+		</Command.Group>
 		<Command.Group heading="Components">
 			{#each components as component (component.id)}
 				<Command.LinkItem
@@ -122,7 +206,13 @@
 						role="img"
 						color="currentColor"
 					>
-						<circle opacity="0.2" cx="12" cy="12" r="10" fill="currentColor"></circle>
+						<circle
+							opacity="0.2"
+							cx="12"
+							cy="12"
+							r="10"
+							fill="currentColor"
+						></circle>
 						<circle
 							cx="12"
 							cy="12"

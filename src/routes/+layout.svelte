@@ -19,13 +19,13 @@
 		toggleMode();
 	});
 	// let workSpaceRootPath = "S:\\sv\\comp-setup";
-	$inspect(dev, "Layout component rendered");
-	$inspect(browser, "Running in browser");
+	// $inspect(dev, "Layout component rendered");
+	// $inspect(browser, "Running in browser");
 </script>
 
-{#if browser && dev}
+<!-- {#if browser && dev}
 	<Agentation  />
-{/if}
+{/if} -->
 
 <ModeWatcher defaultMode="dark" />
 <svelte:head>

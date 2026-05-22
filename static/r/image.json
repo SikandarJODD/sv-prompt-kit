@@ -4,9 +4,6 @@
 	"title": "Image",
 	"type": "registry:component",
 	"description": "Image renderer for AI message content.",
-	"registryDependencies": [
-		"utils"
-	],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { HTMLImgAttributes } from \"svelte/elements\";\r\n\r\n\texport type GeneratedImageLike = {\r\n\t\tbase64?: string;\r\n\t\tuint8Array?: Uint8Array;\r\n\t\tmediaType?: string;\r\n\t};\r\n\r\n\ttype Props = GeneratedImageLike & {\r\n\t\talt: string;\r\n\t\tclass?: string;\r\n\t} & Omit<HTMLImgAttributes, \"src\" | \"alt\" | \"class\">;\r\n\r\n\tlet {\r\n\t\tbase64,\r\n\t\tuint8Array,\r\n\t\tmediaType = \"image/png\",\r\n\t\tclass: className,\r\n\t\talt,\r\n\t\t...props\r\n\t}: Props = $props();\r\n\r\n\tlet src = $derived.by(() => {\r\n\t\t// Base64 takes precedence\r\n\t\tif (base64 && mediaType) {\r\n\t\t\treturn `data:${mediaType};base64,${base64}`;\r\n\t\t}\r\n\r\n\t\t// Handle Uint8Array\r\n\t\tif (uint8Array && mediaType) {\r\n\t\t\tconst blob = new Blob([uint8Array as BlobPart], {\r\n\t\t\t\ttype: mediaType\r\n\t\t\t});\r\n\t\t\treturn URL.createObjectURL(blob);\r\n\t\t}\r\n\r\n\t\treturn undefined;\r\n\t});\r\n</script>\r\n\r\n{#if !src}\r\n\t<div\r\n\t\taria-label={alt}\r\n\t\trole=\"img\"\r\n\t\tclass={cn(\r\n\t\t\t\"h-auto max-w-full animate-pulse overflow-hidden rounded-md bg-gray-100 dark:bg-neutral-800\",\r\n\t\t\tclassName\r\n\t\t)}\r\n\t></div>\r\n{:else}\r\n\t<img\r\n\t\t{src}\r\n\t\t{alt}\r\n\t\tclass={cn(\"h-auto max-w-full overflow-hidden rounded-md\", className)}\r\n\t\t{...props}\r\n\t/>\r\n{/if}\r\n",
@@ -14,7 +11,7 @@
 			"target": "ai/image/image.svelte"
 		},
 		{
-			"content": "import Image from \"./image.svelte\";\r\nexport default { Image };",
+			"content": "import Image from \"./image.svelte\";\r\nexport {\r\n    Image,\r\n    //\r\n    Image as Root,\r\n};",
 			"type": "registry:file",
 			"target": "ai/image/index.ts"
 		}

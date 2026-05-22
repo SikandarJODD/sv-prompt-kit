@@ -12,9 +12,6 @@
 	"devDependencies": [
 		"@shikijs/themes@^4.0.2"
 	],
-	"registryDependencies": [
-		"utils"
-	],
 	"files": [
 		{
 			"content": "<script lang=\"ts\">\r\n\timport { cn } from \"$UTILS$\";\r\n\timport { Streamdown, type StreamdownProps } from \"streamdown-svelte\";\r\n\timport { mode } from \"mode-watcher\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\t// Import Shiki themes\r\n\timport githubLightDefault from \"@shikijs/themes/github-light-default\";\r\n\timport githubDarkDefault from \"@shikijs/themes/github-dark-default\";\r\n\timport { code } from \"@streamdown-svelte/code\";\r\n\r\n\ttype Props = {\r\n\t\tcontent: string;\r\n\t\tid?: string;\r\n\t\tclass?: string;\r\n\t} & Omit<StreamdownProps, \"content\" | \"class\"> &\r\n\t\tOmit<HTMLAttributes<HTMLDivElement>, \"content\">;\r\n\r\n\tlet { content, id, class: className, ...restProps }: Props = $props();\r\n\tlet currentTheme = $derived(\r\n\t\tmode.current === \"dark\" ? \"github-dark-default\" : \"github-light-default\"\r\n\t);\r\n</script>\r\n\r\n<div {id} class={cn(className)} {...restProps}>\r\n\t<Streamdown\r\n\t\t{content}\r\n\t\tclass=\"[&>*:first-child]:mt-0 [&>*:last-child]:mb-0\"\r\n\t\tshikiTheme={currentTheme}\r\n\t\tbaseTheme=\"shadcn\"\r\n\t\tshikiThemes={{\r\n\t\t\t\"github-light-default\": githubLightDefault,\r\n\t\t\t\"github-dark-default\": githubDarkDefault\r\n\t\t}}\r\n\t\tplugins={{ code }}\r\n\t/>\r\n</div>\r\n",
@@ -22,7 +19,7 @@
 			"target": "ai/markdown/markdown.svelte"
 		},
 		{
-			"content": "import Markdown from \"./markdown.svelte\";\r\nexport default Markdown;",
+			"content": "import Markdown from \"./markdown.svelte\";\r\nexport {\r\n    Markdown,\r\n    //\r\n    Markdown as Root,\r\n};",
 			"type": "registry:file",
 			"target": "ai/markdown/index.ts"
 		}

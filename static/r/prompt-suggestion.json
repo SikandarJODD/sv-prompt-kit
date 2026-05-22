@@ -5,7 +5,6 @@
 	"type": "registry:component",
 	"description": "Button-like prompt suggestion chip for AI starters.",
 	"registryDependencies": [
-		"utils",
 		"button"
 	],
 	"files": [
