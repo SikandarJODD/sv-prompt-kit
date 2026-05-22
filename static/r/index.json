@@ -5,7 +5,6 @@
 		"type": "registry:block",
 		"description": "Composable AI reasoning disclosure components.",
 		"registryDependencies": [
-			"utils",
 			"collapsible"
 		],
 		"relativeUrl": "chain-of-thought.json"
@@ -15,9 +14,7 @@
 		"title": "Feedback Bar",
 		"type": "registry:component",
 		"description": "Compact thumbs-up or thumbs-down feedback actions.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "feedback-bar.json"
 	},
 	{
@@ -25,9 +22,7 @@
 		"title": "File Upload",
 		"type": "registry:block",
 		"description": "Composable AI file upload container and triggers.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "file-upload.json"
 	},
 	{
@@ -35,9 +30,7 @@
 		"title": "Image",
 		"type": "registry:component",
 		"description": "Image renderer for AI message content.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "image.json"
 	},
 	{
@@ -45,9 +38,7 @@
 		"title": "Loader",
 		"type": "registry:block",
 		"description": "Loader variants for AI streaming and response states.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "loader.json"
 	},
 	{
@@ -55,9 +46,7 @@
 		"title": "Markdown",
 		"type": "registry:component",
 		"description": "Streaming markdown renderer for AI message content.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "markdown.json"
 	},
 	{
@@ -66,7 +55,6 @@
 		"type": "registry:block",
 		"description": "Composable AI message layout, content, and actions.",
 		"registryDependencies": [
-			"utils",
 			"tooltip",
 			"local:markdown"
 		],
@@ -78,7 +66,6 @@
 		"type": "registry:block",
 		"description": "Composable AI prompt input with actions and textarea.",
 		"registryDependencies": [
-			"utils",
 			"textarea",
 			"tooltip"
 		],
@@ -90,7 +77,6 @@
 		"type": "registry:component",
 		"description": "Button-like prompt suggestion chip for AI starters.",
 		"registryDependencies": [
-			"utils",
 			"button"
 		],
 		"relativeUrl": "prompt-suggestion.json"
@@ -101,7 +87,6 @@
 		"type": "registry:block",
 		"description": "Composable source link preview for AI citations.",
 		"registryDependencies": [
-			"utils",
 			"hover-card"
 		],
 		"relativeUrl": "source.json"
@@ -112,7 +97,6 @@
 		"type": "registry:component",
 		"description": "Styled system or status message for AI interfaces.",
 		"registryDependencies": [
-			"utils",
 			"button"
 		],
 		"relativeUrl": "system-message.json"
@@ -122,9 +106,7 @@
 		"title": "Text Shimmer",
 		"type": "registry:component",
 		"description": "Animated shimmer text treatment for AI loading states.",
-		"registryDependencies": [
-			"utils"
-		],
+		"registryDependencies": [],
 		"relativeUrl": "text-shimmer.json"
 	},
 	{
@@ -133,7 +115,6 @@
 		"type": "registry:component",
 		"description": "Thinking status indicator for AI responses.",
 		"registryDependencies": [
-			"utils",
 			"local:text-shimmer"
 		],
 		"relativeUrl": "thinking-bar.json"

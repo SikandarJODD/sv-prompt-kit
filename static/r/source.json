@@ -5,7 +5,6 @@
 	"type": "registry:block",
 	"description": "Composable source link preview for AI citations.",
 	"registryDependencies": [
-		"utils",
 		"hover-card"
 	],
 	"files": [

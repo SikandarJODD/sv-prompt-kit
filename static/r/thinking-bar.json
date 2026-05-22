@@ -5,10 +5,9 @@
 	"type": "registry:component",
 	"description": "Thinking status indicator for AI responses.",
 	"devDependencies": [
-		"@lucide/svelte@^1.14.0"
+		"@lucide/svelte@^1.16.0"
 	],
 	"registryDependencies": [
-		"utils",
 		"./text-shimmer.json"
 	],
 	"files": [
