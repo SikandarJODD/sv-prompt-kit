@@ -1,9 +1,5 @@
 <script lang="ts">
 	import {
-		ChatContainerContent,
-		ChatContainer,
-	} from "$lib/components/ai/chat-container";
-	import {
 		Message,
 		MessageContent,
 		MessageActions,
@@ -15,7 +11,7 @@
 		PromptInputActions,
 		PromptInputTextarea,
 	} from "$lib/components/ai/prompt-input";
-	import { ScrollButton } from "$lib/components/ai/scroll-button";
+	import * as ScrollButton from "$lib/components/ai/scroll-button";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import { cn } from "$lib/utils";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
@@ -23,14 +19,11 @@
 	import MicIcon from "@lucide/svelte/icons/mic";
 	import MoreHorizontalIcon from "@lucide/svelte/icons/more-horizontal";
 	import PlusIcon from "@lucide/svelte/icons/plus";
-	import { watch } from "runed";
 
 	import CopyIcon from "@lucide/svelte/icons/copy";
 	import ThumbsUpIcon from "@lucide/svelte/icons/thumbs-up";
 	import ThumbsDownIcon from "@lucide/svelte/icons/thumbs-down";
 	import RefreshCwIcon from "@lucide/svelte/icons/refresh-cw";
-
-	// const scrollContext = setScrollContext();
 
 	let messages = $state([
 		{
@@ -69,16 +62,6 @@
 
 	let prompt = $state("");
 	let isLoading = $state(false);
-	let containerRef = $state<HTMLDivElement | null>(null);
-
-	// watch(
-	// 	() => containerRef,
-	// 	() => {
-	// 		if (containerRef) {
-	// 			scrollContext.setElement(containerRef);
-	// 		}
-	// 	}
-	// );
 
 	function handleSubmit() {
 		if (!prompt.trim()) return;
@@ -130,160 +113,161 @@
 
 <main class="bg-background flex h-[500px] w-full flex-col">
 	<div class="relative flex-1 overflow-hidden">
-		<div bind:this={containerRef} class="h-full overflow-y-auto py-12">
-			<ChatContainer class="relative h-full w-full flex-1 space-y-0 overflow-y-auto px-4">
-				<ChatContainerContent class="min-w-full space-y-12 px-4 py-12">
-					{#each messages as message, index}
-						{@const isAssistant = message.role === "assistant"}
-						{@const isLastMessage = index === messages.length - 1}
-						<Message
-							class={cn(
-								"mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
-								isAssistant ? "items-start" : "items-end"
-							)}
-						>
-							{#if isAssistant}
-								<div class="group flex w-full flex-col gap-0">
-									<MessageContent
-										class="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-0"
-										markdown={true}
-										content={message.content}
-									></MessageContent>
-									<MessageActions
-										class={cn(
-											"-ml-2.5 flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100",
-											isLastMessage && "opacity-100"
-										)}
-									>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Copy</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleCopy(message.content)}
-											>
-												<CopyIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Like</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleLike(message.id)}
-											>
-												<ThumbsUpIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Dislike</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleDislike(message.id)}
-											>
-												<ThumbsDownIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Regenerate</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleRegenerate(message.id)}
-											>
-												<RefreshCwIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-									</MessageActions>
-								</div>
-							{:else}
-								<div class="group flex w-full flex-col items-end gap-1">
-									<MessageContent
-										class="bg-muted text-primary max-w-[85%] rounded-3xl px-5 py-2.5 sm:max-w-[75%]"
-									>
-										{message.content}
-									</MessageContent>
-									<MessageActions
-										class={cn(
-											"flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-										)}
-									>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Copy</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleCopy(message.content)}
-											>
-												<CopyIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Like</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleLike(message.id)}
-											>
-												<ThumbsUpIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Dislike</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleDislike(message.id)}
-											>
-												<ThumbsDownIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-										<MessageAction>
-											{#snippet tooltip()}
-												<p>Regenerate</p>
-											{/snippet}
-											<Button
-												variant="ghost"
-												size="icon"
-												class="h-8 w-8"
-												onclick={() => handleRegenerate(message.id)}
-											>
-												<RefreshCwIcon class="h-4 w-4" />
-											</Button>
-										</MessageAction>
-									</MessageActions>
-								</div>
-							{/if}
-						</Message>
-					{/each}
-				</ChatContainerContent>
-			</ChatContainer>
-		</div>
-		<div class="absolute right-4 bottom-4">
-			<ScrollButton class="shadow-sm" />
-		</div>
+		<ScrollButton.Root class="h-full flex-col" role="log">
+			<ScrollButton.Content class="space-y-12 px-8 pt-12 pb-24">
+				{#each messages as message, index (message.id)}
+					{@const isAssistant = message.role === "assistant"}
+					{@const isLastMessage = index === messages.length - 1}
+					<Message
+						class={cn(
+							"mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
+							isAssistant ? "items-start" : "items-end"
+						)}
+					>
+						{#if isAssistant}
+							<div class="group flex w-full flex-col gap-0">
+								<MessageContent
+									class="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-0"
+									markdown={true}
+									content={message.content}
+								></MessageContent>
+								<MessageActions
+									class={cn(
+										"-ml-2.5 flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100",
+										isLastMessage && "opacity-100"
+									)}
+								>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Copy</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleCopy(message.content)}
+										>
+											<CopyIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Like</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleLike(message.id)}
+										>
+											<ThumbsUpIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Dislike</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleDislike(message.id)}
+										>
+											<ThumbsDownIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Regenerate</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleRegenerate(message.id)}
+										>
+											<RefreshCwIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+								</MessageActions>
+							</div>
+						{:else}
+							<div class="group flex w-full flex-col items-end gap-1">
+								<MessageContent
+									class="bg-muted text-primary max-w-[85%] rounded-3xl px-5 py-2.5 sm:max-w-[75%]"
+								>
+									{message.content}
+								</MessageContent>
+								<MessageActions
+									class={cn(
+										"flex gap-0 opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+									)}
+								>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Copy</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleCopy(message.content)}
+										>
+											<CopyIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Like</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleLike(message.id)}
+										>
+											<ThumbsUpIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Dislike</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleDislike(message.id)}
+										>
+											<ThumbsDownIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+									<MessageAction>
+										{#snippet tooltip()}
+											<p>Regenerate</p>
+										{/snippet}
+										<Button
+											variant="ghost"
+											size="icon"
+											class="h-8 w-8"
+											onclick={() => handleRegenerate(message.id)}
+										>
+											<RefreshCwIcon class="h-4 w-4" />
+										</Button>
+									</MessageAction>
+								</MessageActions>
+							</div>
+						{/if}
+					</Message>
+				{/each}
+			</ScrollButton.Content>
+
+			<div
+				class="pointer-events-none sticky right-0 bottom-4 mt-auto flex justify-end px-4"
+			>
+				<ScrollButton.Button class="pointer-events-auto shadow-sm" />
+			</div>
+		</ScrollButton.Root>
 	</div>
 
 	<div class="bg-background z-10 shrink-0 px-3 pb-3 md:px-5 md:pb-5">

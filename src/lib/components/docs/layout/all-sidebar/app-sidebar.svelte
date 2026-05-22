@@ -1,5 +1,6 @@
 <script lang="ts" module>
 	import {
+		blockPages,
 		components,
 		docsPages,
 		primitivePages,
@@ -27,6 +28,14 @@
 				title: "Primitives",
 				url: "#",
 				items: primitivePages.map((page) => ({
+					title: page.name,
+					url: page.href
+				})) as NavItem[]
+			},
+			{
+				title: "Blocks",
+				url: "#",
+				items: blockPages.map((page) => ({
 					title: page.name,
 					url: page.href
 				})) as NavItem[]

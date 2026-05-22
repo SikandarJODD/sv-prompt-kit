@@ -1,0 +1,134 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry.json",
+	"name": "sv-project-blocks",
+	"homepage": "https://sv-project.vercel.app",
+	"aliases": {
+		"lib": "$lib",
+		"components": "$lib/components",
+		"ui": "$lib/components/ui",
+		"utils": "$lib/utils"
+	},
+	"items": [
+		{
+			"name": "prompt-input-with-actions",
+			"type": "registry:block",
+			"title": "Prompt Input With Actions",
+			"description": "Prompt input block with action buttons and submit control.",
+			"registryDependencies": ["button", "../prompt-input.json"],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/prompt-input-with-actions.svelte",
+					"type": "registry:component",
+					"target": "blocks/prompt-input-with-actions.svelte"
+				}
+			]
+		},
+		{
+			"name": "prompt-input-with-autocomplete",
+			"type": "registry:block",
+			"title": "Prompt Input With Autocomplete",
+			"description": "Prompt input block with inline autocomplete suggestions.",
+			"registryDependencies": [
+				"button",
+				"../prompt-input.json",
+				"../prompt-suggestion.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/prompt-input-with-autocomplete.svelte",
+					"type": "registry:component",
+					"target": "blocks/prompt-input-with-autocomplete.svelte"
+				}
+			]
+		},
+		{
+			"name": "prompt-input-with-suggestions",
+			"type": "registry:block",
+			"title": "Prompt Input With Suggestions",
+			"description": "Prompt input block with category-based suggestion chips.",
+			"registryDependencies": [
+				"button",
+				"../prompt-input.json",
+				"../prompt-suggestion.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/prompt-input-with-suggestions.svelte",
+					"type": "registry:component",
+					"target": "blocks/prompt-input-with-suggestions.svelte"
+				}
+			]
+		},
+		{
+			"name": "basic-full-conversation",
+			"type": "registry:block",
+			"title": "Basic Full Conversation",
+			"description": "Basic conversation block using chat container and message primitives.",
+			"registryDependencies": [
+				"../chat-container.json",
+				"../message.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/basic-full-conversation.svelte",
+					"type": "registry:component",
+					"target": "blocks/basic-full-conversation.svelte"
+				}
+			]
+		},
+		{
+			"name": "conversation-with-actions",
+			"type": "registry:block",
+			"title": "Conversation With Actions",
+			"description": "Conversation block with assistant and user message actions.",
+			"registryDependencies": [
+				"button",
+				"../chat-container.json",
+				"../message.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/conversation-with-actions.svelte",
+					"type": "registry:component",
+					"target": "blocks/conversation-with-actions.svelte"
+				}
+			]
+		},
+		{
+			"name": "conversation-with-scroll",
+			"type": "registry:block",
+			"title": "Conversation With Scroll",
+			"description": "Conversation block with a floating scroll-to-bottom control.",
+			"registryDependencies": [
+				"../message.json",
+				"../scroll-button.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/conversation-with-scroll.svelte",
+					"type": "registry:component",
+					"target": "blocks/conversation-with-scroll.svelte"
+				}
+			]
+		},
+		{
+			"name": "conversation-with-prompt-input",
+			"type": "registry:block",
+			"title": "Conversation With Prompt Input",
+			"description": "Conversation block with message actions, prompt input, and scroll control.",
+			"registryDependencies": [
+				"button",
+				"../message.json",
+				"../prompt-input.json",
+				"../scroll-button.json"
+			],
+			"files": [
+				{
+					"path": "src/lib/components/blocks/conversation-with-prompt-input.svelte",
+					"type": "registry:component",
+					"target": "blocks/conversation-with-prompt-input.svelte"
+				}
+			]
+		}
+	]
+}

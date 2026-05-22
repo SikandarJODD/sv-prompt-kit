@@ -1,14 +1,7 @@
 <script lang="ts">
-	import {
-		ChatContainerContent,
-		ChatContainer,
-	} from "$lib/components/ai/chat-container";
 	import { Message, MessageContent } from "$lib/components/ai/message";
-	import { ScrollButton } from "$lib/components/ai/scroll-button";
+	import * as ScrollButton from "$lib/components/ai/scroll-button";
 	import { cn } from "$lib/utils";
-	import { watch } from "runed";
-
-	// const scrollContext = setScrollContext();
 
 	const messages = [
 		{
@@ -78,49 +71,40 @@
 		},
 	];
 
-	let containerRef = $state<HTMLDivElement | null>(null);
-
-	// watch(
-	// 	() => containerRef,
-	// 	() => {
-	// 		if (containerRef) {
-	// 			scrollContext.setElement(containerRef);
-	// 		}
-	// 	}
-	// );
 </script>
 
 <div class="relative h-[400px] w-full">
-	<div bind:this={containerRef} class="h-full min-w-full overflow-y-auto">
-		<ChatContainer class="h-full w-full overflow-visible">
-			<ChatContainerContent class="min-w-full space-y-4 px-4 py-6">
-				{#each messages as message (message.id)}
-					{@const isAssistant = message.role === "assistant"}
-					<Message
-						class={cn(
-							"mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
-							isAssistant ? "items-start" : "items-end"
-						)}
-					>
-						{#if isAssistant}
-							<MessageContent
-								class="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
-								markdown={true}
-								content={message.content}
-							></MessageContent>
-						{:else}
-							<MessageContent
-								class="bg-primary text-primary-foreground max-w-[85%] sm:max-w-[75%]"
-							>
-								{message.content}
-							</MessageContent>
-						{/if}
-					</Message>
-				{/each}
-			</ChatContainerContent>
-		</ChatContainer>
-	</div>
-	<div class="absolute right-4 bottom-4">
-		<ScrollButton class="shadow-sm" />
-	</div>
+	<ScrollButton.Root class="h-full w-full flex-col" role="log">
+		<ScrollButton.Content class="min-w-full space-y-4 px-4 pt-6 pb-24">
+			{#each messages as message (message.id)}
+				{@const isAssistant = message.role === "assistant"}
+				<Message
+					class={cn(
+						"mx-auto flex w-full max-w-3xl flex-col gap-2 px-0 md:px-6",
+						isAssistant ? "items-start" : "items-end"
+					)}
+				>
+					{#if isAssistant}
+						<MessageContent
+							class="text-foreground prose w-full flex-1 rounded-lg bg-transparent p-2"
+							markdown={true}
+							content={message.content}
+						></MessageContent>
+					{:else}
+						<MessageContent
+							class="bg-primary text-primary-foreground max-w-[85%] sm:max-w-[75%]"
+						>
+							{message.content}
+						</MessageContent>
+					{/if}
+				</Message>
+			{/each}
+		</ScrollButton.Content>
+
+		<div
+			class="pointer-events-none sticky right-0 bottom-4 mt-auto flex justify-end px-4"
+		>
+			<ScrollButton.Button class="pointer-events-auto shadow-sm" />
+		</div>
+	</ScrollButton.Root>
 </div>

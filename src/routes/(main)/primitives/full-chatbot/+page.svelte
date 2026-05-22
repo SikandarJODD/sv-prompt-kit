@@ -36,7 +36,6 @@
 		>
 			<div class="flex items-center gap-3">
 				<H1 id="full-chatbot">{pageData.title}</H1>
-				<Badge variant="emerald" size="sm">New</Badge>
 			</div>
 			<CopyPageDropdown componentName={pageData.title} {llmsTxtUrl} />
 		</div>

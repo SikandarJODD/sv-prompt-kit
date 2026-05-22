@@ -12,6 +12,7 @@ export interface DocPage {
 	id: string;
 	name: string;
 	href: string;
+	badge?: BadgeType;
 	desc?: string;
 }
 
@@ -144,17 +145,27 @@ let primitivePages: DocPage[] = [
 		id: "full-chatbot",
 		name: "Full Chatbot",
 		href: "/primitives/full-chatbot",
-		desc: "A full AI chatbot setup with UI, model config, and API route wiring.",
-		badge: "New"
+		desc: "A full AI chatbot setup with UI, model config, and API route wiring."
 	}
 ];
 
 export { primitivePages };
 
+let blockPages: DocPage[] = [
+	{
+		id: "blocks",
+		name: "Blocks",
+		href: "/blocks",
+		desc: "Composable block-level examples built from Prompt Kit components."
+	}
+];
+
+export { blockPages };
+
 type NavigationItem = DocPage | Component;
 
 function getNavigationItems(): NavigationItem[] {
-	return [...docsPages, ...primitivePages, ...components];
+	return [...docsPages, ...primitivePages, ...blockPages, ...components];
 }
 
 export function getPrevNext(id: string): {

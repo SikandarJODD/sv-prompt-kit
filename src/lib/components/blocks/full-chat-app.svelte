@@ -1,8 +1,4 @@
 <script lang="ts">
-	import {
-		ChatContainerContent,
-		ChatContainer,
-	} from "$lib/components/ai/chat-container";
 	import { Message, MessageContent } from "$lib/components/ai/message";
 	import {
 		PromptInput,
@@ -10,7 +6,7 @@
 		PromptInputActions,
 		PromptInputTextarea,
 	} from "$lib/components/ai/prompt-input";
-	import { ScrollButton } from "$lib/components/ai/scroll-button";
+	import * as ScrollButton from "$lib/components/ai/scroll-button";
 	import { Button } from "$lib/components/ui/button/index.js";
 	import * as Sidebar from "$lib/components/ui/sidebar/index.js";
 	import ArrowUpIcon from "@lucide/svelte/icons/arrow-up";
@@ -20,9 +16,6 @@
 	import PlusIcon from "@lucide/svelte/icons/plus";
 	import MessageSquareIcon from "@lucide/svelte/icons/message-square";
 	import PanelLeftIcon from "@lucide/svelte/icons/panel-left";
-	import { watch } from "runed";
-
-	// const scrollContext = setScrollContext();
 
 	let chatHistory = $state([
 		{ id: 1, title: "CSS Grid Layout", date: "Today" },
@@ -59,16 +52,6 @@
 	let prompt = $state("");
 	let isLoading = $state(false);
 	let activeChat = $state(1);
-	let containerRef = $state<HTMLDivElement | null>(null);
-
-	// watch(
-	// 	() => containerRef,
-	// 	() => {
-	// 		if (containerRef) {
-	// 			scrollContext.setElement(containerRef);
-	// 		}
-	// 	}
-	// );
 
 	function handleSubmit() {
 		if (!prompt.trim()) return;
@@ -158,28 +141,27 @@
 			</div>
 
 			<div class="relative flex-1 overflow-hidden">
-				<div bind:this={containerRef} class="h-full overflow-y-auto">
-					<ChatContainer class="h-full w-full">
-						<ChatContainerContent class="space-y-12 px-4 py-12">
-							{#each messages as message (message.id)}
-								<Message
-									class={message.role === "user"
-										? "justify-end"
-										: "justify-start"}
-								>
-									<MessageContent class="max-w-[80%]">
-										{message.content}
-									</MessageContent>
-								</Message>
-							{/each}
-						</ChatContainerContent>
-					</ChatContainer>
-				</div>
-				<div
-					class="absolute bottom-4 left-1/2 flex w-full max-w-3xl -translate-x-1/2 justify-end px-5"
-				>
-					<ScrollButton class="shadow-sm" />
-				</div>
+				<ScrollButton.Root class="h-full flex-col" role="log">
+					<ScrollButton.Content class="space-y-12 px-4 pt-12 pb-24">
+						{#each messages as message (message.id)}
+							<Message
+								class={message.role === "user"
+									? "justify-end"
+									: "justify-start"}
+							>
+								<MessageContent class="max-w-[80%]">
+									{message.content}
+								</MessageContent>
+							</Message>
+						{/each}
+					</ScrollButton.Content>
+
+					<div
+						class="pointer-events-none sticky right-0 bottom-4 mt-auto mx-auto flex w-full max-w-3xl justify-end px-5"
+					>
+						<ScrollButton.Button class="pointer-events-auto shadow-sm" />
+					</div>
+				</ScrollButton.Root>
 			</div>
 
 			<div class="bg-background z-10 shrink-0 px-3 pb-3 md:px-5 md:pb-5">
