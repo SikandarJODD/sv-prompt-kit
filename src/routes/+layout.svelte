@@ -18,9 +18,6 @@
 			return;
 		toggleMode();
 	});
-	// let workSpaceRootPath = "S:\\sv\\comp-setup";
-	// $inspect(dev, "Layout component rendered");
-	// $inspect(browser, "Running in browser");
 </script>
 
 <!-- {#if browser && dev}

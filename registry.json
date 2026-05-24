@@ -266,6 +266,10 @@
         "textarea",
         "tooltip"
       ],
+      "dependencies": [
+        "runed",
+        "bits-ui"
+      ],
       "files": [
         {
           "path": "src/lib/components/ai/prompt-input/prompt-input.svelte",
