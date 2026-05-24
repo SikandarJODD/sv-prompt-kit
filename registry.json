@@ -325,6 +325,46 @@
       ]
     },
     {
+      "name": "scroll-button",
+      "type": "registry:block",
+      "title": "Scroll Button",
+      "description": "Scroll-to-bottom button with stick-to-bottom context.",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "runed",
+        "stick-to-bottom-svelte"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button-content.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button-root.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button-root.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/scroll-button/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/index.ts",
+          "type": "registry:file",
+          "target": "ai/scroll-button/index.ts"
+        }
+      ]
+    },
+    {
       "name": "source",
       "type": "registry:block",
       "title": "Source",
