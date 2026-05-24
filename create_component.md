@@ -68,7 +68,7 @@ pnpm create:route <slug> --source ui/<component>
 Use `magic/<component>` or another source path when needed.
 ----
 
-mostly copied stuffff
+mostly used stuffff
  `src/
 └── lib/
     └── components/

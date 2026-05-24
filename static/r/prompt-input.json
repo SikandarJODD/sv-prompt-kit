@@ -5,7 +5,8 @@
 	"type": "registry:block",
 	"description": "Composable AI prompt input with actions and textarea.",
 	"dependencies": [
-		"runed@^0.37.1"
+		"runed",
+		"bits-ui"
 	],
 	"devDependencies": [
 		"bits-ui@^2.18.1",
