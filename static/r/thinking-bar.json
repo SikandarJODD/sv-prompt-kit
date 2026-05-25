@@ -4,6 +4,9 @@
 	"title": "Thinking Bar",
 	"type": "registry:component",
 	"description": "Thinking status indicator for AI responses.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
 	"devDependencies": [
 		"@lucide/svelte@^1.16.0"
 	],

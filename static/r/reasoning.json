@@ -1,0 +1,46 @@
+{
+	"$schema": "https://shadcn-svelte.com/schema/registry-item.json",
+	"name": "reasoning",
+	"title": "Reasoning",
+	"type": "registry:block",
+	"description": "A collapsible component for showing AI reasoning, explanations, or logic.",
+	"dependencies": [
+		"@lucide/svelte",
+		"@shikijs/themes",
+		"@streamdown-svelte/code",
+		"mode-watcher",
+		"runed",
+		"streamdown-svelte"
+	],
+	"devDependencies": [
+		"@lucide/svelte@^1.16.0",
+		"@shikijs/themes@^4.0.2"
+	],
+	"files": [
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { setContext, untrack } from \"svelte\";\r\n\timport { createReasoningContext } from \"./context.svelte.js\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLAttributes } from \"svelte/elements\";\r\n\r\n\tinterface Props extends HTMLAttributes<HTMLDivElement> {\r\n\t\tchildren: Snippet;\r\n\t\topen?: boolean;\r\n\t\tonOpenChange?: (open: boolean) => void;\r\n\t\tisStreaming?: boolean;\r\n\t}\r\n\r\n\tlet {\r\n\t\tchildren,\r\n\t\tclass: className,\r\n\t\topen = $bindable(),\r\n\t\tonOpenChange,\r\n\t\tisStreaming = false,\r\n\t\t...rest\r\n\t}: Props = $props();\r\n\r\n\tconst context = createReasoningContext(\r\n\t\topen,\r\n\t\tuntrack(() => onOpenChange),\r\n\t\tuntrack(() => isStreaming)\r\n\t);\r\n\tsetContext(\"reasoning\", context);\r\n\r\n\t// Bind context state to open prop if controlled\r\n\t$effect(() => {\r\n\t\tif (open !== undefined) {\r\n\t\t\tcontext.setOpen(open);\r\n\t\t}\r\n\t});\r\n\r\n\t// Handle streaming auto-open/close\r\n\t$effect(() => {\r\n\t\tif (isStreaming && !context.wasAutoOpened) {\r\n\t\t\tcontext.setOpen(true);\r\n\t\t\tcontext.wasAutoOpened = true;\r\n\t\t}\r\n\r\n\t\tif (!isStreaming && context.wasAutoOpened) {\r\n\t\t\tcontext.setOpen(false);\r\n\t\t\tcontext.wasAutoOpened = false;\r\n\t\t}\r\n\t});\r\n</script>\r\n\r\n<div class={className} {...rest}>\r\n\t{@render children()}\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/reasoning/reasoning.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport ChevronDown from \"@lucide/svelte/icons/chevron-down\";\r\n\timport { getReasoningContext } from \"./context.svelte.js\";\r\n\timport { cn } from \"$UTILS$\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport type { HTMLButtonAttributes } from \"svelte/elements\";\r\n\r\n\tinterface Props extends HTMLButtonAttributes {\r\n\t\tchildren: Snippet;\r\n\t}\r\n\r\n\tlet { children, class: className, onclick, ...rest }: Props = $props();\r\n\r\n\tconst context = getReasoningContext();\r\n\r\n\tfunction handleClick(\r\n\t\te: MouseEvent & { currentTarget: EventTarget & HTMLButtonElement }\r\n\t) {\r\n\t\tcontext.toggle();\r\n\t\tonclick?.(e);\r\n\t}\r\n</script>\r\n\r\n<button\r\n\tclass={cn(\"flex cursor-pointer items-center gap-2\", className)}\r\n\tonclick={handleClick}\r\n\t{...rest}\r\n>\r\n\t<span class=\"text-primary\">\r\n\t\t{@render children()}\r\n\t</span>\r\n\t<div\r\n\t\tclass={cn(\r\n\t\t\t\"transform transition-transform\",\r\n\t\t\tcontext.isOpen ? \"rotate-180\" : \"\"\r\n\t\t)}\r\n\t>\r\n\t\t<ChevronDown class=\"size-4\" />\r\n\t</div>\r\n</button>\r\n",
+			"type": "registry:component",
+			"target": "ai/reasoning/reasoning-trigger.svelte"
+		},
+		{
+			"content": "<script lang=\"ts\">\r\n\timport { getReasoningContext } from \"./context.svelte.js\";\r\n\timport { cn } from \"$UTILS$\";\r\n\timport { watch } from \"runed\";\r\n\timport type { Snippet } from \"svelte\";\r\n\timport { Streamdown } from \"streamdown-svelte\";\r\n\timport { mode } from \"mode-watcher\";\r\n\r\n\t// Import Shiki themes\r\n\timport githubLightDefault from \"@shikijs/themes/github-light-default\";\r\n\timport githubDarkDefault from \"@shikijs/themes/github-dark-default\";\r\n\timport { code } from \"@streamdown-svelte/code\";\r\n\r\n\tinterface Props {\r\n\t\tchildren?: Snippet;\r\n\t\tcontent?: string;\r\n\t\tclass?: string;\r\n\t\tcontentClass?: string;\r\n\t\tmarkdown?: boolean;\r\n\t\t[key: string]: any;\r\n\t}\r\n\r\n\tlet {\r\n\t\tchildren,\r\n\t\tcontent, // for streamdown purpose only\r\n\t\tclass: className,\r\n\t\tcontentClass,\r\n\t\tmarkdown = false,\r\n\t\t...rest\r\n\t}: Props = $props();\r\n\r\n\tconst context = getReasoningContext();\r\n\r\n\tlet contentRef: HTMLDivElement | undefined = $state();\r\n\tlet innerRef: HTMLDivElement | undefined = $state();\r\n\r\n\t// Watch for isOpen changes and resize observer\r\n\twatch(\r\n\t\t() => [context.isOpen, innerRef] as const,\r\n\t\t([isOpen, inner]) => {\r\n\t\t\tif (!contentRef || !inner) return;\r\n\r\n\t\t\tconst observer = new ResizeObserver(() => {\r\n\t\t\t\tif (contentRef && inner && isOpen) {\r\n\t\t\t\t\tcontentRef.style.maxHeight = `${inner.scrollHeight}px`;\r\n\t\t\t\t}\r\n\t\t\t});\r\n\r\n\t\t\tobserver.observe(inner);\r\n\r\n\t\t\tif (isOpen) {\r\n\t\t\t\tcontentRef.style.maxHeight = `${inner.scrollHeight}px`;\r\n\t\t\t}\r\n\r\n\t\t\treturn () => observer.disconnect();\r\n\t\t}\r\n\t);\r\n\r\n\t// Compute max height reactively\r\n\tlet maxHeight = $derived(\r\n\t\tcontext.isOpen && contentRef ? `${contentRef.scrollHeight}px` : \"0px\"\r\n\t);\r\n\tlet currentTheme = $derived(\r\n\t\tmode.current === \"dark\" ? \"github-dark-default\" : \"github-light-default\"\r\n\t);\r\n</script>\r\n\r\n<div\r\n\tbind:this={contentRef}\r\n\tclass={cn(\r\n\t\t\"overflow-hidden transition-[max-height] duration-150 ease-out\",\r\n\t\tclassName\r\n\t)}\r\n\tstyle:max-height={maxHeight}\r\n\t{...rest}\r\n>\r\n\t<div\r\n\t\tbind:this={innerRef}\r\n\t\tclass={cn(\r\n\t\t\t\"prose prose-sm dark:prose-invert text-muted-foreground\",\r\n\t\t\tcontentClass\r\n\t\t)}\r\n\t>\r\n\t\t{#if content}\r\n\t\t\t<!-- Basic -->\r\n\t\t\t<!-- <Streamdown {content} /> -->\r\n\t\t\t<!-- Advance with light and dark theme  -->\r\n\t\t\t<Streamdown\r\n\t\t\t\t{content}\r\n\t\t\t\tclass=\"pb-4 [&>*:first-child]:mt-2 [&>*:last-child]:mb-0\"\r\n\t\t\t\tshikiTheme={currentTheme}\r\n\t\t\t\tshikiThemes={{\r\n\t\t\t\t\t\"github-light-default\": githubLightDefault,\r\n\t\t\t\t\t\"github-dark-default\": githubDarkDefault\r\n\t\t\t\t}}\r\n\t\t\t\tbaseTheme=\"shadcn\"\r\n\t\t\t\tplugins={{ code }}\r\n\t\t\t/>\r\n\t\t{:else}\r\n\t\t\t{@render children?.()}\r\n\t\t{/if}\r\n\t</div>\r\n</div>\r\n",
+			"type": "registry:component",
+			"target": "ai/reasoning/reasoning-content.svelte"
+		},
+		{
+			"content": "import { getContext } from \"svelte\";\r\n\r\nclass ReasoningContext {\r\n    private _isOpen = $state(false);\r\n    private _onOpenChange?: (open: boolean) => void;\r\n    private _isControlled = false;\r\n    wasAutoOpened = $state(false);\r\n\r\n    constructor(open?: boolean, onOpenChange?: (open: boolean) => void, isStreaming?: boolean) {\r\n        this._isControlled = open !== undefined;\r\n        this._isOpen = open ?? false;\r\n        this._onOpenChange = onOpenChange;\r\n    }\r\n\r\n    get isOpen() {\r\n        return this._isOpen;\r\n    }\r\n\r\n    setOpen(newOpen: boolean) {\r\n        if (!this._isControlled) {\r\n            this._isOpen = newOpen;\r\n        }\r\n        this._onOpenChange?.(newOpen);\r\n    }\r\n\r\n    toggle() {\r\n        this.setOpen(!this._isOpen);\r\n    }\r\n}\r\n\r\nexport function createReasoningContext(\r\n    open?: boolean,\r\n    onOpenChange?: (open: boolean) => void,\r\n    isStreaming?: boolean\r\n) {\r\n    return new ReasoningContext(open, onOpenChange, isStreaming);\r\n}\r\n\r\nexport function getReasoningContext(): ReasoningContext {\r\n    const context = getContext<ReasoningContext>(\"reasoning\");\r\n    if (!context) {\r\n        throw new Error(\"getReasoningContext must be used within a Reasoning component\");\r\n    }\r\n    return context;\r\n}",
+			"type": "registry:file",
+			"target": "ai/reasoning/context.svelte.ts"
+		},
+		{
+			"content": "import Reasoning from \"./reasoning.svelte\";\r\nimport ReasoningTrigger from \"./reasoning-trigger.svelte\";\r\nimport ReasoningContent from \"./reasoning-content.svelte\";\r\n\r\nexport {\r\n    Reasoning,\r\n    ReasoningTrigger,\r\n    ReasoningContent,\r\n    //\r\n    Reasoning as Root,\r\n    ReasoningTrigger as Trigger,\r\n    ReasoningContent as Content,\r\n}",
+			"type": "registry:file",
+			"target": "ai/reasoning/index.ts"
+		}
+	]
+}
