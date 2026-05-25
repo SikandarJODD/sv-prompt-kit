@@ -17,6 +17,10 @@
       "registryDependencies": [
         "collapsible"
       ],
+      "dependencies": [
+        "bits-ui",
+        "@lucide/svelte"
+      ],
       "files": [
         {
           "path": "src/lib/components/ai/chain-of-thought/chain-of-thought.svelte",
@@ -51,11 +55,47 @@
       ]
     },
     {
+      "name": "chat-container",
+      "type": "registry:block",
+      "title": "Chat Container",
+      "description": "A component for creating chat interfaces with intelligent auto-scrolling behavior, designed to provide a smooth experience in conversation interfaces.",
+      "registryDependencies": [],
+      "dependencies": [
+        "runed",
+        "stick-to-bottom-svelte"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/chat-container/chat-container.svelte",
+          "type": "registry:component",
+          "target": "ai/chat-container/chat-container.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chat-container/chat-container-content.svelte",
+          "type": "registry:component",
+          "target": "ai/chat-container/chat-container-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/chat-container/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/chat-container/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/chat-container/index.ts",
+          "type": "registry:file",
+          "target": "ai/chat-container/index.ts"
+        }
+      ]
+    },
+    {
       "name": "feedback-bar",
       "type": "registry:component",
       "title": "Feedback Bar",
       "description": "Compact thumbs-up or thumbs-down feedback actions.",
       "registryDependencies": [],
+      "dependencies": [
+        "@lucide/svelte"
+      ],
       "files": [
         {
           "path": "src/lib/components/ai/feedback-bar/feedback-bar.svelte",
@@ -207,6 +247,12 @@
       "title": "Markdown",
       "description": "Streaming markdown renderer for AI message content.",
       "registryDependencies": [],
+      "dependencies": [
+        "@shikijs/themes",
+        "@streamdown-svelte/code",
+        "mode-watcher",
+        "streamdown-svelte"
+      ],
       "files": [
         {
           "path": "src/lib/components/ai/markdown/markdown.svelte",
@@ -325,6 +371,89 @@
       ]
     },
     {
+      "name": "reasoning",
+      "type": "registry:block",
+      "title": "Reasoning",
+      "description": "A collapsible component for showing AI reasoning, explanations, or logic.",
+      "registryDependencies": [],
+      "dependencies": [
+        "@lucide/svelte",
+        "@shikijs/themes",
+        "@streamdown-svelte/code",
+        "mode-watcher",
+        "runed",
+        "streamdown-svelte"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/reasoning/reasoning.svelte",
+          "type": "registry:component",
+          "target": "ai/reasoning/reasoning.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/reasoning/reasoning-trigger.svelte",
+          "type": "registry:component",
+          "target": "ai/reasoning/reasoning-trigger.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/reasoning/reasoning-content.svelte",
+          "type": "registry:component",
+          "target": "ai/reasoning/reasoning-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/reasoning/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/reasoning/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/reasoning/index.ts",
+          "type": "registry:file",
+          "target": "ai/reasoning/index.ts"
+        }
+      ]
+    },
+    {
+      "name": "scroll-button",
+      "type": "registry:block",
+      "title": "Scroll Button",
+      "description": "A minimal floating button that appears when the user scrolls up, allowing them to jump back to the bottom of the chat.",
+      "registryDependencies": [
+        "button"
+      ],
+      "dependencies": [
+        "@lucide/svelte",
+        "runed",
+        "stick-to-bottom-svelte"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button-content.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/scroll-button-root.svelte",
+          "type": "registry:component",
+          "target": "ai/scroll-button/scroll-button-root.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/context.svelte.ts",
+          "type": "registry:file",
+          "target": "ai/scroll-button/context.svelte.ts"
+        },
+        {
+          "path": "src/lib/components/ai/scroll-button/index.ts",
+          "type": "registry:file",
+          "target": "ai/scroll-button/index.ts"
+        }
+      ]
+    },
+    {
       "name": "source",
       "type": "registry:block",
       "title": "Source",
@@ -361,12 +490,60 @@
       ]
     },
     {
+      "name": "steps",
+      "type": "registry:block",
+      "title": "Steps",
+      "description": "Displays a sequence of operations in a collapsible layout. Each step can include details and an optional vertical bar.",
+      "registryDependencies": [
+        "collapsible"
+      ],
+      "dependencies": [
+        "@lucide/svelte"
+      ],
+      "files": [
+        {
+          "path": "src/lib/components/ai/steps/steps.svelte",
+          "type": "registry:component",
+          "target": "ai/steps/steps.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/steps/steps-bar.svelte",
+          "type": "registry:component",
+          "target": "ai/steps/steps-bar.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/steps/steps-content.svelte",
+          "type": "registry:component",
+          "target": "ai/steps/steps-content.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/steps/steps-item.svelte",
+          "type": "registry:component",
+          "target": "ai/steps/steps-item.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/steps/steps-trigger.svelte",
+          "type": "registry:component",
+          "target": "ai/steps/steps-trigger.svelte"
+        },
+        {
+          "path": "src/lib/components/ai/steps/index.ts",
+          "type": "registry:file",
+          "target": "ai/steps/index.ts"
+        }
+      ]
+    },
+    {
       "name": "system-message",
       "type": "registry:component",
       "title": "System Message",
       "description": "Styled system or status message for AI interfaces.",
       "registryDependencies": [
         "button"
+      ],
+      "dependencies": [
+        "@lucide/svelte",
+        "tailwind-variants"
       ],
       "files": [
         {
@@ -407,6 +584,9 @@
       "description": "Thinking status indicator for AI responses.",
       "registryDependencies": [
         "local:text-shimmer"
+      ],
+      "dependencies": [
+        "@lucide/svelte"
       ],
       "files": [
         {
