@@ -4,6 +4,9 @@
 	"title": "Feedback Bar",
 	"type": "registry:component",
 	"description": "Compact thumbs-up or thumbs-down feedback actions.",
+	"dependencies": [
+		"@lucide/svelte"
+	],
 	"devDependencies": [
 		"@lucide/svelte@^1.16.0"
 	],

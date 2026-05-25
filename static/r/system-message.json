@@ -4,6 +4,10 @@
 	"title": "System Message",
 	"type": "registry:component",
 	"description": "Styled system or status message for AI interfaces.",
+	"dependencies": [
+		"@lucide/svelte",
+		"tailwind-variants"
+	],
 	"devDependencies": [
 		"tailwind-variants@^3.2.2",
 		"@lucide/svelte@^1.16.0"

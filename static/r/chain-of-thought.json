@@ -4,6 +4,10 @@
 	"title": "Chain Of Thought",
 	"type": "registry:block",
 	"description": "Composable AI reasoning disclosure components.",
+	"dependencies": [
+		"bits-ui",
+		"@lucide/svelte"
+	],
 	"devDependencies": [
 		"@lucide/svelte@^1.16.0",
 		"bits-ui@^2.18.1",
